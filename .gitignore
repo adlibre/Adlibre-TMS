@@ -1,0 +1,7 @@
+*.pyc
+*.pid
+*.sock
+bin/
+include/
+lib/
+static/
