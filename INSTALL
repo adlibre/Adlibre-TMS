@@ -1,8 +1,9 @@
 ### This is how we setup a dev environment
 
+# cd ( to your virtualenv base)
+# git clone git://github.com/adlibre/Adlibre-TMS.git tms
 # mkvirtualenv --no-site-packages tms
 # cdvirtualenv
-# git clone (repo path)
 # ./bootstrap.py
 # ./src/tms/manage.py collectstatic
 
@@ -10,10 +11,10 @@
 
 # su - wwwpub
 # cd /srv/www
+# git clone git://github.com/adlibre/Adlibre-TMS.git tms
 # mkvirtualenv --no-site-packages --python /usr/bin/python2.6 tms
 # workon tms
 # cdvirtualenv
-# git clone (repo path)
 # ./bootstrap.py
 # ./src/tms/manage.py collectstatic
 
