@@ -5,7 +5,7 @@
 # mkvirtualenv --no-site-packages tms
 # cdvirtualenv
 # ./bootstrap.py
-# ./src/tms/manage.py collectstatic
+# ./src/adlibre_tms/manage.py collectstatic
 
 ### This is how we deploy on CentOS 5.X w/ lighttpd
 
@@ -16,7 +16,7 @@
 # workon tms
 # cdvirtualenv
 # ./bootstrap.py
-# ./src/tms/manage.py collectstatic
+# ./src/adlibre_tms/manage.py collectstatic
 
 ## Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
 
