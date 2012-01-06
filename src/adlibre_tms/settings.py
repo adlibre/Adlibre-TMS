@@ -71,7 +71,7 @@ STATIC_URL = '/static/'
 # Additional directories which hold static files
 STATICFILES_DIRS = (
     ('', os.path.join(PROJECT_PATH, 'apps/tms/contrib/saasu/media')),
-    ('', os.path.join(PROJECT_PATH, '..', '..', 'media', DJANGO_THEME)),
+    ('', os.path.join(PROJECT_PATH, '..', '..', 'www', 'media', DJANGO_THEME)),
 )
 
 STATICFILES_FINDERS = (
