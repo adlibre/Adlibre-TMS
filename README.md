@@ -20,10 +20,10 @@ without being convoluted.
 
 ## Screenshots
 
-<img src="http://api.ning.com/files/pkIMBlji3wsiGMEg5ctIg1eMkXxskzsGI6jTNiyo1IJzvLXnDCIKDimZffBZOIhWhpOIAGGPaGzRsuSvpGyelxF0Xrs*jxD5/ss0.jpg" align="right" />
-<img src="http://api.ning.com/files/iQsL9ukR9Q5vfA4EEegsHRUGYOFngKxtcElX4jIGidTqso6OeplttALo9goWKG-NW4ryboBvbsZPmHaBGQP1zzAFFpG9JOnE/ss1.jpg" align="right" />
-<img src="http://api.ning.com/files/cC0c4AhgrwGxDsskBc0oXOt1ADbWlM3cxCT8FCnPufow2ywc6EPrcWYopnESoZa6GIbxSla-ClvjyO2AbZnC-3y-aX1bjCGc/ss2.jpg" align="right" />
-<img src="http://api.ning.com/files/efSHhTD6-9lNeo9nDhnxqYy-4RwqzQyvy0hHsNRfeEsJ5kPQrcyDoNh0cIt7EWBDayKs-bw1FjiekqWzJnBPxGsuF-xMILKQ/ss3.jpg" align="right" />
+<img src="http://api.ning.com/files/pkIMBlji3wsiGMEg5ctIg1eMkXxskzsGI6jTNiyo1IJzvLXnDCIKDimZffBZOIhWhpOIAGGPaGzRsuSvpGyelxF0Xrs*jxD5/ss0.jpg" align="left" />
+<img src="http://api.ning.com/files/iQsL9ukR9Q5vfA4EEegsHRUGYOFngKxtcElX4jIGidTqso6OeplttALo9goWKG-NW4ryboBvbsZPmHaBGQP1zzAFFpG9JOnE/ss1.jpg" align="left" />
+<img src="http://api.ning.com/files/cC0c4AhgrwGxDsskBc0oXOt1ADbWlM3cxCT8FCnPufow2ywc6EPrcWYopnESoZa6GIbxSla-ClvjyO2AbZnC-3y-aX1bjCGc/ss2.jpg" align="left" />
+<img src="http://api.ning.com/files/efSHhTD6-9lNeo9nDhnxqYy-4RwqzQyvy0hHsNRfeEsJ5kPQrcyDoNh0cIt7EWBDayKs-bw1FjiekqWzJnBPxGsuF-xMILKQ/ss3.jpg" align="left" />
 
 ## Support
 
