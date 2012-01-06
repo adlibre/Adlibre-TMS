@@ -1,0 +1,23 @@
+{% load uni_form_tags %}
+      <form id="expenses_form" action="{% url tms_expenses %}" method="post" class="uniForm">
+        {% csrf_token %}
+        <div id="edit_pk" edit_id="{{ edit_pk }}" style="display:none"></div>
+        <fieldset class="inlineLabels">
+          {{ form.currency|as_uni_field }}
+          {{ form.expense_date|as_uni_field }}
+          {{ form.claim_date|as_uni_field }}
+          {{ form.customer|as_uni_field }}
+          {{ form.expense_type|as_uni_field }}
+          {{ form.comment|as_uni_field }}
+          {{ form.is_receipted|as_uni_field }}
+          {{ form.payment_method|as_uni_field }}
+          {{ form.is_taxable|as_uni_field }}
+          {{ form.expense_amount|as_uni_field }}
+          {{ form.tax_amount|as_uni_field }}
+          {{ form.local_amount|as_uni_field }}
+          <div class="controls">
+            <input id="id_expenses_form_clear" name="" type="reset" value="New" class="btn-create button" />
+            <input id="id_expenses_form_submit" name="save" type="submit" value="Save" class="btn-submit button" />
+          </div>
+        </fieldset>
+      </form>

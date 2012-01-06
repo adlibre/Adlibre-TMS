@@ -1,0 +1,133 @@
+{% extends "reporting/base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+{% load pagination_tags %}
+{% load time_filters %}
+
+{% block page_title %}
+  {% trans "Projects" %}<a href="#" title="{% trans "What is it?" %}" class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+  {% if data.report %}
+    {% autopaginate data.report %}
+    <span class="note">{% blocktrans with start_index=page_obj.start_index end_index=page_obj.end_index count=paginator.count %}Viewing {{ start_index }}-{{ end_index }} ({{ count }}) reports{% endblocktrans %}</span>
+  {% else %}
+    <span class="note">&nbsp;</span>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="control-panel">
+    <div class="form">
+      <form action="." method="post" class="uniForm">
+        {% csrf_token %}
+        <fieldset class="inlineLabels">
+          {{ form|as_uni_form }}
+          <div class="controls">
+            <input name="generate" type="submit" value="Generate" class="btn-submit button" />
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="panel"><img src="{{ STATIC_URL }}tms/images/logo-reports.png" width="535" height="254" alt="panel" style="padding-top:10px;"></div>
+  </div>
+  <div class="clearall"></div>
+  <div class="data-box">
+    {% if data.report %}
+      <h3>{{ report.verbose_name }}</h3>
+      <p>{% blocktrans with date_start=data.date_start|date:"d M Y" date_end=data.date_end|date:"d M Y" %}Date range: {{ date_start }} - {{ date_end }}{% endblocktrans %}</p>
+      
+      {% for r in data.report %}
+        {% for key, value in r.items %}
+          <h4>{% trans "Customer:" %} {{ key }}</h4>
+
+          {% for queryset in value.subsets %}
+            {% if queryset %}
+              {% ifchanged queryset %}
+                <h5>{% trans "Job:" %} {{ queryset.0.service_code }}</h5>
+              {% endifchanged %}
+              <table>
+                <thead>
+                  <tr>
+                    <th>{% trans "Consultant" %}</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Start" %}</th>
+                    <th>{% trans "End" %}</th>
+                    <th>{% trans "Minutes" %}</th>
+                    <th>{% trans "Charge" %}</th>
+                    <th>{% trans "Comment" %}</th>
+                    </tr>                        
+                </thead>
+                <tbody>
+                    {% for obj in queryset %}
+                      <tr>
+                        <td>{{ obj.employee }}</td>
+                        <td>{{ obj.start_time|date:"d M Y" }}</td>
+                        <td>{{ obj.start_time|date:"H:i" }}</td>
+                        <td>{{ obj.end_time|date:"H:i" }}</td>
+                        <td>{{ obj.duration_minutes|floatformat }}</td>
+                        <td>
+                          {% if obj.is_billable %}
+                            <span class="checked">{% trans "Checked" %}</span>
+                          {% else %}
+                              <span class="unchecked">{% trans "Unchecked" %}</span>
+                          {% endif %}
+                        </td>
+                        <td>{{ obj.comment }}</td>
+                        <td> </td>
+                      </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              <table class="report_job_totals">
+                    <tbody>
+                        <tr>
+                            <td class="totals_name">{% trans "Job Total:" %}</td>
+                            <td class="totals_amount">{{ queryset.get_total_minutes }} min. ({{ queryset.get_total_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+                        </tr>
+                        <tr>
+                            <td class="totals_name">{% trans "Job Chargeable Total:" %}</td>
+                            <td class="totals_amount">{{ queryset.get_total_charge_minutes }} min. ({{ queryset.get_total_charge_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+                        </tr>
+                    </tbody>
+              </table>
+            {% endif %}
+          {% endfor %}
+        <table class="report_customer_totals">
+             <tr>
+               <td class="totals_name">{% trans "Customer Total:" %}</td>
+               <td class="totals_amount">{{ value.queryset.get_total_minutes }} min. ({{ value.queryset.get_total_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+             </tr>
+             <tr>
+               <td class="totals_name">{% trans "Customer Chargeable Total:" %}</td>
+               <td class="totals_amount">{{ value.queryset.get_total_charge_minutes }} min. ({{ value.queryset.get_total_charge_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+             </tr>
+        </table>
+        {% endfor %}
+      {% endfor %}
+      {% if data.totals_for_project %}
+        <table class="report_project_totals">
+           <tbody>
+             <tr>
+               <td class="totals_name">{% trans "Project Total:" %}</td>
+               <td class="totals_amount">{{ data.total_project_minutes }} min. ({{ data.total_project_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+             </tr>
+             <tr>
+               <td class="totals_name">{% trans "Project Chargeable Total:" %}</td>
+               <td class="totals_amount">{{ data.total_project_chargable_minutes }} min. ({{ data.total_project_chargable_minutes|in_decimalhours|floatformat:2 }} hours)</td>
+             </tr>
+           </tbody>
+        </table>
+        {% endif %}
+      {% paginate %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block extra_body %}
+  <script type="text/javascript">
+	$(document).ready(function() {
+		$('.select').selectbox();
+	});
+  </script>
+{% endblock %}

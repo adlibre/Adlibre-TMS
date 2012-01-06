@@ -1,0 +1,81 @@
+{% extends "admin/base_site.html" %}
+
+{% load i18n %}
+{% load adminmedia %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+  {% url admin:jsi18n as jsi18nurl %}
+  <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}admin/saasu/js/SaasuContactLookups.js"></script>
+  <style>
+    #changelist table thead th:first-child {width: inherit}
+  </style>
+{% endblock %}
+
+{% block title %}{% trans "SAASU Contact List" %} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">{% trans "Home" %}</a>&rsaquo; 
+       <a href="../">{{ app_label|capfirst }}</a>&rsaquo; 
+      {% trans "SAASU Contact List" %}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Select contact to link" %}</h1>
+  <div id="content-main">
+    {% block object-tools %}{% endblock %}
+    <div class="module" id="changelist">
+
+      <form action="" method="post">
+        {% block result_list %}
+          {% if object_list %}
+            <table cellspacing="0">
+              <thead>
+                <tr>
+                  <th>{% trans "Contact Uid" %}</th>
+                  <th>{% trans "Given Name" %}</th>
+                  <th>{% trans "Family Name" %}</th>
+                  <th>{% trans "Organisation" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for obj in object_list %}
+                  <tr class="{% cycle 'row1' 'row2' %}">
+                    <th>
+                      {% if is_popup %}
+                        <a href="{{ obj.contactUid }}/" onclick="opener.dismissSaasuContactLookupPopup(window, '{{ obj.contactUid }}'); return false;">{{ obj.contactUid }}</a>
+                      {% else %}
+                        <a href="#">{{ obj.contactUid }}</a>
+                      {% endif %}
+                    </th>
+                    <td>{{ obj.givenName }}</td>
+                    <td>{{ obj.familyName }}</td>
+                    <td>{{ obj.organisation }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        {% endblock %}
+        {% block pagination %}
+          <p class="paginator">
+            {# TODO: implement pagination #}
+            {{ object_list|length }} {% ifequal object_list|length 1 %}{% trans "contact" %}{% else %}{% trans "contacts" %}{% endifequal %}
+          </p>
+        {% endblock %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

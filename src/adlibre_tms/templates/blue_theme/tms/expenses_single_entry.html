@@ -1,0 +1,48 @@
+{% load i18n %}
+          <tr data-id="expense-{{ object.pk }}"
+              onclick="return expense_editbtn_press(this, '{{ object.pk }}')">
+            <td>{{ object.customer }}</td>
+            <td>{{ object.expense_date|date:"d M Y" }}</td>
+            <td>{{ object.comment }}</td>
+            <td>{{ object.expense_type }}</td>
+            <td>
+                {% if object.is_receipted %}
+                    <span class="checked">{% trans "Checked" %}</span>
+                {% endif %}
+            </td>
+            <td>{{ object.currency }}</td>
+            <td>{{ object.payment_method }}</td>
+            <td>
+              {% if object.is_taxable %}
+                <span class="checked">{% trans "Checked" %}</span>
+              {% endif %}
+            </td>
+            <td>{{ object.expense_amount }}</td>
+            <td>{{ object.tax_amount }}</td>
+            <td class="local_amount">{{ object.local_amount}}</td>
+            <td><a href="#" 
+                   title={% trans "Delete" %} 
+                   class="del-link" 
+                   onclick="return expense_delbtn_press(this, '{{ object.pk }}', '{% url tms_expense_del %}')"
+                   >{% trans "Delete" %}</a>
+                <div class="edit_data" data-id="expense-{{ object.pk }}" style="display:none">
+                    <div id="edit_currency-{{ object.pk }}">{{ object.currency.pk }}</div>
+                    <div id="edit_expense_date_day-{{ object.pk }}">{{ object.expense_date|date:"d" }}</div>
+                    <div id="edit_expense_date_month-{{ object.pk }}">{{ object.expense_date|date:"m" }}</div>
+                    <div id="edit_expense_date_year-{{ object.pk }}">{{ object.expense_date|date:"Y" }}</div>
+                    <div id="edit_claim_date_day-{{ object.pk }}">{{ object.claim_date|date:"d" }}</div>
+                    <div id="edit_claim_date_month-{{ object.pk }}">{{ object.claim_date|date:"m" }}</div>
+                    <div id="edit_claim_date_year-{{ object.pk }}">{{ object.claim_date|date:"Y" }}</div>
+                    <div id="edit_customer-{{ object.pk }}">{{ object.customer.pk }}</div>
+                    <div id="edit_expense_type-{{ object.pk }}">{{ object.expense_type.pk }}</div>
+                    <div id="edit_comment-{{ object.pk }}">{{ object.comment }}</div>
+                    <div id="edit_is_receipted-{{ object.pk }}">{{ object.is_receipted }}</div>
+                    <div id="edit_payment_method-{{ object.pk }}">{{ object.payment_method.pk }}</div>
+                    <div id="edit_is_receipted-{{ object.pk }}">{{ object.is_taxable }}</div>
+                    <div id="edit_expense_amount-{{ object.pk }}">{{ object.expense_amount }}</div>
+                    <div id="edit_tax_amount-{{ object.pk }}">{{ object.tax_amount }}</div>
+                    <div id="edit_local_amount-{{ object.pk }}">{{ object.local_amount }}</div>
+                    {% if edit_ajax %}<div class="edited_item_returned"></div>{% endif %}
+                </div>
+            </td>
+          </tr>

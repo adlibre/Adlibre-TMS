@@ -1,0 +1,9 @@
+{% extends "site_base.html" %}
+
+{% block content %}
+  <ul class="link_list">
+    {% for project in object_list %}
+      <li><a href="{{ project.get_absolute_url }}">{{ project.project_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

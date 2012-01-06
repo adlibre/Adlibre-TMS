@@ -1,0 +1,281 @@
+/**********************************************************************************************
+
+	Title: CSS
+	Author: Anastasia Chuprasova
+	Date: 2010
+
+***********************************************************************************************
+
+	1. General Elements
+	
+	2. Layout
+		2.1 Header
+		2.2 Content
+		2.3 Footer
+
+	3. 	Miscellaneous	
+		
+***********************************************************************************************/
+
+
+/* 1. General Elements
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+	html{font-size:100.01%;}
+
+	body {
+		font-family: Arial, Helvetica, "Helvetica Neue", sans-serif;
+		font-size: 62.5%;
+		line-height: 1.5;
+		text-align: center;
+		color:#353535;
+		background:#e6e6e6 url(../images/bg.png) 0 0 repeat;
+	}
+
+	hr {display: none;}
+		
+	strong {font-weight: bold;}
+	
+	p{margin-bottom:15px;}
+	ul, ol{margin:10px 0 15px 20px;}
+	h2, h3, h4, h5{margin-bottom:10px; color:#353535;}
+	h1{font-size:2.5em;}
+	h2{font-size:2.1em;}
+	h3{font-size:1.7em; color:#C60;}
+	h4{margin-top:20px; font-size:1.5em;}
+		
+	em {font-style: italic;}
+	
+	address {font-style: normal;}
+
+	input, textarea, select {font: 1em Arial, Helvetica, sans-serif;}
+
+	a:link {color:#3B7DC9; text-decoration: underline; outline: none;}
+	a:visited {color:#3B7DC9; text-decoration: underline; outline: none;}
+	a:hover {text-decoration:none;}
+	a:active {color:#3B7DC9; text-decoration: underline; outline: none;}
+	
+/* 2. LAYOUT
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+	.wrapper {
+		width:960px;
+		margin: 0 auto;
+		text-align: left;
+		font-size: 1.2em;
+	}
+	
+	.float-wrapper{overflow:hidden; _zoom:1}
+	.clearall{height:0; clear:both; overflow:hidden;}
+	
+	#header, #content, #footer{min-width:960px;}
+
+/* 2.1 HEADER
+------------------------------------------------------------------------------------------------ */
+	#header{background:transparent url(../images/bg-header.gif) 0 0 repeat-x;}
+		#header .wrapper{overflow:hidden;}
+
+		/* Logotype */
+		#logo{float:right; margin:27px 20px 0 0; width:208px; _display:inline;}
+			#logo strong {display:block; width:208px; height:40px; overflow:hidden; text-indent:-9999px; background:transparent url(../images/logo.png) 0 0 no-repeat;}		
+			#logo a{display:block; height:100%;}
+			
+		/* Top menu */
+		#header .menu{
+			position:relative;	
+			float:right; 
+			margin:32px 60px 0 0; 
+			height:29px; 
+			line-height:29px;
+			background:#e9e9e9 url(../images/bg-top-menu.png) 0 0 repeat-x; 
+			border:1px solid #d1d1d1;
+			box-shadow: 0 1px 3px #D6D6D6;
+			-moz-box-shadow: 0 1px 3px #D6D6D6;
+			-webkit-box-shadow: 0 1px 3px #D6D6D6;	
+			_width:380px;
+			}
+			#header .menu ul{margin:0;}		
+			#header .menu ul li{position:relative; float:left;}					
+			#header .menu ul li a{_float:left; display:block; padding:0 15px; color:#55595F; font-size:1.2em; font-weight:bold; text-shadow:0 1px 1px #FFF; text-decoration:none; border-right:1px solid #d1d1d1; zoom:1;}								
+			#header .menu ul li.active a, #header .menu ul li a:hover{background:transparent url(../images/bg-top-menu-active.png) 0 0 repeat-x; border-color:#bababa;}											
+			#header .menu ul li.last a{border:none;}
+				#header .menu .alert{position:absolute; top:-17px; right:5%; display:block; width:23px; height:24px; text-align:center; color:#FFF; text-shadow:0 1px 1px #656565; font-weight:bold; background:transparent url(../images/bg-menu-alert.png) 0 0 no-repeat; line-height:180%;}
+			#logged{text-align:center; font-size:.95em; color:#8F8F8F;}
+				#logged strong{margin-right:7px;}
+				#logged a{margin-left:7px; font-weight:bold; color:#8F8F8F;}
+				
+		/* Page tab */		
+		#page-tab{float:left; padding-top:16px; margin-top:27px; width:240px; background-color:#FFF; overflow:hidden;}
+			#page-title{margin-left:20px; line-height:130%;}
+				#page-title a{margin-left:5px;}
+				#page-title img{margin-top:5px; vertical-align:text-top;}
+				#page-title .note{display:block; font-size:12px; font-weight:normal; line-height:125%;}
+				
+/* 2.2 CONTENT
+------------------------------------------------------------------------------------------------ */
+	#content{}
+	
+		/* Control panel */
+		#control-panel{float:left; padding:10px 20px 20px; width:920px; border-top:8px solid #fff; background-color:#E8F2FB;}
+			#control-panel .form{position:relative; float:left; width:380px; _display:inline;}
+			#control-panel .panel{float:right; width:535px; line-height:0;}
+				#control-panel a{#text-decoration:underline;}
+				#control-panel input,
+				#control-panel textarea,
+				#control-panel select{font-size:1em; color:#3b3b3b;}
+				#control-panel label{color:#92979B; #vertical-align:super;}
+				#control-panel .line{margin:5px 0;}
+				#control-panel .dates{}
+					#control-panel .dates .selectbox{margin-right:3px;}
+					#control-panel .dates img{vertical-align:top;}				
+				#control-panel .label{display:block; color:#92979B;}
+				#control-panel .select{padding:5px; width:345px;}
+				#control-panel .input{width:339px;}
+				#control-panel .selectbox{width:316px;}
+				#control-panel .day .selectbox{width:40px;}
+				#control-panel .year .selectbox{width:94px;} 
+				#control-panel .hour .selectbox{width:15px;}
+				#control-panel a.now-link{margin-left:3px; font-weight:bold; #vertical-align:super;}
+				#control-panel .controls{margin-top:15px;}
+					#control-panel .button{margin-right:17px; height:42px; color:#FFF; line-height:0px; font-size:1.2em;}
+					#control-panel .btn-create{width:112px; background:transparent url(../images/btn-striped-112.png) 0 0 no-repeat;}
+					#control-panel .btn-submit{width:222px; background:transparent url(../images/btn-striped-222.png) 0 0 no-repeat;}
+					
+		/* Data box */			
+		.data-box{padding:20px; background-color:#FFF;}
+			.data-box table{width:100%;}
+				.data-box table tr,
+				.data-box table td{vertical-align:middle;}
+				.data-box table tr.hover td,
+				.data-box table tr:hover td{background-color:#FBFAE5;}
+				.data-box table tr.hover .edit-link,
+				.data-box table tr.hover .del-link,
+				.data-box table tr:hover .edit-link,
+				.data-box table tr:hover .del-link{display:block;}
+				.data-box table th{padding:5px 10px; border-bottom:2px solid #e6e6e6; font-weight:bold; color:#6d6d6d; text-align:left;}
+				.data-box table td{padding:10px; border-bottom:1px dotted #d9d9d9; color:#707070;}
+				.data-box .edit-link{display:none; margin:0 auto; width:14px; height:14px; text-indent:-9999px; background:transparent url(../images/ico-edit-14x14.gif) 0 0 no-repeat;}
+				.data-box .del-link{display:none; margin:0 auto; width:12px; height:12px; text-indent:-9999px; background:transparent url(../images/ico-delete-12x12.gif) 0 0 no-repeat;}
+				.data-box span.checked{display:block; margin:0 auto; width:16px; height:14px; text-indent:-9999px; background:transparent url(../images/ico-check-16x14.png) 0 0 no-repeat;}
+				.data-box span.unchecked{display:block; margin:0 auto; width:16px; height:16px; text-indent:-9999px; background:transparent url(../images/ico-cross-16x16.gif) 0 0 no-repeat;}
+				.data-box .pagination{padding-top:15px; text-align:center;}
+					.data-box .pagination a.page{padding:10px; margin-right:10px; text-decoration:none; text-shadow:0 1px 1px #284B6B; font-weight:bold; color:#FFF; line-height:25px; background:#FFF url(../images/btn-page.png) 0 4px no-repeat;}
+					.data-box .pagination a.current{background-image:url(../images/btn-current-page.png);}
+
+
+/* 2.3 FOOTER
+------------------------------------------------------------------------------------------------ */
+	#footer{padding:20px 0;}
+		#footer .wrapper{overflow:hidden;}
+	
+		/* Status */
+		#status{float:right; color:#8f8f8f; font-size:.95em;}	
+			#status strong{display:block;}
+
+/* 3. MISCELLANEOUS
+-----------------------------------------------------------------------------------------------
+===============================================================================================*/	
+
+	/* Form */
+	.input{padding:0 5px; height:23px; line-height:23px; border:3px solid #C4D6E5;}
+	input.button{border:none; text-align:center; cursor:pointer; color:#FFF; font-weight:bold; font-size:1.2em; text-shadow:0 1px 1px #284B6B;}
+	.combo-wrap{position:relative;}
+	.selectbox {
+		padding:0 28px 0 5px;
+		width:160px;
+		border:3px solid #C4D6E5;
+		line-height:29px;
+        height: 29px;
+		background:#fff url(../images/btn-dropdown.gif) 100% 0 no-repeat;
+		cursor:pointer;
+		_cursor:hand;	
+	}
+	.selectbox-wrapper {
+		position: absolute;
+		#top:21px;
+		top:40px;
+		left:0;
+        width: 90% !important;
+		background-color:#fff;
+		border:1px solid #ccc;
+		font-family:Arial, Helvetica, sans-serif;
+		z-index:1000;
+	}	
+	@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) {
+		.selectbox-wrapper{top:28px;}
+	}		
+	.selectbox-wrapper ul{margin:0; padding:10px 0;}
+	.selectbox-wrapper ul li{padding:0 10px; line-height:1.5;}
+	.selectbox-wrapper ul li:hover{background-color:#E8F2FB;}
+	
+	/* Z-INDEX */
+	.z1{z-index:1000;}
+	.z2{z-index:999;}
+	.z3{z-index:998;}
+	.z4{z-index:997;}
+	.z5{z-index:996;}
+	.z6{z-index:995;}	
+	.z5{z-index:994;}
+	.z6{z-index:993;}
+	.z7{z-index:992;}
+	.z8{z-index:991;}
+	.z9{z-index:990;}
+	.z10{z-index:989;}
+
+	/* Rounded corners */
+	.r5{border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+	.r10{border-radius:10px; -webkit-border-radius:10px; -moz-border-radius:10px;}
+	.r15{border-radius:15px; -webkit-border-radius:15px; -moz-border-radius:15px;}
+	.rl5{border-radius:5px 0 0 5px; -moz-border-radius:5px 0 0 5px; -webkit-border-top-left-radius:5px; -webkit-border-bottom-left-radius:5px;}
+	.rr5{border-radius:0 5px 5px 0; -moz-border-radius:0 5px 5px 0; -webkit-border-top-right-radius:5px; -webkit-border-bottom-right-radius:5px;}
+	.r5, .r10, .r15, .rl5, .rr5{position:relative; behavior:url(js/pie.htc);}
+
+/*
+IT IS STRONGLY ADVISED TO MAKE YOUR CHANGES AFTER THIS COMMENT BY REPEATING (COPYING) THE SELECTOR FROM ABOVE, 
+AND MODIFYING IT WITH YOUR OWN PROPERTIES/VALUES. THIS IS RECOMMENDED BECAUSE IF YOU HAPPEN TO RUN INTO TROUBLE, 
+*/
+
+/* ------------------------------------------------------------------------------ */
+	
+    #control-panel .selectbox { width: 355px; }
+
+    #control-panel .day .selectbox { width: 75px; }
+    #control-panel .yearmonth .selectbox { width: 145px; }
+
+    #control-panel .selectdatewidget,
+    #control-panel .selecttimewidget {
+        position: relative;
+    }
+
+	#control-panel .selectdatewidget .selectbox-wrapper,
+	#control-panel .selecttimewidget .selectbox-wrapper {
+		top: 19px;
+	}	
+
+    #control-panel .selectdatewidget,
+    #control-panel .selecttimewidget {
+        margin-right: 3px;
+    }
+
+	#control-panel .hour .selectbox,
+	#control-panel .minute .selectbox { width: 55px; }
+	
+    #control-panel a.selecttimewidget { font-weight: bold; margin-left: 3px; }
+
+/* ------------------------------------------------------------------------------ */
+/* Iurii Garmash Expences_Modification */
+    td.local_amount { font-weight: bold; font-size: 1.2em; }
+    
+/* Iurii Garmash Timesheets selecting entry for edit */
+    tr.editing_now_entry { background-color:#FBFAE5; }
+
+/* Iurii Garmash Reports Making Totals styled in different manner */
+    table.report_job_totals { font-size: 1.2em; text-decoration:underline; }
+    table.report_customer_totals { font-size: 1.2em; font-weight:bold; padding: 0px; }
+    table.report_project_totals { font-size: 1.5em; font-weight:bold; color:#080000 ; }
+    td.totals_name { text-align: right; }
+    
+/* Iurii Garmash Homepage icons added */
+    table.home_menu thead tr th { padding-left: 35px; padding-right: 35px; padding-top: 35px; }
+    #home_tbody tr th a { text-decoration: none; font-size:2.1em; color: #353535; }

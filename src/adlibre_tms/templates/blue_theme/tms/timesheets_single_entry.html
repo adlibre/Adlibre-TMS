@@ -1,0 +1,41 @@
+{% load i18n %}
+          <tr data-id="timesheet-{{ object.pk }}"
+              onclick="return timesheet_editbtn_press(this, '{{ object.pk }}')">
+            <td>{{ object.customer_code }}</td>
+            <td>{{ object.service_code }}</td>
+            <td>{{ object.start_time|date:"d M Y" }}</td>
+            <td>{{ object.start_time|date:"H:i" }}</td>
+            <td>{{ object.end_time|date:"H:i" }}</td>
+            <td>{{ object.duration_minutes }}</td>
+            <td>
+              {% if object.is_billable %}
+                <span class="checked">{% trans "Checked" %}</span>
+              {% endif %}
+            </td>
+            <td>{{ object.comment }}</td>
+            <td><a href="#" 
+                   title={% trans "Edit" %} 
+                   class="edit-link" 
+                   onclick="return timesheet_editbtn_press(this, '{{ object.pk }}')"
+                   >{% trans "Edit" %}</a></td>
+            <td><a href="#" 
+                   title={% trans "Delete" %} 
+                   class="del-link" 
+                   onclick="return timesheet_delbtn_press(this, '{{ object.pk }}', '{% url tms_timesheet_del %}')"
+                   >{% trans "Delete" %}</a>
+                <div class="edit_data" data-id="timesheet-{{ object.pk }}" style="display:none">
+                <div id="edit_job_id-{{ object.pk }}">{{ object.job.pk }}</div>
+                <div id="edit_start_date_day-{{ object.pk }}">{{ object.start_time|date:"d" }}</div>
+                <div id="edit_start_date_month-{{ object.pk }}">{{ object.start_time|date:"m" }}</div>
+                <div id="edit_start_date_year-{{ object.pk }}">{{ object.start_time|date:"Y" }}</div>
+                <div id="edit_start_time_hours-{{ object.pk }}">{{ object.start_time|date:"H" }}</div>
+                <div id="edit_start_time_minutes-{{ object.pk }}">{{ object.start_time|date:"i" }}</div>
+                <div id="edit_end_time_hours-{{ object.pk }}">{{ object.end_time|date:"H" }}</div>
+                <div id="edit_end_time_minutes-{{ object.pk }}">{{ object.end_time|date:"i" }}</div>
+                <div id="edit_comment-{{ object.pk }}">{{ object.comment }}</div>
+                {% if edit_ajax %}<div class="edited_item_returned"></div>{% endif %}
+                {% if add_init %}<div class="init_job_data">{{ object.job.pk }}</div>{% endif %}
+                {% if add_init %}<div class="init_start_time_data">{{ object.end_time|date:"cO" }}</div>{% endif %}
+                </div>
+                   </td>
+          </tr>

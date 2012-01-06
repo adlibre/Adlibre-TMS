@@ -1,0 +1,2 @@
+TEST_USER_USERNAME = 'test_admin'
+TEST_USER_PASSWORD = 'test' 

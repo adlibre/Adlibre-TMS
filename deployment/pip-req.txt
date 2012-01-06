@@ -1,0 +1,21 @@
+BeautifulSoup==3.2.0
+Django==1.3.1
+#MySQL-python==1.2.3
+PIL==1.1.7
+distribute==0.6.15
+django-any==0.2.0
+django-pagination==1.0.7
+django-staticfiles==1.0
+django-test-utils==0.3
+django-uni-form==0.7.0
+docutils==0.7
+flup==1.0.3.dev-20110405
+#-e git+http://github.com/montylounge/django-google-analytics.git@6b7aa6dba851dd59dca0a20bc7eefe70754384e4#egg=google_analytics-dev
+mock==0.7.0
+py-dom-xpath==0.1
+python-dateutil==2.0
+template-utils==0.4p2
+wsgiref==0.1.2
+xml-models==0.5.1
+django-appconf==0.4
+django-compressor==1.1.1

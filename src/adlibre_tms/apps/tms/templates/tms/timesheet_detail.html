@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+  <ul>
+    <li>{{ object.job }}</li>
+    <li>{{ object.employee }}</li>
+    <li>{{ object.start_time }}</li>
+    <li>{{ object.end_time }}</li>
+    <li>{{ object.employee }}</li>
+    <li>{{ object.comment }}</li>
+    <li>{{ object.is_submitted }}</li>
+    <li>{{ object.is_billed }}</li>
+  </ul>
+{% endblock %}

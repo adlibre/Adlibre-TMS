@@ -1,0 +1,32 @@
+{% extends "reporting/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+
+{% block page_title %}
+  {% trans "Reports" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+  {% if object_list %}
+    {% autopaginate object_list %}
+    <span class="note">{% blocktrans with start_index=page_obj.start_index end_index=page_obj.end_index count=paginator.count %}Viewing {{ start_index }}-{{ end_index }} ({{ count }}) reports{% endblocktrans %}</span>
+  {% else %}
+    <span class="note">&nbsp;</span>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="control-panel">
+    <div class="form">
+    <h4>
+      <ul class="link_list">
+        {% for slug, report_name in object_list %}
+          <li><a href="{% url report_detail slug %}">{{ report_name }}</a></li>
+        {% endfor %}
+      </ul>
+    </h4>
+    </div>
+    <div class="panel"><img src="{{ STATIC_URL }}tms/images/logo-reports.png" width="535" height="254" alt="panel" style="padding-top:10px;"></div>
+  </div>
+  <div class="clearall"></div>
+  <div class="data-box">
+  </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% load uni_form_tags %}
+      <form id="timesheets_form" action="{% url tms_timesheets %}" method="post" class="uniForm">
+        {% csrf_token %}
+        <div id="edit_pk" edit_id="{{ edit_pk }}" style="display:none"></div>
+        <fieldset class="inlineLabels">
+          {{ form.job|as_uni_field }}
+          {{ form.date_start|as_uni_field }}
+          <div class="hours">
+            {{ form.start_time|as_uni_field }} {{ form.end_time|as_uni_field }}
+          </div>
+          {{ form.comment|as_uni_field }}
+          <div class="controls">
+            <input id="id_timesheet_form_clear" name="" type="reset" value="New" class="btn-create button" />
+            <input id="id_timesheet_form_submit" name="save" type="submit" value="Save" class="btn-submit button" />
+          </div>
+        </fieldset>
+      </form>

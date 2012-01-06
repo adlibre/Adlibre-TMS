@@ -1,0 +1,9 @@
+{% extends "site_base.html" %}
+
+{% block content %}
+  <ul class="link_list">
+    {% for job in object_list %}
+      <li><a href="{{ job.get_absolute_url }}">{{ job }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

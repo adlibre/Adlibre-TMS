@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block head_title %}{% trans "Log out" %}{% endblock %}
+
+{% block page_title %}
+  {% trans "Log out" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+  <span class="note">&nbsp;</span>
+{% endblock %}
+
+{% block content %}
+  <div id="control-panel">
+    <h2>Your are now logged out</h2>
+    <div class="panel"><img src="{{ STATIC_URL }}tms/images/logo-login.png" width="535" height="254" alt="panel" style="padding-top:10px;"></div>
+  </div>
+  <div class="clearall"></div>
+{% endblock %}

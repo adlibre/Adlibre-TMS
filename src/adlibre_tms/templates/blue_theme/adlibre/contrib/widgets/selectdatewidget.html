@@ -1,0 +1,77 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      var cDate = new Date(); 
+      var cYear = cDate.getFullYear();
+      var cMonth = cDate.getMonth();
+      var minDate = new Date(cYear, cMonth - {{ month_range }}, 1); 
+      var maxDate = new Date(cYear, cMonth + {{ month_range }} + 1, 0);
+
+      // modify select boxes
+      $('#{{ id_day_field }}').selectBox();
+      $('#{{ id_yearmonth_field }}').selectBox();
+
+      /* TODO: Doesn't working, so fix it!
+      function update_day_field () {
+          var year = $('#{{ id_yearmonth_field }}').val().split('-')[0]; // year
+          var month = $('#{{ id_yearmonth_field }}').val().split('-')[1] - 1; // note: 0 is January
+          var day = $('#{{ id_day_field }}').val();
+
+          var select = $('#{{ id_day_field }}');
+          var options = select.attr('options');
+          $('option', select).remove();
+
+          var index = 1;
+          while (index <= new Date(year, month + 1, 0).getDate()) {
+              date = new Date(year, month, index);
+              options[index-1] = new Option($.datepicker.formatDate('d D', date), $.datepicker.formatDate('d', date));
+              index++;
+          }
+          select.val(day);
+      };
+      */
+
+      $('#{{ id_datepicker_field }}').datepicker({
+          dateFormat: 'yy-m-d',
+          showOn: 'button',
+          buttonImageOnly: true,
+          buttonImage: '/static/tms/images/ico-calendar.jpg',
+          showButtonPanel: true,
+          minDate: minDate,
+          maxDate: maxDate,
+          onSelect: function(dateText) {
+              // parse yyyy-mm-dd string
+              var yearmonth = dateText.split('-')[0] + '-' + dateText.split('-')[1]; // year-month
+              var day = dateText.split('-')[2]; // day
+              // set the selectbox field values
+              $('#{{ id_day_field }}').selectBox('value', day);
+              $('#{{ id_yearmonth_field }}').selectBox('value', yearmonth);
+
+              //Commented out because of newer version of selectbox refactoring.
+              // It handles those operations.
+             // $('#{{ id_day_field }}_input').val($('#{{ id_day_field }} option:selected').html());
+             // $('#{{ id_yearmonth_field }}_input').val($('#{{ id_yearmonth_field }} option:selected').html());
+          }                
+      });
+
+      // listen for when the selects are changed and update the picker
+      /* TODO: Fix event handlers 
+      $('#{{ id_day_field }}_container').bind('click', function() {
+          var date = new Date(
+              $('#{{ id_yearmonth_field }}').val().split('-')[0], // year
+              $('#{{ id_yearmonth_field }}').val().split('-')[1] - 1, // note: 0 is January
+              $('#{{ id_day_field }}').val()
+          );
+          $('#{{ id_datepicker_field }}').val($.datepicker.formatDate('yy-m-d', date));
+      });
+
+      $('#{{ id_yearmonth_field }}_container').bind('click', function() {
+          var date = new Date(
+              $('#{{ id_yearmonth_field }}').val().split('-')[0], // year
+              $('#{{ id_yearmonth_field }}').val().split('-')[1] - 1, // note: 0 is January
+              $('#{{ id_day_field }}').val()
+          );
+          $('#{{ id_datepicker_field }}').val($.datepicker.formatDate('yy-m-d', date));
+      });
+      */
+  });
+</script>

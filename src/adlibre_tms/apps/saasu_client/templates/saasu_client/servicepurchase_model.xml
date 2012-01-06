@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tasks>
+  <{% if uid %}updateInvoice{% else %}{% if object.uid %}updateInvoice{% else %}insertInvoice{% endif %}{% endif %} emailToContact="false">
+    <invoice {% if lastUpdatedUid %}lastUpdatedUid="{{ lastUpdatedUid }}"{% else %}{% if object.lastUpdatedUid %}lastUpdatedUid="{{ object.lastUpdatedUid }}"{% endif %}{% endif %}uid="{% if uid %}{{ uid }}{% else %}{% if object.uid %}{{ object.uid }}{% else %}0{% endif %}{% endif %}">
+      <transactionType>{% if transactionType %}{{ transactionType }}{% else %}{% if object.transactionType %}{{ object.transactionType }}{% else %}P{% endif %}{% endif %}</transactionType>
+      <date>{% if date %}{{ date|date:"Y-m-d" }}{% else %}{% endif %}</date>
+      <contactUid>{% if contactUid %}{{ contactUid }}{% else %}{% if object.contactUid %}{{ object.contactUid }}{% else %}{% endif %}{% endif %}</contactUid>
+      <folderUid>0</folderUid>
+      <summary>{% if summary %}{{ summary }}{% else %}{% if object.summary %}{{ object.summary }}{% else %}{% endif %}{% endif %}</summary>
+      <layout>{% if layout %}{{ layout }}{% else %}{% if object.layout %}{{ object.layout }}{% else %}S{% endif %}{% endif %}</layout>
+      <status>{% if status %}{{ status }}{% else %}{% if object.status %}{{ object.status }}{% else %}O{% endif %}{% endif %}</status>
+      <invoiceNumber>{% if invoiceNumber %}{{ invoiceNumber }}{% else %}{% if object.invoiceNumber %}{{ object.invoiceNumber }}{% else %}{% endif %}{% endif %}</invoiceNumber>
+      <purchaseOrderNumber>{% if purchaseOrderNumber %}{{ purchaseOrderNumber }}{% else %}{% if object.purchaseOrderNumber %}{{ object.purchaseOrderNumber }}{% else %}&lt;Auto Number&gt;{% endif %}{% endif %}</purchaseOrderNumber>
+      <invoiceItems>
+      {% if invoiceItems %}
+        {% for item in invoiceItems %}
+          <serviceInvoiceItem>
+            <description>{% if item.description %}{{ item.description }}{% else %}{% endif %}</description>
+            <accountUid>{% if item.accountUid %}{{ item.accountUid }}{% else %}{% endif %}</accountUid>
+            <taxCode>{% if item.taxCode %}{{ item.taxCode }}{% else %}{% endif %}</taxCode>
+            <totalAmountInclTax>{% if item.totalAmountInclTax %}{{ item.totalAmountInclTax }}{% else %}{% endif %}</totalAmountInclTax>
+          </serviceInvoiceItem>
+        {% endfor %}
+      {% else %}
+        {% if object.invoiceItems %}
+            {% for item in object.invoiceItems %}
+              <serviceInvoiceItem>
+                <description>{% if item.description %}{{ item.description }}{% else %}{% endif %}</description>
+                <accountUid>{% if item.accountUid %}{{ item.accountUid }}{% else %}{% endif %}</accountUid>
+                <taxCode>{% if item.taxCode %}{{ item.taxCode }}{% else %}{% endif %}</taxCode>
+                <totalAmountInclTax>{% if item.totalAmountInclTax %}{{ item.totalAmountInclTax }}{% else %}{% endif %}</totalAmountInclTax>
+              </serviceInvoiceItem>
+            {% endfor %}
+        {% endif %}
+      {% endif %}
+      </invoiceItems>
+    </invoice>
+  </{% if uid %}updateInvoice{% else %}{% if object.uid %}updateInvoice{% else %}insertInvoice{% endif %}{% endif %}>
+</tasks>

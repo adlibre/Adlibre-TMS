@@ -1,0 +1,11 @@
+<a href="#" id="{{ id_now_field }}" class="{{ class }}">Now</a>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#{{ id_now_field }}').click(function() {
+          var now = new Date();
+          $('#{{ id_hour_field }}').val(now.getHours());
+          $('#{{ id_minute_field }}').val(now.getMinutes());
+          return false;
+      });
+  });
+</script>

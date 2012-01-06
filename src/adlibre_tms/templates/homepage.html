@@ -1,0 +1,43 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block page_title %}
+  {% trans "Welcome" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+  <br />
+{% endblock %}
+
+{% block content %}
+<table class="home_menu">
+  <thead>
+    <tr>
+      <th>
+        <a href="{% url tms_timesheets %}" class="home_icon">
+            <img src="{{ STATIC_URL }}tms/images/logo-timesheets-sq.png" width="254" height="254" alt="{% trans "Timesheets" %}">
+        </a>
+      </th>
+      <th>
+        <a href="{% url tms_expenses %}" class="home_icon">
+            <img src="{{ STATIC_URL }}tms/images/logo-expenses-sq.png" width="254" height="254" alt="{% trans "Expenses" %}">
+        </a>
+      </th>
+      <th>
+        <a href="{% url reports %}" class="home_icon">
+            <img src="{{ STATIC_URL }}tms/images/logo-reports-sq.png" width="254" height="254" alt="{% trans "Reports" %}">
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody id="home_tbody">
+  <tr>
+     <th><a href="{% url tms_timesheets %}">{% trans "Timesheets" %}</a></th>
+     <th><a href="{% url tms_expenses %}">{% trans "Expenses" %}</a></th>
+     <th><a href="{% url reports %}">{% trans "Reports" %}</a></th>
+  </tr>
+  </tbody>
+</table>
+
+{% endblock %}
+

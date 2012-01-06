@@ -1,0 +1,25 @@
+### This is how we setup a dev environment
+
+# mkvirtualenv --no-site-packages tms
+# cdvirtualenv
+# git clone (repo path)
+# ./bootstrap.py
+# ./src/tms/manage.py collectstatic
+
+### This is how we deploy on CentOS 5.X w/ lighttpd
+
+# su - wwwpub
+# cd /srv/www
+# mkvirtualenv --no-site-packages --python /usr/bin/python2.6 tms
+# workon tms
+# cdvirtualenv
+# git clone (repo path)
+# ./bootstrap.py
+# ./src/tms/manage.py collectstatic
+
+## Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
+
+# ln -s  /srv/www/tms/deployment/lighttpd.conf /etc/lighttpd/conf.d/tms.conf
+
+Add something like the following to the crontab for your web / fcgi user:
+@reboot /srv/www/tms/deployment/manage-fcgi.sh restart settings_prod tms

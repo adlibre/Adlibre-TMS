@@ -1,0 +1,60 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+
+{% block head_title %}{% trans "Timesheets" %}{% endblock %}
+
+{% block body_class %}timesheets{% endblock %}
+
+{% block page_title %}
+  {% autopaginate object_list %}
+  {% trans "Timesheets" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+  <span class="note">{% blocktrans with start_index=page_obj.start_index end_index=page_obj.end_index count=paginator.count %}Viewing {{ start_index }}-{{ end_index }} ({{ count }}) Timesheets{% endblocktrans %}</span>
+{% endblock %}
+
+{% block content %}
+{% autopaginate object_list %}
+  <div id="control-panel">
+    <div class="form">
+        {% include "tms/timesheets_form.html" %}
+    </div>
+    <div class="panel"><img src="{{ STATIC_URL }}tms/images/logo-timesheets.png" width="535" height="254" alt="panel" style="padding-top:10px;"></div>
+  </div>
+  <div class="clearall"></div>
+  <div class="data-box timesheets">
+    <table>
+      <thead>
+        <tr>
+          <th>{% trans "Customer" %}</th>
+          <th>{% trans "Job" %}</th>
+          <th>{% trans "Date" %}</th>
+          <th>{% trans "Start" %}</th>
+          <th>{% trans "End" %}</th>
+          <th>{% trans "Min" %}</th>
+          <th>{% trans "Charge" %}</th>
+          <th>{% trans "Comment" %}</th>
+            <th>{% trans "Edit" %}</th>
+            <th>{% trans "Delete" %}</th>
+        </tr>                        
+      </thead>
+      <tbody id="tbody">
+        {% for object in object_list %}
+            {% include "tms/timesheets_single_entry.html" %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% paginate %}
+  </div>
+<div id="timesheet_latest_date" paramether="{{ init_latest_date|date:"cO" }}" style="display:none;"></div>
+<div id="timesheet_latest_job" paramether="{{ init_latest_job }}" style="display:none;"></div>
+{% if init_latest_job %}<div id="latest_timesheet" style="displaye:none;"></div>{% endif %}
+{% endblock %}
+
+{% block extra_body %}
+  <script type="text/javascript">
+	$(document).ready(function() {
+		$('select').selectBox();
+	});
+  </script>
+{% endblock %}

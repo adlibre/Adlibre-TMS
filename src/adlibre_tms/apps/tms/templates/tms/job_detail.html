@@ -1,0 +1,11 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+  <ul class="link_list">
+    <li><a href="{{ object.customer.get_absolute_url }}">{{ object.customer }}</a></li>
+    <li><a href="{{ object.service.get_absolute_url }}">{{ object.service }}</a></li>
+    <li><a href="{{ object.project.get_absolute_url }}">{{ object.project }}</a></li>
+  </ul>
+{% endblock %}

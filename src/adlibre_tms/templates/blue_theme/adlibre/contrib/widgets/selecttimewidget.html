@@ -1,0 +1,22 @@
+<a href="#" id="{{ id_now_field }}" class="{{ class }}">Now</a>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+      $('#{{ id_hour_field }}').selectBox();
+      $('#{{ id_minute_field }}').selectBox();
+      
+      $('#{{ id_now_field }}').click(function() {
+          var now = new Date();
+
+          $('#{{ id_hour_field }}').selectBox("value", now.getHours());
+          $('#{{ id_minute_field }}').selectBox("value", now.getMinutes());
+          
+          //refactored because of moving to new SelectBox plugin.
+          // it handles actual form changes by itself.
+          //$('#{{ id_hour_field }}_input').val($('#{{ id_hour_field }} option:selected').html());
+          //$('#{{ id_minute_field }}_input').val($('#{{ id_minute_field }} option:selected').html());
+
+          return false;
+      });
+  });
+</script>

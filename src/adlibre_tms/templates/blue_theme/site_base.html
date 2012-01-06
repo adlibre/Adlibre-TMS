@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block extra_head_base %}
+  {% load compress %}
+  {% compress css %}
+  <link href="{{ STATIC_URL }}tms/css/site_tabs.css" rel="stylesheet" type="text/css" />
+  <link href="{{ STATIC_URL }}uni_form/uni-form.css" rel="stylesheet" type="text/css" />
+  {% endcompress %}
+  {% block extra_head %}{% endblock %}
+{% endblock %}
+
+{% block logo_link_image %}<strong><a href="{% url home %}" title="{% trans "Home - Adlibre TMS" %}">{% trans "Adlibre TMS" %}</a></strong>{% endblock %}
+
+{% block menu %}
+  <ul>
+    <li id="tab_timesheets"><a href="{% url tms_timesheets %}" title="Timesheets" class="rl5">{% trans "Timesheets" %}</a></li>
+    <li id="tab_expenses"><a href="{% url tms_expenses %}" title="Expenses">{% trans "Expenses" %}</a></li>
+    <li id="tab_reports"><a href="{% url reports %}" title="Reports">{% trans "Reports" %}</a><span class="alert">{{ reports|length }}</span></li>
+    {% if user.is_authenticated and user.is_staff %}
+      <li id="tab_admin" class="last"><a href="/admin/" title="Admin" class="rr5">{% trans "Admin" %}</a></li>
+    {% endif %}
+  </ul>
+  <div class="clearall"></div>
+{% endblock %}
+
+{% block login %}
+  <div id="logged">
+    {% if user.is_authenticated %}
+      {% blocktrans with username=user.username %}You are currently logged in as: <strong>{{ username }}</strong>{% endblocktrans %} | <a href="{% url auth_logout %}" title={% trans "Log out" %}>{% trans "Log out" %}</a>
+    {% else %}
+      <a href="{% url auth_login %}" title={% trans "Log in" %}>{% trans "Log in" %}</a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block page_title_base %}
+  <h1 id="page-title">
+    {% block page_title %}{% endblock %}
+  </h1>            
+{% endblock %}
+
+{% block footer %}
+  <div class="wrapper">
+    {% if user.is_authenticated and user.is_superuser %}
+      <!-- Status -->
+      <div id="status">{% trans "Admin Mode Enabled" %}</div>
+      <!-- /Status -->
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+<serviceInvoiceItem>
+  <description>{% if description %}{{ description }}{% else %}{% if object.description %}{{ object.description }}{% else %}{% endif %}{% endif %}</description>
+  <accountUid>{% if accountUid %}{{ accountUid }}{% else %}{% if object.accountUid %}{{ object.accountUid }}{% else %}{% endif %}{% endif %}</accountUid>
+  <taxCode>{% if taxCode %}{{ taxCode }}{% else %}{% if object.taxCode %}{{ object.taxCode }}{% else %}{% endif %}{% endif %}</taxCode>
+  <totalAmountInclTax>{% if totalAmountInclTax %}{{ totalAmountInclTax }}{% else %}{% if object.totalAmountInclTax %}{{ object.totalAmountInclTax }}{% else %}{% endif %}{% endif %}</totalAmountInclTax>
+</serviceInvoiceItem>

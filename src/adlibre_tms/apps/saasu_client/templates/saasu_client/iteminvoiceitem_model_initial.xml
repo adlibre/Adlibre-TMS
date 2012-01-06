@@ -1,0 +1,8 @@
+<itemInvoiceItem>
+  <quantity>{% if quantity %}{{ quantity }}{% else %}{% if object.quantity %}{{ object.quantity }}{% else %}{% endif %}{% endif %}</quantity>
+  <inventoryItemUid>{% if inventoryItemUid %}{{ inventoryItemUid }}{% else %}{% if object.inventoryItemUid %}{{ object.inventoryItemUid }}{% else %}{% endif %}{% endif %}</inventoryItemUid>
+  <description>{% if description %}{{ description }}{% else %}{% if object.description %}{{ object.description }}{% else %}{% endif %}{% endif %}</description>
+  <taxCode>{% if taxCode %}{{ taxCode }}{% else %}{% if object.taxCode %}{{ object.taxCode }}{% else %}{% endif %}{% endif %}</taxCode>
+  <unitPriceInclTax>{% if unitPriceInclTax %}{{ unitPriceInclTax }}{% else %}{% if object.unitPriceInclTax %}{{ object.unitPriceInclTax }}{% else %}{% endif %}{% endif %}</unitPriceInclTax>
+  <percentageDiscount>{% if percentageDiscount %}{{ percentageDiscount }}{% else %}{% if object.percentageDiscount %}{{ object.percentageDiscount }}{% else %}{% endif %}{% endif %}</percentageDiscount>
+</itemInvoiceItem>

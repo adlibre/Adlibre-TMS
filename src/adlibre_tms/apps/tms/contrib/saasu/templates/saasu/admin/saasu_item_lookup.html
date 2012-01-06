@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+
+{% load i18n %}
+{% load adminmedia %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/changelists.css" />
+  <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+  {% url admin:jsi18n as jsi18nurl %}
+  <script type="text/javascript" src="{{ jsi18nurl|default:'../../jsi18n/' }}"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}admin/saasu/js/SaasuItemLookups.js"></script>
+  <style>
+    #changelist table thead th:first-child {width: inherit}
+  </style>
+{% endblock %}
+
+{% block title %}{% trans "SAASU Item List" %} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      <a href="../../">{% trans "Home" %}</a>&rsaquo; 
+       <a href="../">{{ app_label|capfirst }}</a>&rsaquo; 
+      {% trans "SAASU Item List" %}
+    </div>
+  {% endblock %}
+{% endif %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Select item to link" %}</h1>
+  <div id="content-main">
+    {% block object-tools %}{% endblock %}
+    <div class="module" id="changelist">
+
+      <form action="" method="post">
+        {% block result_list %}
+          {% if object_list %}
+            <table cellspacing="0">
+              <thead>
+                <tr>
+                  <th>{% trans "Item Uid" %}</th>
+                  <th>{% trans "Code" %}</th>
+                  <th>{% trans "Description" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for obj in object_list %}
+                  <tr class="{% cycle 'row1' 'row2' %}">
+                    <th>
+                      {% if is_popup %}
+                        <a href="{{ obj.uid }}/" onclick="opener.dismissSaasuItemLookupPopup(window, '{{ obj.uid }}'); return false;">{{ obj.uid }}</a>
+                      {% else %}
+                        <a href="#">{{ obj.uid }}</a>
+                      {% endif %}
+                    </th>
+                    <td>{{ obj.code }}</td>
+                    <td>{{ obj.description }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        {% endblock %}
+        {% block pagination %}
+          <p class="paginator">
+            {# TODO: implement pagination #}
+            {{ object_list|length }} {% ifequal object_list|length 1 %}{% trans "item" %}{% else %}{% trans "items" %}{% endifequal %}
+          </p>
+        {% endblock %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

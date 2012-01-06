@@ -1,0 +1,14 @@
+/* SITE-SPECIFIC TAB STYLING */
+
+body.timesheets #tab_timesheets a,
+body.expenses #tab_expenses a,
+body.reports #tab_reports a
+{
+    background: transparent url(../images/bg-top-menu-active.png) 0 0 repeat-x; 
+    border-color: #bababa;
+}
+body.timesheets #tab_timesheets,
+body.expenses #tab_expenses,
+body.reports #tab_reports
+{
+}

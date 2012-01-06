@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<invoiceResponse>
+  <invoice {% if lastUpdatedUid %}lastUpdatedUid="{{ lastUpdatedUid }}"{% else %}{% if object.lastUpdatedUid %}lastUpdatedUid="{{ object.lastUpdatedUid }}"{% endif %}{% endif %}uid="{% if uid %}{{ uid }}{% else %}{% if object.uid %}{{ object.uid }}{% else %}0{% endif %}{% endif %}">
+    <transactionType>{% if transactionType %}{{ transactionType }}{% else %}{% if object.transactionType %}{{ object.transactionType }}{% else %}S{% endif %}{% endif %}</transactionType>
+    <date>{% if date %}{{ date }}{% else %}{{ now|date:"Y-m-d" }}{% endif %}</date>
+    <contactUid>{% if contactUid %}{{ contactUid }}{% else %}{% if object.contactUid %}{{ object.contactUid }}{% else %}{% endif %}{% endif %}</contactUid>
+    <folderUid>0</folderUid>
+    <summary>{% if summary %}{{ summary }}{% else %}{% if object.summary %}{{ object.summary }}{% else %}{% endif %}{% endif %}</summary>
+    <layout>{% if layout %}{{ layout }}{% else %}{% if object.layout %}{{ object.layout }}{% else %}S{% endif %}{% endif %}</layout>
+    <status>{% if status %}{{ status }}{% else %}{% if object.status %}{{ object.status }}{% else %}I{% endif %}{% endif %}</status>
+    <invoiceNumber>{% if invoiceNumber %}{{ invoiceNumber }}{% else %}{% if object.invoiceNumber %}{{ object.invoiceNumber }}{% else %}&lt;Auto Number&gt;{% endif %}{% endif %}</invoiceNumber>
+    <invoiceItems>
+    </invoiceItems>
+  </invoice>
+</invoiceResponse>
