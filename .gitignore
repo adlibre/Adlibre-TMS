@@ -1,6 +1,7 @@
 *.pyc
 *.pid
 *.sock
+.Python
 bin/
 include/
 lib/
