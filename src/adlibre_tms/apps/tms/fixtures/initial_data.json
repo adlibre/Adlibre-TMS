@@ -1,0 +1,150 @@
+[
+    {
+        "pk": 1, 
+        "model": "tms.employee", 
+        "fields": {
+            "user": 1
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.project", 
+        "fields": {
+            "project_name": "Adhoc", 
+            "project_code": "ADHOC", 
+            "is_billable": true
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.project", 
+        "fields": {
+            "project_name": "Project Work", 
+            "project_code": "PROJ", 
+            "is_billable": true
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "tms.project", 
+        "fields": {
+            "project_name": "Maintenance", 
+            "project_code": "MAINT", 
+            "is_billable": true
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.customer", 
+        "fields": {
+            "customer_code": "MYCO", 
+            "saasu_contact_uid": "", 
+            "is_billable": false, 
+            "customer_name": "My Company"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.customer", 
+        "fields": {
+            "customer_code": "ACME", 
+            "saasu_contact_uid": "", 
+            "is_billable": true, 
+            "customer_name": "Acme Inc"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.service", 
+        "fields": {
+            "saasu_item_uid": "", 
+            "service_name": "Website Development", 
+            "is_billable": true, 
+            "service_code": "Web Dev"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.service", 
+        "fields": {
+            "saasu_item_uid": "", 
+            "service_name": "Graphic Design", 
+            "is_billable": true, 
+            "service_code": "Graphic Design"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.job", 
+        "fields": {
+            "customer": 2, 
+            "project": 1, 
+            "is_active": true, 
+            "service": 1, 
+            "timestamp": "2012-01-11 20:19:47"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.job", 
+        "fields": {
+            "customer": 2, 
+            "project": 1, 
+            "is_active": true, 
+            "service": 2, 
+            "timestamp": "2012-01-11 20:19:55"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.expensetype", 
+        "fields": {
+            "expense_type_name": "Meals", 
+            "expense_type_code": "MEALS", 
+            "saasu_account_uid": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.expensetype", 
+        "fields": {
+            "expense_type_name": "Postage", 
+            "expense_type_code": "POST", 
+            "saasu_account_uid": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.paymentmethod", 
+        "fields": {
+            "payment_method_code": "CASH", 
+            "payment_method_name": "Cash"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.paymentmethod", 
+        "fields": {
+            "payment_method_code": "CC", 
+            "payment_method_name": "Credit Card"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "tms.currency", 
+        "fields": {
+            "currency_name": "Australian Dollar", 
+            "currency_code": "AUD", 
+            "currency_symbol": "$"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tms.currency", 
+        "fields": {
+            "currency_name": "US Dollar", 
+            "currency_code": "USD", 
+            "currency_symbol": "$"
+        }
+    }
+]
