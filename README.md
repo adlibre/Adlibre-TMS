@@ -9,7 +9,7 @@ without being too complex or convoluted to configure.
 
 ## Features
 
-* Interfaces - Engineered specifically to provide (web service) interfaces to popular SaaS accounting packages. (Currently Saasu supported)
+* Interfaces - Engineered specifically to provide (web service) interfaces to popular SaaS accounting packages. (Currently [Saasu](http://www.saasu.com "Saasu Online Accounting") are supported)
     - Point and click invoicing
     - Point and click expense claims
     - Plugs into Adlibre DMS for storing the supporting documentation for expenses. (Coming soon)
