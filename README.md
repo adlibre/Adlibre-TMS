@@ -25,6 +25,12 @@ without being too complex or convoluted to configure.
 <img src="http://api.ning.com/files/cC0c4AhgrwGxDsskBc0oXOt1ADbWlM3cxCT8FCnPufow2ywc6EPrcWYopnESoZa6GIbxSla-ClvjyO2AbZnC-3y-aX1bjCGc/ss2.jpg" />
 <img src="http://api.ning.com/files/efSHhTD6-9lNeo9nDhnxqYy-4RwqzQyvy0hHsNRfeEsJ5kPQrcyDoNh0cIt7EWBDayKs-bw1FjiekqWzJnBPxGsuF-xMILKQ/ss3.jpg" />
 
+## Online Demo
+
+There is an online demonstration site available. The site refreshes every 60 minutes, so feel free to make changes:
+
+* http://tmsdemo.adlibre.com.au Login: demo, Password: demo.
+
 ## Commercial Support
 
 Adlibre TMS is developed and commercially supported by Adlibre Pty Ltd.
