@@ -33,8 +33,8 @@ There is an online demonstration site available. The site refreshes every 60 min
 
 ## Commercial Support
 
-Adlibre TMS is developed and commercially supported by Adlibre Pty Ltd.
+Adlibre TMS is developed and commercially supported by [Adlibre](http://www.adlibre.com.au/ "Adlibre Pty Ltd - Open Source Consulting").
 
-More information available:
+More information available is available:
 
-* www.adlibre.com.au
+* http://www.adlibre.com.au/adlibre-tms/
