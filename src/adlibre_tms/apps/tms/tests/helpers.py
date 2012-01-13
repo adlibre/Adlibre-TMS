@@ -15,7 +15,7 @@ def new_test_user(TEST_USERNAME = TEST_USER_USERNAME, TEST_PASSWORD = TEST_USER_
     user, created = User.objects.get_or_create(username=TEST_USERNAME, 
                                       first_name='Iurii',
                                       last_name='Garmash',
-                                      email='garmon1@gmail.com',
+                                      email='yuri@adlibre.com.au',
                                       is_active = True,)
     if created:
         user.set_password(TEST_PASSWORD)
