@@ -172,6 +172,8 @@
 		/* Status */
 		#status{float:right; color:#8f8f8f; font-size:.95em;}	
 			#status strong{display:block;}
+		#copyright{text-align: center; margin-top: 50px;}
+			#copyright a{text-decoration: none;}
 
 /* 3. MISCELLANEOUS
 -----------------------------------------------------------------------------------------------
