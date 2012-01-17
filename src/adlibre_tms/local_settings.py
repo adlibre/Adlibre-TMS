@@ -12,3 +12,6 @@ SAASU_WSACCESS_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXX'
 
 # specific timezone settings
 TIME_ZONE = None
+
+# Turn off demo
+DEMO = False

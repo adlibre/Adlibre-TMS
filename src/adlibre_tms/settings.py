@@ -110,6 +110,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
 
+    'adlibre_tms.context_processors.demo',
+
     'adlibre.core.context_processors.adlibre_settings',
     'django.core.context_processors.static',
 
@@ -165,6 +167,9 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 SITE_NAME = 'Adlibre TMS'
+
+PRODUCT_VERSION='1.0' # Adlibre TMS Product Version
+DEMO = True
 
 PAGINATION_DEFAULT_PAGINATION = 15
 
