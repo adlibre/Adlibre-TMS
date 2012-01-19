@@ -29,9 +29,10 @@
     {% endblock %}
 
     {% compress js %}
-    <!-- Timesheets/Expenses events handler scripts -->
+    <!-- Timesheets/Expenses/Reports events handler scripts -->
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_timesheets.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_expenses.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_reports.js"></script>
     {% endcompress %}
   </head>
   
@@ -90,5 +91,6 @@
     {% block extra_body_base %}
       {% block extra_body %}{% endblock %}
     {% endblock %}
+    {% block reports_init %}{% endblock %}
   </body>
 </html>

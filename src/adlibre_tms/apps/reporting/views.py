@@ -21,13 +21,16 @@ def reports(request, template_name='reporting/reports.html'):
 def reports_detail(request, slug):
     """ Render report detail """
     data = {}
+    reports_date_init = True
     report = reporting.get_report(slug)(request)
     form = report.form_class(request.POST or None)
     if request.method == "POST" and form.is_valid():
         if request.POST.get('generate', None):
             data = report.generate(**form.cleaned_data)
+            reports_date_init = False
     return direct_to_template(request, report.template_name, {
         'form': form,
         'data': data,
         'report': report,
+        'reports_date_init': reports_date_init,
         })
