@@ -1,0 +1,45 @@
+
+/* reset body styles */
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4em;
+    word-spacing: 1px;
+    letter-spacing: 0.2px;
+    font: 12px Arial, Helvetica,"Lucida Grande", serif;
+    color: #000;
+}
+
+/* Remove unneeded elements */
+#control-panel,
+#header,
+#footer {
+    display:none;
+}
+
+/* restyling report table */
+table {
+    border:  1px solid black;
+    width: 100%;
+}
+table tr
+{
+    border-bottom: 1px solid black;
+}
+
+/* restyling report total tables */
+table.report_job_totals,
+table.report_project_totals,
+table.report_customer_totals {
+    font: 16px Arial, Helvetica,"Lucida Grande", serif;
+    border: none;
+}
+
+/* restyling report headers */
+h3 {
+    font: 24px Arial, Helvetica,"Lucida Grande", serif;
+}
+
+h4 {
+    font: 24px Arial, Helvetica,"Lucida Grande", serif;
+}
