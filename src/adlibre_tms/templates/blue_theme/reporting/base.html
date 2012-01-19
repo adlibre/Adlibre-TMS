@@ -5,3 +5,7 @@
 {% block head_title %}{% trans "Reports" %}{% endblock %}
 
 {% block body_class %}reports{% endblock %}
+
+{% block reports_init %}
+<div id="init_reports" {% if reports_date_init %}init="init" {% endif %}style="display:none;"></div>
+{% endblock %}
