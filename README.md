@@ -1,7 +1,5 @@
 # Adlibre TMS
 
-## About
-
 Adlibre TMS is a Timesheet and Expense tracking system for the cloud and online business.
 Designed with contractors and consultants in mind, yet it is flexible enough to bend to fit almost any business.
 It uses a three dimensional paradigm of "Consultant", "Client" and "Service" to describe work activity. This is flexible to adjust to your needs,
