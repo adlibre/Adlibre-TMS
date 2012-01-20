@@ -20,7 +20,7 @@ def new_test_user(TEST_USERNAME = TEST_USER_USERNAME, TEST_PASSWORD = TEST_USER_
     if created:
         user.set_password(TEST_PASSWORD)
         user.save()
-    print ('Created user:'+str(user))
+    #print ('Created user:'+str(user))
     return user
 
 def client_login(client, url=True, callback=''):
