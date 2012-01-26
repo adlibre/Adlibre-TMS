@@ -1,1 +1,16 @@
-Sorry you've got 500
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "500 Error - Server Error" %}{% endblock %}
+
+{% block page_title %}
+{% trans "500 Error" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+<span class="note">&nbsp;</span>
+{% endblock %}
+
+{% block content %}
+<h1>{% trans "Application Error" %}</h1>
+<p>I'm sorry but an error occurred with the application. The administrator has been notified of this error.</p>
+{% endblock %}
+

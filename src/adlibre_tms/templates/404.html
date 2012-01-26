@@ -1,1 +1,16 @@
-Sorry you've got 404
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "404 Error - File or Page Not Found" %}{% endblock %}
+
+{% block page_title %}
+{% trans "404 Error" %}<a href="#" title={% trans "What is it?" %} class="help"><img src="{{ STATIC_URL }}tms/images/ico-help-16x16.gif" width="16" height="16" alt={% trans "Help" %}></a>
+<span class="note">&nbsp;</span>
+{% endblock %}
+
+{% block content %}
+<h1>{% trans "File or Page Not Found" %}</h1>
+<p>I'm sorry but we could not find the file or page that you were looking for.</p>
+{% endblock %}
+
