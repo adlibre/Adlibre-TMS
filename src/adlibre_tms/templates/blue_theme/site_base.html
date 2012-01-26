@@ -18,7 +18,7 @@
   <ul>
     <li id="tab_timesheets"><a href="{% url tms_timesheets %}" title="Timesheets" class="rl5">{% trans "Timesheets" %}</a></li>
     <li id="tab_expenses"><a href="{% url tms_expenses %}" title="Expenses">{% trans "Expenses" %}</a></li>
-    <li id="tab_reports"><a href="{% url reports %}" title="Reports">{% trans "Reports" %}</a><span class="alert">{{ reports|length }}</span></li>
+    <li id="tab_reports"><a href="{% url reports %}" title="Reports">{% trans "Reports" %}</a>{% if reports %}<span class="alert">{{ reports|length }}</span>{% endif %}</li>
     {% if user.is_authenticated and user.is_staff %}
       <li id="tab_admin" class="last"><a href="/admin/" title="Admin" class="rr5">{% trans "Admin" %}</a></li>
     {% endif %}
