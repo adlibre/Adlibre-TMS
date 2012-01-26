@@ -18,9 +18,6 @@ urlpatterns = patterns('',
 
 
 if settings.DEBUG:
-    # /static/ # actually this isn't needed with the admin server
-    #from staticfiles.urls import staticfiles_urlpatterns
-    #urlpatterns += staticfiles_urlpatterns()
 
     # staticfiles for debugging
     urlpatterns += patterns('',
@@ -29,6 +26,12 @@ if settings.DEBUG:
             'show_indexes': True,
         }),
     )
+
+    urlpatterns += patterns('',
+        (r'^500/$', 'adlibre_tms.views.server_error'),
+        (r'^404/$', 'adlibre_tms.views.url_error'),
+    )
+
 
 # Site Apps
 urlpatterns += patterns('',
