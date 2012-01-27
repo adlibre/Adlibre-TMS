@@ -44,10 +44,6 @@ class Project(models.Model):
     def __unicode__(self):
         return self.project_code   
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('project_detail', None, {'object_id': self.id})
-
 
 class Customer(models.Model):
     """ Customer or client """
@@ -64,10 +60,6 @@ class Customer(models.Model):
     
     def __unicode__(self):
         return self.customer_code
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('customer_detail', None, {'object_id': self.id})
 
 
 class Service(models.Model):
@@ -86,10 +78,6 @@ class Service(models.Model):
 
     def __unicode__(self):
         return self.service_code
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('service_detail', None, {'object_id': self.id})
 
 
 class Job(models.Model):
@@ -112,10 +100,6 @@ class Job(models.Model):
 
     def __unicode__(self):
         return '%s %s %s' % (self.customer, self.service, self.project)
-    
-    @models.permalink
-    def get_absolute_url(self):
-        return ('job_detail', None, {'object_id': self.id})
         
     def is_billable(self):
         "Return true if project is billable, service is billable and customer is billable."
@@ -273,10 +257,6 @@ class Timesheet(models.Model):
         return self.job.service
 
     service_code = property(_get_service_code)
-        
-    @models.permalink
-    def get_absolute_url(self):
-        return ('timesheet_detail', None, {'object_id': self.id})
 
 
 class ExpenseType(models.Model):
