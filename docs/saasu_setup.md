@@ -6,13 +6,12 @@ To configure Saasu integration first  generate a key from _Settings > Web Servic
 
 <img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/webservices_setup_saasu.png" />
 
-
 ## Customer and Service Linking
 
 The next step is to link your customer and services to the appropriate accounts in Saasu as shown below:
 
 <img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/link_customer_saasu.png" />
 
-<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/link_services_saasu.png" />
+<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/link_service_saasu.png" />
 
 After this is done you will be able to export timesheet and expense entries directly to Saasu.
