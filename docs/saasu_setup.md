@@ -8,7 +8,9 @@ To configure Saasu integration first  generate a key from _Settings > Web Servic
 
 ## Customer and Service Linking
 
-The next step is to link your customer and services to the appropriate accounts in Saasu as shown below:
+The next step is to link your customer and services to the appropriate accounts in Saasu as shown below.
+
+Click on the Saasu field to popup a list of customers and services directly from Saasu.
 
 <img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/link_customer_saasu.png" />
 
