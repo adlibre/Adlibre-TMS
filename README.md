@@ -18,16 +18,17 @@ without being too complex or convoluted to configure.
 
 ## Screenshots
 
-<img src="http://api.ning.com/files/pkIMBlji3wsiGMEg5ctIg1eMkXxskzsGI6jTNiyo1IJzvLXnDCIKDimZffBZOIhWhpOIAGGPaGzRsuSvpGyelxF0Xrs*jxD5/ss0.jpg" />
-<img src="http://api.ning.com/files/iQsL9ukR9Q5vfA4EEegsHRUGYOFngKxtcElX4jIGidTqso6OeplttALo9goWKG-NW4ryboBvbsZPmHaBGQP1zzAFFpG9JOnE/ss1.jpg" />
-<img src="http://api.ning.com/files/cC0c4AhgrwGxDsskBc0oXOt1ADbWlM3cxCT8FCnPufow2ywc6EPrcWYopnESoZa6GIbxSla-ClvjyO2AbZnC-3y-aX1bjCGc/ss2.jpg" />
-<img src="http://api.ning.com/files/efSHhTD6-9lNeo9nDhnxqYy-4RwqzQyvy0hHsNRfeEsJ5kPQrcyDoNh0cIt7EWBDayKs-bw1FjiekqWzJnBPxGsuF-xMILKQ/ss3.jpg" />
+<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_1.jpg" />
 
 ## Online Demo
 
 There is an online demonstration site available. The site refreshes every 60 minutes, so feel free to make changes:
 
 * http://tmsdemo.adlibre.com.au Login: demo, Password: demo.
+
+## Saasu Integration
+
+More information regarding the Saasu setup can be found in [docs/saasu_setup.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/saasu_setup.md).
 
 ## Commercial Support
 
