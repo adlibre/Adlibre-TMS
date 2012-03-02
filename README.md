@@ -19,6 +19,8 @@ without being too complex or convoluted to configure.
 ## Screenshots
 
 <img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_1.jpg" />
+<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_2.jpg" />
+<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_3.jpg" />
 
 ## Online Demo
 
