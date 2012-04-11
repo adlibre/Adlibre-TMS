@@ -181,10 +181,6 @@ PAGINATION_DEFAULT_PAGINATION = 15
 # Cache settings
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
-# debugging data to display if template rendered with errors
-if DEBUG:
-    TEMPLATE_STRING_IF_INVALID = 'error in template here'
-
 # django-compressor specific settings
 # Tells to compress urls from MEDIA folder because our static lies there...
 #COMPRESS = True
@@ -195,3 +191,8 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+# debugging data to display if template rendered with errors (needs to be after local settings)
+# NB this breaks the password change form. Issue #11
+if DEBUG:
+    TEMPLATE_STRING_IF_INVALID = 'error in template here'
