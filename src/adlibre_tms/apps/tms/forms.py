@@ -45,7 +45,10 @@ class TimesheetForm(forms.ModelForm):
 
     def clean_end_time(self):
         return datetime.datetime.combine(self.cleaned_data['date_start'], self.cleaned_data['end_time'])
-    
+
+    def clean_comment(self):
+        return self.cleaned_data['comment'].strip()
+
     def clean(self):
         start_time = self.cleaned_data.get("start_time", 0)
         end_time = self.cleaned_data.get("end_time", 0)
@@ -115,7 +118,9 @@ class ExpenseForm(forms.ModelForm):
             'tax_amount',
             'local_amount',
             ]
-
+        
+    def clean_comment(self):
+        return self.cleaned_data['comment'].strip()
 
 class ProjectDetailsForm(forms.Form):
     """ Project Details (101) form """
