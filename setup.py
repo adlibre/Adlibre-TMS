@@ -41,9 +41,10 @@ setup(name='adlibre_tms',
     url='https://github.com/macropin/Adlibre-TMS',
     packages=find_packages('.'),
     scripts=[],
-#    package_data={
-#            'adlibre_tms': [find_files('templates', '*'),],
-#        },
+    package_data={
+            'adlibre_tms': ['LICENSE', 'adlibre_tms/templates/*.html',],
+        },
+    include_package_data=True,
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
             ('db', ['db/.gitignore']),
@@ -66,3 +67,6 @@ setup(name='adlibre_tms',
     dependency_links = [
         ],
 )
+
+print '****************************************************'
+print find_files('adlibre_tms/templates', '*')
