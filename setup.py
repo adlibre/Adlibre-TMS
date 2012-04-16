@@ -47,6 +47,7 @@ setup(name='adlibre_tms',
             'django-pagination==1.0.7',
             'django-uni-form==0.7.0',
             'flup==1.0.3.dev-20110405',
+            'python-dateutil==2.0',
             'xml-models==0.5.1'
         ],
     dependency_links = [
