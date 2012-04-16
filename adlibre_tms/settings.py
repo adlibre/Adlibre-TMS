@@ -184,10 +184,10 @@ CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 #COMPRESS_URL = MEDIA_URL
 #COMPRESS_ROOT = MEDIA_ROOT
 
-try:
-    from local_settings import *
-except ImportError:
-    pass
+#try:
+#    from local_settings import *
+#except ImportError:
+#    pass
 
 # debugging data to display if template rendered with errors (needs to be after local settings)
 # NB this breaks the password change form. Issue #11
