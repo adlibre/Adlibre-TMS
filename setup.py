@@ -51,7 +51,7 @@ def findall(dir,pattern='*'):
     return all_files
 
 data_files = findall('www')
-#print findall('www')
+print findall('www')
 
 #data_files.extend([
 #    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
