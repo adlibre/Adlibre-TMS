@@ -50,29 +50,24 @@ def findall(dir,pattern='*'):
             all_files.extend(((root, file_list,),))
     return all_files
 
-data_files = findall('www')
-
-data_files.extend([
-    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
-    ('db', ['db/.gitignore']),
-    ('deployment', find_files('deployment', '*')),
-    ('docs', find_files('docs', '*')),
-    #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
-    #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
-    #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
-    #            ('www/media/blue_theme/tms/js/jquery-themes/base', ['www/media/blue_theme/tms/js/jquery-themes/base/*.css']),
-    #            ('www/media/blue_theme/tms/js/jquery-themes/base/images', ['www/media/blue_theme/tms/js/jquery-themes/base/images/*']),
-    #            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/*.css']),
-    #            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images/*']),
-    #            ('www/media/blue_theme/tms/js/jquery-ui', ['www/media/blue_theme/tms/js/jquery-ui/*.js']),
-    #            ('www/media/blue_theme/tms/js/jquery-ui/i18n', ['www/media/blue_theme/tms/js/jquery-ui/i18n/*.js']),
-    #            ('www/media/blue_theme/tms/js/jquery-ui/minified', ['www/media/blue_theme/tms/js/jquery-ui/minified/*.js']),
-    #            ('www/media/blue_theme/uni_form', ['www/media/blue_theme/uni_form/*']),
-])
+#data_files = findall('www')
+#
+#data_files.extend([
+#    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
+#    ('db', ['db/.gitignore']),
+#    ('deployment', find_files('deployment', '*')),
+#    ('docs', find_files('docs', '*')),
+#])
 
 #data_files.extend(findall('www'))
 
-
+data_files = [
+    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
+    ('db', ['db/.gitignore']),
+    findall('deployment'),
+    findall('docs'),
+    findall('www'),
+]
 
 setup(name='adlibre_tms',
     version='0.1.0',
