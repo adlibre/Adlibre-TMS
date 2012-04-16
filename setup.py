@@ -57,7 +57,7 @@ setup(name='adlibre_tms',
                 'templates/blue_theme/reporting/*.html',
                 'templates/blue_theme/tms/*.html',
                 'templates/blue_theme/tms/reports/*.html',
-                'templates/blue_theme/tms/uni_form/*.html',
+                'templates/blue_theme/uni_form/*.html',
             ], # this should be done automatically
         },
     data_files = [
