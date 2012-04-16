@@ -23,12 +23,12 @@ DJANGO_THEME = 'blue_theme'
 # tells django to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(PROJECT_PATH, '..', '..', 'db', 'tms.sqlite'),
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_PATH, '..', '..', 'db', 'tms.sqlite'),
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -143,17 +143,14 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.sitemaps',
     #'django.contrib.flatpages',
-    #for Django 1.3
     'django.contrib.staticfiles',
 
     # external
     'uni_form',
+    'pagination',
 
-    # for Django 1.2.1
-    #'staticfiles',
     # Compresses CSS/JS files from media/static
     "compressor",
-    'pagination',
 
     # local
     'accounts',
