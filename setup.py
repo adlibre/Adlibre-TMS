@@ -41,9 +41,9 @@ setup(name='adlibre_tms',
     url='https://github.com/macropin/Adlibre-TMS',
     packages=find_packages('.'),
     scripts=[],
-    package_data=[
-            ('adlibre_tms', find_files('templates', '*')),
-        ],
+    package_data={
+            'adlibre_tms': [find_files('templates', '*'),],
+        },
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
             ('db', ['db/.gitignore']),
