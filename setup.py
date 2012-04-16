@@ -42,7 +42,7 @@ setup(name='adlibre_tms',
     packages=['adlibre_tms',], #find_packages('.'),
     scripts=[],
     package_data={
-            'adlibre_tms': ['templates/*',]
+            'adlibre_tms': ['templates/*.html',]
         },
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
