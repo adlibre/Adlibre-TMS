@@ -48,8 +48,8 @@ def findall(dir, pattern='*'):
                 all_files.extend((file_path,))
     return all_files
 
-data_files = findall('www')
-print data_files
+data_files = []
+print findall('www')
 
 #data_files.extend([
 #    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
