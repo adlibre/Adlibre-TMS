@@ -48,6 +48,7 @@ setup(name='adlibre_tms',
             'django-uni-form==0.7.0',
             'flup==1.0.3.dev-20110405',
             'python-dateutil==2.0',
+            'template-utils==0.4p2',
             'xml-models==0.5.1'
         ],
     dependency_links = [
