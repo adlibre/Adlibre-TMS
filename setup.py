@@ -42,7 +42,7 @@ setup(name='adlibre_tms',
     packages=find_packages('.'),
     scripts=[],
     package_data={
-            'adlibre_tms': ['LICENSE', 'adlibre_tms/templates/*.html',],
+            'adlibre_tms': ['LICENSE', ], #'adlibre_tms/templates/*.html',
         },
     include_package_data=True,
     data_files = [
