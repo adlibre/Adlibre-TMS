@@ -3,28 +3,28 @@
 import os
 import fnmatch
 
-from setuptools import setup, findall
+from setuptools import setup, find_packages, findall
 
 
-def is_package(path):
-    return (
-        os.path.isdir(path) and
-        os.path.isfile(os.path.join(path, '__init__.py'))
-        )
-
-def find_packages(path, base="" ):
-    """ Find all packages in path """
-    packages = {}
-    for item in os.listdir(path):
-        dir = os.path.join(path, item)
-        if is_package( dir ):
-            if base:
-                module_name = "%(base)s.%(item)s" % vars()
-            else:
-                module_name = item
-            packages[module_name] = dir
-            packages.update(find_packages(dir, module_name))
-    return packages
+#def is_package(path):
+#    return (
+#        os.path.isdir(path) and
+#        os.path.isfile(os.path.join(path, '__init__.py'))
+#        )
+#
+#def find_packages(path, base="" ):
+#    """ Find all packages in path """
+#    packages = {}
+#    for item in os.listdir(path):
+#        dir = os.path.join(path, item)
+#        if is_package( dir ):
+#            if base:
+#                module_name = "%(base)s.%(item)s" % vars()
+#            else:
+#                module_name = item
+#            packages[module_name] = dir
+#            packages.update(find_packages(dir, module_name))
+#    return packages
 
 def find_files(directory, pattern):
     for root, dirs, files in os.walk(directory):
@@ -70,7 +70,7 @@ setup(name='adlibre_tms',
             ('db', ['db/.gitignore']),
             ('deployment', find_files('deployment', '*')),
             ('docs', find_files('docs', '*')),
-            ('www/media', [findall('www/media')]),
+            ('www/media', findall(dir='www/media')),
 #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
 #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
 #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
