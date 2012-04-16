@@ -34,7 +34,6 @@ def find_files(directory, pattern):
                 if os.path.isfile(filename):
                     yield filename
 
-
 def findall(dir,pattern='*'):
     """
         A better finder
@@ -44,10 +43,8 @@ def findall(dir,pattern='*'):
     all_files = []
     for root, dirs, files in os.walk(dir):
         for file in fnmatch.filter(files, pattern):
-            all_files.append(os.path.join(root, file))
-
+            all_files.append((root, os.path.join(root, file)))
     return all_files
-
 
 
 setup(name='adlibre_tms',
@@ -85,7 +82,7 @@ setup(name='adlibre_tms',
             ('db', ['db/.gitignore']),
             ('deployment', find_files('deployment', '*')),
             ('docs', find_files('docs', '*')),
-            ('www', findall('www')),
+            findall('www'),
 #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
 #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
 #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
