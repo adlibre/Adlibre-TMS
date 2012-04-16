@@ -43,8 +43,9 @@ def findall(dir,pattern='*'):
     all_files = []
     for root, dirs, files in os.walk(dir):
         if len(files) > 0:
-            file_path = (root, files)
-            all_files.extend((file_path,))
+            for file in fnmatch.filter(files, pattern):
+                file_path = (root, os.path.join(root, file))
+                all_files.extend((file_path,))
     return all_files
 
 
@@ -115,6 +116,3 @@ setup(name='adlibre_tms',
 #    dependency_links = [
 #        ],
 )
-
-
-print findall('www')
