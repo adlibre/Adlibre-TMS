@@ -2,12 +2,10 @@
 
 import os
 
-PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite'),
+        'NAME': os.path.abspath(os.path.join(os.path.split(__file__)[0], '..', 'db', 'tms.sqlite')),
         }
 }
 ###
