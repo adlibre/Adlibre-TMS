@@ -39,10 +39,10 @@ setup(name='adlibre_tms',
     version='0.1.0',
     long_description=open('README.md').read(),
     url='https://github.com/macropin/Adlibre-TMS',
-    packages=find_packages('.'),
+    packages='adlibre_tms', #find_packages('.'),
     scripts=[],
     package_data={
-            '': ['LICENSE', ], #'adlibre_tms/templates/*.html',
+            'adlibre_tms': ['LICENSE', 'adlibre_tms/templates/*.html',],
         },
     include_package_data=True,
     data_files = [
