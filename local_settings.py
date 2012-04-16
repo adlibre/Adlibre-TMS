@@ -13,8 +13,6 @@ DATABASES = {
 MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'media'))
 STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'static'))
 
-STATICFILES_DIRS = ()
-
 ###
 
 ADMINS = (
@@ -33,5 +31,4 @@ TIME_ZONE = None
 
 # Turn off demo
 DEMO = False
-
 

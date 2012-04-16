@@ -17,9 +17,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# Default django theme
-DJANGO_THEME = 'blue_theme'
-
 # tells django to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
 
@@ -71,7 +68,6 @@ STATIC_URL = '/static/'
 # Additional directories which hold static files
 STATICFILES_DIRS = (
     ('', os.path.join(PROJECT_PATH, 'apps/tms/contrib/saasu/media')),
-    ('', os.path.join(PROJECT_PATH, '..', '..', 'www', 'media', DJANGO_THEME)),
 )
 
 STATICFILES_FINDERS = (
@@ -131,7 +127,6 @@ ROOT_URLCONF = 'adlibre_tms.urls'
 TEMPLATE_DIRS = (
     'templates',
     os.path.join(PROJECT_PATH, 'templates'),
-    os.path.join(PROJECT_PATH, 'templates', DJANGO_THEME),
 )
 
 INSTALLED_APPS = (
