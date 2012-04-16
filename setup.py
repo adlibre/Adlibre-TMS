@@ -44,8 +44,8 @@ setup(name='adlibre_tms',
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
             ('db', ['db/.gitignore']),
-            ('deployment', glob.glob('deployment/*')),
-            ('docs', find_files('docs','*')),
+            ('deployment', find_files('deployment', '*')),
+            ('docs', find_files('docs', '*')),
             ('www', find_files('www', '*')),
         ],
     install_requires=[
