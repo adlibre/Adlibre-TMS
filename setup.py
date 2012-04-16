@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-import glob
+import fnmatch
 
 from setuptools import setup
 
@@ -26,6 +26,13 @@ def find_packages(path, base="" ):
             packages.update(find_packages(dir, module_name))
     return packages
 
+def find_files(directory, pattern):
+    for root, dirs, files in os.walk(directory):
+        for base_name in files:
+            if fnmatch.fnmatch(base_name, pattern):
+                filename = os.path.join(root, base_name)
+                yield filename
+
 
 setup(name='adlibre_tms',
     version='0.1.0',
@@ -38,8 +45,8 @@ setup(name='adlibre_tms',
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
             ('db', ['db/.gitignore']),
             ('deployment', glob.glob('deployment/*')),
-            ('docs', glob.glob('docs/*')),
-            ('www', glob.glob('www/*')),
+            ('docs', find_files('docs','*')),
+            ('www', find_files('www', '*')),
         ],
     install_requires=[
             'BeautifulSoup==3.2.0',
