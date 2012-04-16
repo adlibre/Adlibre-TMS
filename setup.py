@@ -40,11 +40,12 @@ def findall(dir,pattern='*'):
 
         Returns the full relative path to the file
     """
-    all_files = ()
+    all_files = []
     for root, dirs, files in os.walk(dir):
         for file in fnmatch.filter(files, pattern):
-            all_files = all_files + ((root, os.path.join(root, file)))
-    return all_files
+            file_path = os.path.join(root, file)
+            all_files.extend((file_path,))
+    return (dir, all_files)
 
 
 setup(name='adlibre_tms',
