@@ -71,6 +71,7 @@ data_files = findall('www')
 #data_files.extend(findall('www'))
 
 
+
 setup(name='adlibre_tms',
     version='0.1.0',
     long_description=open('README.md').read(),
@@ -117,3 +118,6 @@ setup(name='adlibre_tms',
 #    dependency_links = [
 #        ],
 )
+
+
+print data_files
