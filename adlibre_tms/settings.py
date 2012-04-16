@@ -184,10 +184,11 @@ CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 #COMPRESS_URL = MEDIA_URL
 #COMPRESS_ROOT = MEDIA_ROOT
 
-#try:
-#    from local_settings import *
-#except ImportError:
-#    pass
+# This will import the local_settings in our virtual_env subdir next to manage.py.
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
 # debugging data to display if template rendered with errors (needs to be after local settings)
 # NB this breaks the password change form. Issue #11
