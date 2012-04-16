@@ -35,6 +35,7 @@ setup(name='adlibre_tms',
     scripts=[],
     data_files = [
             ('db', ['db/.gitignore']),
+            ('docs', glob.glob('docs/*')),
             ('deployment', glob.glob('deployment/*')),
             ('adlibre_tms', ['adlibre_tms/local_settings.py', 'adlibre_tms/manage.py']),
         ],
