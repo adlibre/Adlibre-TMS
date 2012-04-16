@@ -41,13 +41,15 @@ setup(name='adlibre_tms',
     url='https://github.com/macropin/Adlibre-TMS',
     packages=find_packages('.'),
     scripts=[],
-    package_data={ 'adlibre_tms': ['templates/*',] },
+    package_data=[
+            ('adlibre_tms', find_files('templates', '*')),
+        ],
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
             ('db', ['db/.gitignore']),
             ('deployment', find_files('deployment', '*')),
             ('docs', find_files('docs', '*')),
-            ('www', find_files('www', '*.html')),
+            ('www', find_files('www', '*')),
         ],
     install_requires=[
             'BeautifulSoup==3.2.0',
