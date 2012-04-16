@@ -56,8 +56,6 @@ setup(name='adlibre_tms',
     url='https://github.com/macropin/Adlibre-TMS',
     packages=find_packages('.'),
     scripts=[],
-
-    adlibre_tms/apps/tms/static/js/jquery-themes
     package_data={
             'adlibre_tms': [
                 'apps/saasu_client/templates/saasu_client/*.xml',
