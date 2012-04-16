@@ -34,7 +34,7 @@ def find_files(directory, pattern):
                 if os.path.isfile(filename):
                     yield filename
 
-def findall(dir, pattern='*'):
+def findall(dir,pattern='*'):
     """
         A better finder
 
@@ -43,13 +43,15 @@ def findall(dir, pattern='*'):
     all_files = []
     for root, dirs, files in os.walk(dir):
         if len(files) > 0:
+            file_list = []
             for file in fnmatch.filter(files, pattern):
-                file_path = (root, os.path.join(root, file))
-                all_files.extend((file_path,))
+                file_path = os.path.join(root, file)
+                file_list.extend((file_path,))
+            all_files.extend(((root, file_list,),))
     return all_files
 
-data_files = []
-print findall('www')
+data_files = findall('www')
+#print findall('www')
 
 #data_files.extend([
 #    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
