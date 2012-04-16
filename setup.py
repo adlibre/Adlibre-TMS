@@ -7,7 +7,7 @@ setup(name='adlibre_tms',
     long_description=open('README.md').read(),
     url='https://github.com/macropin/Adlibre-TMS',
     packages=['adlibre_tms'],
-    scripts=['manage.py',],
+    scripts=['adlibre_tms/manage.py',],
     install_requires=[
         'BeautifulSoup==3.2.0',
         'Django==1.3.1',
