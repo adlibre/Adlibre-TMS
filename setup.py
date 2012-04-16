@@ -43,6 +43,11 @@ setup(name='adlibre_tms',
     scripts=[],
     package_data={
             'adlibre_tms': [
+                'apps/saasu_client/templates/saasu_client/*.xml',
+                'apps/tms/contrib/saasu/media/admin/saasu/js/*.js',
+                'apps/tms/contrib/saasu/templates/saasu/admin/*.html',
+                'apps/tms/fixtures/initial_data.json',
+                'apps/tms/templates/tms/*.html',
                 'templates/*.html',
                 'templates/admin/*.html',
                 'templates/admin/tms/*.html',
