@@ -49,6 +49,7 @@ def findall(dir, pattern='*'):
     return all_files
 
 data_files = findall('www')
+print data_files
 
 #data_files.extend([
 #    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
@@ -120,4 +121,3 @@ setup(name='adlibre_tms',
 )
 
 
-print data_files
