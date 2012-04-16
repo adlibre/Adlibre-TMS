@@ -53,7 +53,7 @@ data_files = [
     ('db', ['db/.gitignore']),
     ('deployment', find_files('deployment', '*')),
     ('docs', find_files('docs', '*')),
-    findall('www'),
+    (findall('www')),
     #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
     #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
     #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
