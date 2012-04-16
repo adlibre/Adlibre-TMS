@@ -42,7 +42,7 @@ setup(name='adlibre_tms',
     packages=['adlibre_tms',], #find_packages('.'),
     scripts=[],
     package_data={
-            'adlibre_tms': ['templates/*.html',]
+            'adlibre_tms': ['LICENSE', 'templates/*.html',]
         },
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
@@ -66,6 +66,3 @@ setup(name='adlibre_tms',
 #    dependency_links = [
 #        ],
 )
-
-print '****************************************************'
-print find_files('adlibre_tms/templates', '*')
