@@ -67,6 +67,7 @@ STATIC_URL = '/static/'
 
 # Additional directories which hold static files
 STATICFILES_DIRS = (
+    ('', os.path.join(PROJECT_PATH, 'static')),
     ('', os.path.join(PROJECT_PATH, 'apps/tms/contrib/saasu/media')),
 )
 
