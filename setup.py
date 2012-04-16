@@ -36,7 +36,7 @@ setup(name='adlibre_tms',
     data_files = [
             ('db', ['db/.gitignore']),
             ('deployment', glob.glob('deployment/*')),
-            ('tms', ['adlibre_tms/local_settings.py', 'adlibre_tms/manage.py']),
+            ('adlibre_tms', ['settings.py', 'adlibre_tms/manage.py']),
         ],
     install_requires=[
             'BeautifulSoup==3.2.0',
