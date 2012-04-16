@@ -34,7 +34,7 @@ def find_files(directory, pattern):
                 if os.path.isfile(filename):
                     yield filename
 
-def findall(dir,pattern='*'):
+def findall(dir, pattern='*'):
     """
         A better finder
 
@@ -48,8 +48,7 @@ def findall(dir,pattern='*'):
                 all_files.extend((file_path,))
     return all_files
 
-
-data_files =  [
+data_files = [
     ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
     ('db', ['db/.gitignore']),
     ('deployment', find_files('deployment', '*')),
@@ -67,7 +66,7 @@ data_files =  [
     #            ('www/media/blue_theme/uni_form', ['www/media/blue_theme/uni_form/*']),
 ]
 
-data_files.extend = findall('www')
+data_files.extend(findall('www'))
 
 
 setup(name='adlibre_tms',
