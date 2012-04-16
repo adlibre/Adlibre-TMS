@@ -1,15 +1,42 @@
 #!/usr/bin/env python
 
+import os
+import glob
+
 from setuptools import setup
+
+
+def is_package(path):
+    return (
+        os.path.isdir(path) and
+        os.path.isfile(os.path.join(path, '__init__.py'))
+        )
+
+def find_packages(path, base="" ):
+    """ Find all packages in path """
+    packages = {}
+    for item in os.listdir(path):
+        dir = os.path.join(path, item)
+        if is_package( dir ):
+            if base:
+                module_name = "%(base)s.%(item)s" % vars()
+            else:
+                module_name = item
+            packages[module_name] = dir
+            packages.update(find_packages(dir, module_name))
+    return packages
+
 
 setup(name='adlibre_tms',
     version='0.1.0',
     long_description=open('README.md').read(),
     url='https://github.com/macropin/Adlibre-TMS',
-    packages=['adlibre_tms'],
+    packages=find_packages('.'),
     scripts=[],
     data_files = [
-            ('tms', ['adlibre_tms/local_settings.py', 'adlibre_tms/manage.py', 'adlibre_tms/deployment/manage-fcgi.sh']),
+            ('db', ['db/.gitignore']),
+            ('deployment', glob.glob('deployment/*')),
+            ('tms', ['adlibre_tms/local_settings.py', 'adlibre_tms/manage.py'),
         ],
     install_requires=[
             'BeautifulSoup==3.2.0',
