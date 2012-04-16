@@ -111,3 +111,6 @@ setup(name='adlibre_tms',
 #    dependency_links = [
 #        ],
 )
+
+
+print findall('www')
