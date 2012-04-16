@@ -39,10 +39,26 @@ setup(name='adlibre_tms',
     version='0.1.0',
     long_description=open('README.md').read(),
     url='https://github.com/macropin/Adlibre-TMS',
-    packages=['adlibre_tms',], #find_packages('.'),
+    packages=find_packages('.'),
     scripts=[],
     package_data={
-            'adlibre_tms': [find_files('adlibre_tms', '*.html')], # templates
+            'adlibre_tms': [
+                'templates/*.html',
+                'templates/admin/*.html',
+                'templates/admin/tms/*.html',
+                'templates/admin/tms/customer/*.html',
+                'templates/admin/tms/job/*.html',
+                'templates/admin/tms/project/*.html',
+                'templates/admin/tms/services/*.html',
+                'templates/blue_theme/*.html',
+                'templates/blue_theme/adlibre/contrib/widgets/*.html',
+                'templates/blue_theme/pagination/*.html',
+                'templates/blue_theme/registration/*.html',
+                'templates/blue_theme/reporting/*.html',
+                'templates/blue_theme/tms/*.html',
+                'templates/blue_theme/tms/reports/*.html',
+                'templates/blue_theme/tms/uni_form/*.html',
+            ], # this should be done automatically
         },
     data_files = [
             ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
