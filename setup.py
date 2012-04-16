@@ -42,10 +42,31 @@ def findall(dir,pattern='*'):
     """
     all_files = []
     for root, dirs, files in os.walk(dir):
-        for file in fnmatch.filter(files, pattern):
-            file_path = os.path.join(root, file)
+        if len(files) > 0:
+            file_path = (root, files)
             all_files.extend((file_path,))
-    return (dir, all_files)
+    return all_files
+
+
+data_files =  [
+    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
+    ('db', ['db/.gitignore']),
+    ('deployment', find_files('deployment', '*')),
+    ('docs', find_files('docs', '*')),
+    #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
+    #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
+    #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
+    #            ('www/media/blue_theme/tms/js/jquery-themes/base', ['www/media/blue_theme/tms/js/jquery-themes/base/*.css']),
+    #            ('www/media/blue_theme/tms/js/jquery-themes/base/images', ['www/media/blue_theme/tms/js/jquery-themes/base/images/*']),
+    #            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/*.css']),
+    #            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images/*']),
+    #            ('www/media/blue_theme/tms/js/jquery-ui', ['www/media/blue_theme/tms/js/jquery-ui/*.js']),
+    #            ('www/media/blue_theme/tms/js/jquery-ui/i18n', ['www/media/blue_theme/tms/js/jquery-ui/i18n/*.js']),
+    #            ('www/media/blue_theme/tms/js/jquery-ui/minified', ['www/media/blue_theme/tms/js/jquery-ui/minified/*.js']),
+    #            ('www/media/blue_theme/uni_form', ['www/media/blue_theme/uni_form/*']),
+]
+
+data_files.extend = findall('www')
 
 
 setup(name='adlibre_tms',
@@ -78,24 +99,7 @@ setup(name='adlibre_tms',
                 'templates/blue_theme/uni_form/*.html',
             ], # this should be done automatically
         },
-    data_files = [
-            ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
-            ('db', ['db/.gitignore']),
-            ('deployment', find_files('deployment', '*')),
-            ('docs', find_files('docs', '*')),
-            findall('www'),
-#            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
-#            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
-#            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
-#            ('www/media/blue_theme/tms/js/jquery-themes/base', ['www/media/blue_theme/tms/js/jquery-themes/base/*.css']),
-#            ('www/media/blue_theme/tms/js/jquery-themes/base/images', ['www/media/blue_theme/tms/js/jquery-themes/base/images/*']),
-#            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/*.css']),
-#            ('www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images', ['www/media/blue_theme/tms/js/jquery-themes/ui-lightness/images/*']),
-#            ('www/media/blue_theme/tms/js/jquery-ui', ['www/media/blue_theme/tms/js/jquery-ui/*.js']),
-#            ('www/media/blue_theme/tms/js/jquery-ui/i18n', ['www/media/blue_theme/tms/js/jquery-ui/i18n/*.js']),
-#            ('www/media/blue_theme/tms/js/jquery-ui/minified', ['www/media/blue_theme/tms/js/jquery-ui/minified/*.js']),
-#            ('www/media/blue_theme/uni_form', ['www/media/blue_theme/uni_form/*']),
-        ],
+    data_files=data_files,
     install_requires=[
             'BeautifulSoup==3.2.0',
             'Django==1.3.1',
