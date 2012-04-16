@@ -5,27 +5,6 @@ import fnmatch
 
 from setuptools import setup, find_packages
 
-
-#def is_package(path):
-#    return (
-#        os.path.isdir(path) and
-#        os.path.isfile(os.path.join(path, '__init__.py'))
-#        )
-#
-#def find_packages(path, base="" ):
-#    """ Find all packages in path """
-#    packages = {}
-#    for item in os.listdir(path):
-#        dir = os.path.join(path, item)
-#        if is_package( dir ):
-#            if base:
-#                module_name = "%(base)s.%(item)s" % vars()
-#            else:
-#                module_name = item
-#            packages[module_name] = dir
-#            packages.update(find_packages(dir, module_name))
-#    return packages
-
 def find_files(directory, pattern):
     for root, dirs, files in os.walk(directory):
         for base_name in files:
@@ -36,9 +15,7 @@ def find_files(directory, pattern):
 
 def findall(dir,pattern='*'):
     """
-        A better finder
-
-        Returns the full relative path to the file
+    A better finder for 'data_files'
     """
     all_files = []
     for root, dirs, files in os.walk(dir):
@@ -50,24 +27,15 @@ def findall(dir,pattern='*'):
             all_files.extend(((root, file_list,),))
     return all_files
 
-#data_files = findall('www')
-#
-#data_files.extend([
-#    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
-#    ('db', ['db/.gitignore']),
-#    ('deployment', find_files('deployment', '*')),
-#    ('docs', find_files('docs', '*')),
-#])
 
-#data_files.extend(findall('www'))
-
-data_files = [
+# Data files to package
+data_files = findall('www')
+data_files.extend([
     ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
     ('db', ['db/.gitignore']),
-    findall('deployment'),
-    findall('docs'),
-    findall('www'),
-]
+    ('deployment', find_files('deployment', '*')),
+    ('docs', find_files('docs', '*')),
+])
 
 setup(name='adlibre_tms',
     version='0.1.0',
