@@ -31,7 +31,8 @@ def find_files(directory, pattern):
         for base_name in files:
             if fnmatch.fnmatch(base_name, pattern):
                 filename = os.path.join(root, base_name)
-                yield filename
+                if os.path.isfile(filename):
+                    yield filename
 
 
 setup(name='adlibre_tms',
