@@ -40,10 +40,10 @@ def findall(dir,pattern='*'):
 
         Returns the full relative path to the file
     """
-    all_files = []
+    all_files = ()
     for root, dirs, files in os.walk(dir):
         for file in fnmatch.filter(files, pattern):
-            all_files.append((root, os.path.join(root, file)))
+            all_files = all_files + ((root, os.path.join(root, file)))
     return all_files
 
 
