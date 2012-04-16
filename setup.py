@@ -13,7 +13,19 @@ def find_files(directory, pattern):
                 if os.path.isfile(filename):
                     yield filename
 
-def findall(dir,pattern='*'):
+def find_files_full(dir, pattern='*'):
+    """
+    Returns a dict with full relative path to files
+    """
+    all_files = []
+    for root, dirs, files in os.walk(dir):
+        if len(files) > 0:
+            for file in fnmatch.filter(files, pattern):
+                file_path = os.path.join(root, file)
+                all_files.extend((file_path,))
+    return all_files
+
+def findall(dir, pattern='*'):
     """
     A better finder for 'data_files'
     """
@@ -37,6 +49,19 @@ data_files.extend([
     ('docs', find_files('docs', '*')),
 ])
 
+tms_package_data = []
+tms_package_data.extend(find_files_full('apps', '*.xml'))
+tms_package_data.extend(find_files_full('apps', '*.js'))
+tms_package_data.extend(find_files_full('apps', '*.html'))
+tms_package_data.extend(find_files_full('apps', '*.json'))
+tms_package_data.extend(find_files_full('apps', '*.css'))
+tms_package_data.extend(find_files_full('apps', '*.jpg'))
+tms_package_data.extend(find_files_full('apps', '*.png'))
+tms_package_data.extend(find_files_full('apps', '*.gif'))
+tms_package_data.extend(find_files_full('templates', '*.html'))
+
+
+
 setup(name='adlibre_tms',
     version='0.1.0',
     long_description=open('README.md').read(),
@@ -44,31 +69,32 @@ setup(name='adlibre_tms',
     packages=find_packages('.'),
     scripts=[],
     package_data={
-            'adlibre_tms': [
-                'apps/saasu_client/templates/saasu_client/*.xml',
-                'apps/tms/contrib/saasu/media/admin/saasu/js/*.js',
-                'apps/tms/contrib/saasu/templates/saasu/admin/*.html',
-                'apps/tms/fixtures/initial_data.json',
-                'apps/tms/templates/tms/*.html',
-                'apps/tms/static/css/*.css',
-                'apps/tms/static/images/*',
-                'apps/tms/static/js/*',
-                'templates/*.html',
-                'templates/admin/*.html',
-                'templates/admin/tms/*.html',
-                'templates/admin/tms/customer/*.html',
-                'templates/admin/tms/job/*.html',
-                'templates/admin/tms/project/*.html',
-                'templates/admin/tms/services/*.html',
-                'templates/*.html',
-                'templates/adlibre/contrib/widgets/*.html',
-                'templates/pagination/*.html',
-                'templates/registration/*.html',
-                'templates/reporting/*.html',
-                'templates/tms/*.html',
-                'templates/tms/reports/*.html',
-                'templates/uni_form/*.html',
-            ], # this should be done automatically
+            'adlibre_tms': tms_package_data ,
+
+#                'apps/saasu_client/templates/saasu_client/*.xml',
+#                'apps/tms/contrib/saasu/media/admin/saasu/js/*.js',
+#                'apps/tms/contrib/saasu/templates/saasu/admin/*.html',
+#                'apps/tms/fixtures/initial_data.json',
+#                'apps/tms/templates/tms/*.html',
+#                'apps/tms/static/css/*.css',
+#                'apps/tms/static/images/*',
+#                'apps/tms/static/js/*',
+#                'templates/*.html',
+#                'templates/admin/*.html',
+#                'templates/admin/tms/*.html',
+#                'templates/admin/tms/customer/*.html',
+#                'templates/admin/tms/job/*.html',
+#                'templates/admin/tms/project/*.html',
+#                'templates/admin/tms/services/*.html',
+#                'templates/*.html',
+#                'templates/adlibre/contrib/widgets/*.html',
+#                'templates/pagination/*.html',
+#                'templates/registration/*.html',
+#                'templates/reporting/*.html',
+#                'templates/tms/*.html',
+#                'templates/tms/reports/*.html',
+#                'templates/uni_form/*.html',
+#            ], # this should be done automatically
         },
     data_files=data_files,
     install_requires=[
