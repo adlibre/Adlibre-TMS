@@ -3,7 +3,7 @@
 import os
 import fnmatch
 
-from setuptools import setup, find_packages, findall
+from setuptools import setup, find_packages
 
 
 #def is_package(path):
@@ -33,6 +33,21 @@ def find_files(directory, pattern):
                 filename = os.path.join(root, base_name)
                 if os.path.isfile(filename):
                     yield filename
+
+
+def findall(dir,pattern='*'):
+    """
+        A better finder
+
+        Returns the full relative path to the file
+    """
+    all_files = []
+    for root, dirs, files in os.walk(dir):
+        for file in fnmatch.filter(files, pattern):
+            all_files.append(os.path.join(root, file))
+
+    return all_files
+
 
 
 setup(name='adlibre_tms',
@@ -70,7 +85,7 @@ setup(name='adlibre_tms',
             ('db', ['db/.gitignore']),
             ('deployment', find_files('deployment', '*')),
             ('docs', find_files('docs', '*')),
-            ('www/media', findall(dir='www/media')),
+            ('www/media', findall('www/media')),
 #            ('www/media/blue_theme/tms/css', ['www/media/blue_theme/tms/css/*.css']),
 #            ('www/media/blue_theme/tms/images', ['www/media/blue_theme/tms/images/*']),
 #            ('www/media/blue_theme/tms/js', ['www/media/blue_theme/tms/js/*.js', 'www/media/blue_theme/tms/js/*.htc']),
