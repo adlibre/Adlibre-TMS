@@ -40,18 +40,8 @@ def findall(dir, pattern='*'):
     return all_files
 
 
-# Data files to package
-data_files = findall('www')
-data_files.extend([
-    ('adlibre_tms', ['settings.py', 'local_settings.py.example', 'adlibre_tms/manage.py']),
-    ('db', ['db/.gitignore']),
-    ('deployment', find_files('deployment', '*')),
-    ('docs', find_files('docs', '*')),
-])
-
-
 setup(name='adlibre_tms',
-    version='0.1.0',
+    version='0.1.1',
     long_description=open('README.md').read(),
     url='https://github.com/macropin/Adlibre-TMS',
     packages=find_packages('.'),
@@ -91,7 +81,13 @@ setup(name='adlibre_tms',
                 'templates/uni_form/*.html',
             ], # this should be done automatically
         },
-    data_files=data_files,
+    data_files=[
+        ('adlibre_tms', ['settings.py', 'local_settings.py.example', 'adlibre_tms/manage.py']),
+        ('db', ['db/.gitignore']), # create empty dir
+        ('deployment', find_files('deployment', '*')),
+        ('docs', find_files('docs', '*')),
+        ('www', 'www/.gitignore'), # create empty dir
+    ],
     install_requires=[
             'BeautifulSoup==3.2.0',
             'Django==1.3.1',
@@ -104,8 +100,6 @@ setup(name='adlibre_tms',
             'template-utils==0.4p2',
             'xml-models==0.5.1'
         ],
-#    dependency_links = [
-#        ],
 )
 
 
