@@ -38,15 +38,15 @@ Within a clean virtualenv run the following command to install Adlibre TMS and a
 
 Production:
 <pre>
-pip install git+git://github.com/macropin/Adlibre-TMS.git
+pip install git+git://github.com/adlibre/Adlibre-TMS.git
 </pre>
 
 Development:
 <pre>
-pip install -e git+git://github.com/macropin/Adlibre-TMS.git#egg=adlibre_tms-dev
+pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=adlibre_tms-dev
 </pre>
 
-For detailed in installation instuctions read [INSTALL.md](INSTALL.md).
+For detailed in installation instructions read [INSTALL.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/INSTALL.md).
 
 ## Support
 
