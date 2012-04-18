@@ -1,9 +1,4 @@
 *.pyc
-*.pid
-*.sock
-.Python
-.idea/
-bin/
-include/
-lib/
-www/static/CACHE/*
+build
+dist
+*.egg-info
