@@ -43,7 +43,7 @@ def findall(dir, pattern='*'):
 # Data files to package
 data_files = findall('www')
 data_files.extend([
-    ('adlibre_tms', ['local_settings.py', 'adlibre_tms/manage.py']),
+    ('adlibre_tms', ['settings.py', 'local_settings.py', 'adlibre_tms/manage.py']),
     ('db', ['db/.gitignore']),
     ('deployment', find_files('deployment', '*')),
     ('docs', find_files('docs', '*')),
