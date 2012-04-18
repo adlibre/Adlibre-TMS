@@ -86,7 +86,7 @@ setup(name='adlibre_tms',
         ('db', ['db/.gitignore']), # create empty dir
         ('deployment', find_files('deployment', '*')),
         ('docs', find_files('docs', '*')),
-        ('www', 'www/.gitignore'), # create empty dir
+        ('www', ['www/.gitignore']), # create empty dir
     ],
     install_requires=[
             'BeautifulSoup==3.2.0',
