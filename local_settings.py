@@ -32,3 +32,5 @@ TIME_ZONE = None
 # Turn off demo
 DEMO = False
 
+# remove fcgi script name from url (lighttpd)
+FORCE_SCRIPT_NAME = ''
