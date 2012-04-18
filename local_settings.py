@@ -15,6 +15,9 @@ STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'static'))
 
 ###
 
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
 ADMINS = (
 #('Admin', 'admin@example.com'),
 )
