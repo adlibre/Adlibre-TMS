@@ -35,9 +35,18 @@ There is an online demonstration site available. The site refreshes every 60 min
 ## Installation
 
 Within a clean virtualenv run the following command to install Adlibre TMS and all required packages:
+
+Production:
 <pre>
 pip install git+git://github.com/macropin/Adlibre-TMS.git
 </pre>
+
+Development:
+<pre>
+pip install -e git+git://github.com/macropin/Adlibre-TMS.git#egg=adlibre_tms-dev
+</pre>
+
+For detailed in installation instuctions read [INSTALL.md](INSTALL.md).
 
 ## Support
 
