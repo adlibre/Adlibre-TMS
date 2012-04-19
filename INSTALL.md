@@ -7,7 +7,7 @@ cd ( to your virtualenv base)
 mkvirtualenv --no-site-packages tms
 workon tms
 cdvirtualenv
-pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=adlibre_tms-dev
+pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=tms-dev
 mv ./adlibre_tms/local_settings.py.example ./adlibre_tms/local_settings.py # Edit settings as necessary
 ./adlibre_tms/manage.py collectstatic
 ./adlibre_tms/manage.py syncdb

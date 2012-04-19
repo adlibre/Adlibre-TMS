@@ -43,7 +43,7 @@ pip install git+git://github.com/adlibre/Adlibre-TMS.git
 
 Development:
 <pre>
-pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=adlibre_tms-dev
+pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=tms-dev
 </pre>
 
 For detailed in installation instructions read [INSTALL.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/INSTALL.md).
