@@ -16,6 +16,10 @@ without being too complex or convoluted to configure.
 * Pony powered with Python and Django.
 * Open Source - hackable...
 
+### Saasu Integration
+
+More information regarding the Saasu setup can be found in [docs/saasu_setup.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/saasu_setup.md).
+
 ## Screenshots
 
 <img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_1.jpg" />
@@ -28,11 +32,23 @@ There is an online demonstration site available. The site refreshes every 60 min
 
 * http://tmsdemo.adlibre.com.au Login: demo, Password: demo.
 
-## Saasu Integration
+## Installation
 
-More information regarding the Saasu setup can be found in [docs/saasu_setup.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/saasu_setup.md).
+Within a clean virtualenv run the following command to install Adlibre TMS and all required packages:
 
-## Commercial Support
+Production:
+<pre>
+pip install git+git://github.com/adlibre/Adlibre-TMS.git
+</pre>
+
+Development:
+<pre>
+pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=adlibre_tms-dev
+</pre>
+
+For detailed in installation instructions read [INSTALL.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/INSTALL.md).
+
+## Support
 
 Adlibre TMS is developed and commercially supported by [Adlibre](http://www.adlibre.com.au/ "Adlibre Pty Ltd - Open Source Consulting").
 

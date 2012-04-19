@@ -17,9 +17,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# Default django theme
-DJANGO_THEME = 'blue_theme'
-
 # tells django to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
 
@@ -70,8 +67,8 @@ STATIC_URL = '/static/'
 
 # Additional directories which hold static files
 STATICFILES_DIRS = (
+    ('', os.path.join(PROJECT_PATH, 'static')),
     ('', os.path.join(PROJECT_PATH, 'apps/tms/contrib/saasu/media')),
-    ('', os.path.join(PROJECT_PATH, '..', '..', 'www', 'media', DJANGO_THEME)),
 )
 
 STATICFILES_FINDERS = (
@@ -131,7 +128,6 @@ ROOT_URLCONF = 'adlibre_tms.urls'
 TEMPLATE_DIRS = (
     'templates',
     os.path.join(PROJECT_PATH, 'templates'),
-    os.path.join(PROJECT_PATH, 'templates', DJANGO_THEME),
 )
 
 INSTALLED_APPS = (
@@ -143,17 +139,14 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.sitemaps',
     #'django.contrib.flatpages',
-    #for Django 1.3
     'django.contrib.staticfiles',
 
     # external
     'uni_form',
+    'pagination',
 
-    # for Django 1.2.1
-    #'staticfiles',
     # Compresses CSS/JS files from media/static
     "compressor",
-    'pagination',
 
     # local
     'accounts',
@@ -187,6 +180,7 @@ CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 #COMPRESS_URL = MEDIA_URL
 #COMPRESS_ROOT = MEDIA_ROOT
 
+# This will import the local_settings in our virtual_env subdir next to manage.py.
 try:
     from local_settings import *
 except ImportError:
