@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# AC: 2012-04-30 This file and pip-reqs are deprecated. Use setup.py instead.
+
 # Bootstrap and setup a virtualenv with the specified requirements.txt
 
 import os

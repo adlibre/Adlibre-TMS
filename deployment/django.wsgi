@@ -1,3 +1,5 @@
+# AC: 2012-04-30 This file is out of date, and not maintained. Caution advised, or use lighttpd
+
 # django.wsgi is configured to live in projects/tms/deployment.
 
 import os
