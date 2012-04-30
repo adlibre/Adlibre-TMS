@@ -11,7 +11,7 @@
     ./src/tms/adlibre_tms/manage.py collectstatic
     ./src/tms/adlibre_tms/manage.py syncdb
 
-Set your config options in _src/tms/adlibre_tms/local_settings.py_.
+Set your config options in _./src/tms/adlibre_tms/local_settings.py_.
 
 ## This is how we deploy on CentOS 5.X w/ lighttpd
 
@@ -27,7 +27,7 @@ Set your config options in _src/tms/adlibre_tms/local_settings.py_.
 
 Set your config options in _./adlibre_tms/local_settings.py_.
 
-## Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
+### Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
 
     ln -s  /srv/www/tms/deployment/lighttpd.conf /etc/lighttpd/conf.d/tms.conf
 
