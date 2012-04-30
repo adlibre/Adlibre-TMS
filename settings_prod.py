@@ -1,4 +1,4 @@
-from adlibre_tms.settings import *
+from adlibre_tms.settings import * # Import global settings
 
 # HACK: Here be magic and import voodoo...
 # This file exists just to make manage.py happy when passing --settings= parameter.
@@ -20,3 +20,9 @@ MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'media'))
 STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'static'))
 
 ###
+
+# This will import the local_settings in our virtual_env subdir next to manage.py.
+try:
+    from local_settings import *
+except ImportError:
+    pass
