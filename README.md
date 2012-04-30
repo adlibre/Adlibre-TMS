@@ -11,7 +11,7 @@ without being too complex or convoluted to configure.
     - Point and click invoicing
     - Point and click expense claims
     - Plugs into Adlibre DMS for storing the supporting documentation for expenses. (Coming soon)
-* Reports - 4 standard reports are available. It's easy to extend and to write your own.
+* Reports - 4 standard reports are available. It's easy to extend and to write your own in Python/HTML.
 * Skinable, brandable, integrate it into your other web applications. Intranet ready.
 * Pony powered with Python and Django.
 * Open Source - hackable...
@@ -22,9 +22,9 @@ More information regarding the Saasu setup can be found in [docs/saasu_setup.md]
 
 ## Screenshots
 
-<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_1.jpg" />
-<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_2.jpg" />
-<img src="https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_3.jpg" />
+![Adlibre Timesheet Management System - Login](https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_1.jpg)
+![Adlibre Timesheet Management System - Timesheets](https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_2.jpg)
+![Adlibre Timesheet Management System - Expenses](https://github.com/adlibre/Adlibre-TMS/raw/master/docs/tms_3.jpg)
 
 ## Online Demo
 
@@ -37,20 +37,18 @@ There is an online demonstration site available. The site refreshes every 60 min
 Within a clean virtualenv run the following command to install Adlibre TMS and all required packages:
 
 Production:
-<pre>
-pip install git+git://github.com/adlibre/Adlibre-TMS.git
-</pre>
+
+    pip install git+git://github.com/adlibre/Adlibre-TMS.git
 
 Development:
-<pre>
-pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=tms-dev
-</pre>
 
-For detailed in installation instructions read [INSTALL.md](https://github.com/adlibre/Adlibre-TMS/blob/master/docs/INSTALL.md).
+    pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=tms-dev
+
+For detailed in installation instructions read [INSTALL.md](https://github.com/adlibre/Adlibre-TMS/blob/master/INSTALL.md).
 
 ## Support
 
-Adlibre TMS is developed and commercially supported by [Adlibre](http://www.adlibre.com.au/ "Adlibre Pty Ltd - Open Source Consulting").
+Adlibre TMS is developed and commercially supported by [Adlibre](http://www.adlibre.com.au/ "Adlibre Open Source Consulting").
 
 More information is available at:
 
