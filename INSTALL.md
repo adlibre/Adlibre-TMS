@@ -29,7 +29,9 @@ Set your config options in _./adlibre_tms/local_settings.py_.
 
 ### Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
 
-    ln -s  /srv/www/tms/deployment/lighttpd.conf /etc/lighttpd/conf.d/tms.conf
+    cp  /srv/www/tms/deployment/lighttpd.conf /etc/lighttpd/conf.d/tms.conf
+
+Then edit _/etc/lighttpd/conf.d/tms.conf_ as necessary to suit your requirements.
 
 Add something like the following to the crontab for your web / fcgi user:
 
