@@ -82,7 +82,7 @@ setup(name='adlibre_tms',
             ], # this should be done automatically
         },
     data_files=[
-        ('adlibre_tms', ['settings.py', 'local_settings.py.example', 'adlibre_tms/manage.py']),
+        ('adlibre_tms', ['settings_prod.py', 'local_settings.py.example', 'adlibre_tms/manage.py']),
         ('db', ['db/.gitignore']), # create empty dir
         ('deployment', find_files('deployment', '*')),
         ('docs', find_files('docs', '*')),
