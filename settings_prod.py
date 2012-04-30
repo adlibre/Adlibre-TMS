@@ -1,8 +1,9 @@
-from adlibre_tms.settings import * # Import global settings
+"""
+Settings file for when we install using pip in non development scenario
+Contains overrides for our project layout in a standard deployment.
+"""
 
-# HACK: Here be magic and import voodoo...
-# This file exists just to make manage.py happy when passing --settings= parameter.
-# Put all your config in local_settings.py
+from adlibre_tms.settings import * # Import global settings
 
 ## Overrides for our project layout in a standard deployment
 
