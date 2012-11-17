@@ -26,8 +26,8 @@ class Employee(models.Model):
     user = models.OneToOneField(User)
 
     class Meta:
-        pass
-    
+        ordering = ['user']
+
     def __unicode__(self):
         return self.user.username
 
@@ -39,7 +39,7 @@ class Project(models.Model):
     is_billable = models.BooleanField(default=True)
 
     class Meta:
-        pass
+        ordering = ['project_name']
 
     def __unicode__(self):
         return self.project_code   
@@ -56,7 +56,7 @@ class Customer(models.Model):
     saasu_contact_uid = models.CharField(max_length=32, blank=True)
 
     class Meta:
-        pass
+        ordering = ['customer_name']
     
     def __unicode__(self):
         return self.customer_code
@@ -74,7 +74,7 @@ class Service(models.Model):
     saasu_item_uid = models.CharField(max_length=32, blank=True)
 
     class Meta:
-        pass
+        ordering = ['service_name']
 
     def __unicode__(self):
         return self.service_code
@@ -96,7 +96,8 @@ class Job(models.Model):
     timestamp  = models.DateTimeField(auto_now=True) 
 
     class Meta:
-        pass
+        ordering = ['customer', 'service', 'project']
+
 
     def __unicode__(self):
         return '%s %s %s' % (self.customer, self.service, self.project)
@@ -122,7 +123,6 @@ class Timesheet(models.Model):
         help_text=_("This means that the client has been billed for the recorded in this timesheet entry."))
 
     # For internal use
-
     timestamp = models.DateTimeField(auto_now=True)
 
     # Set custom model manager
@@ -268,7 +268,7 @@ class ExpenseType(models.Model):
     saasu_account_uid = models.CharField(max_length=32, blank=True)
 
     class Meta:
-        pass
+        ordering = ['expense_type_name']
 
     def __unicode__(self):
         return self.expense_type_code
@@ -280,7 +280,7 @@ class PaymentMethod(models.Model):
     payment_method_code = models.CharField(max_length=32, unique=True)
 
     class Meta:
-        pass
+        ordering = ['payment_method_name']
 
     def __unicode__(self):
         return self.payment_method_code
@@ -289,11 +289,11 @@ class PaymentMethod(models.Model):
 class Currency(models.Model):
 
     currency_name = models.CharField(max_length=64, unique=True)
-
     currency_code = models.CharField(max_length=32, unique=True)
     currency_symbol = models.CharField(max_length=1)
 
     class Meta:
+        ordering = ['currency_name']
         verbose_name_plural = 'currencies'
 
     def __unicode__(self):
@@ -326,11 +326,9 @@ class Expense(models.Model):
     claim_date = models.DateField()
     
     # For internal use
-
     timestamp = models.DateTimeField(auto_now=True)
 
-    # Set custome model manager
-
+    # Set custom model manager
     objects = ExpenseManager()
 
     class Meta:
