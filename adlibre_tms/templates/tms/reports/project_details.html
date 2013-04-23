@@ -43,7 +43,7 @@
           {% for queryset in value.subsets %}
             {% if queryset %}
               {% ifchanged queryset %}
-                <h5>{% trans "Job:" %} {{ queryset.0.service_code }}</h5>
+                <h5>{% trans "Job:" %} {{ queryset.0.job }}</h5>
               {% endifchanged %}
               <table>
                 <thead>
