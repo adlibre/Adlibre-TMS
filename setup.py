@@ -5,6 +5,12 @@ import fnmatch
 
 from setuptools import setup, find_packages
 
+from pip.req import parse_requirements
+
+install_reqs = parse_requirements('requirements.txt')
+requirements = [str(ir.req) for ir in install_reqs]
+
+
 def find_files(directory, pattern):
     for root, dirs, files in os.walk(directory):
         for base_name in files:
@@ -12,6 +18,7 @@ def find_files(directory, pattern):
                 filename = os.path.join(root, base_name)
                 if os.path.isfile(filename):
                     yield filename
+
 
 def find_files_full(dir, pattern='*'):
     """
@@ -24,6 +31,7 @@ def find_files_full(dir, pattern='*'):
                 file_path = os.path.join(root, file)
                 all_files.extend((file_path,))
     return all_files
+
 
 def findall(dir, pattern='*'):
     """
@@ -88,16 +96,7 @@ setup(name='adlibre_tms',
         ('docs', find_files('docs', '*')),
         ('www', ['www/.gitignore']), # create empty dir
     ],
-    install_requires=[
-            'BeautifulSoup==3.2.0',
-            'Django==1.4',
-            'django-any==0.2.0',
-            'django-pagination==1.0.7',
-            'django-uni-form==0.7.0',
-            'python-dateutil==2.1',
-            'template-utils==0.4p2',
-            'xml-models==0.5.1'
-        ],
+    install_requires=requirements,
 )
 
 
