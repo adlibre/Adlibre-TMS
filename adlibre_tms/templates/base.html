@@ -1,19 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    {% load compress %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}</title>
     <link rel="favourites icon" href="{{ STATIC_URL }}tms/images/favicon.ico" />
 
-    {% compress css %}
     <link href="{{ STATIC_URL }}tms/css/reset.css" rel="stylesheet" type="text/css" />
     <link href="{{ STATIC_URL }}tms/css/base.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="{{ STATIC_URL }}tms/css/jquery.selectBox.css" rel="stylesheet" type="text/css" />
-    {% endcompress %}
-    {# don't compress these because of @imports #}
     <link href="{{ STATIC_URL }}tms/js/jquery-themes/base/jquery.ui.all.css" type="text/css" media="all" rel="stylesheet" />
 
-    {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery.selectbox-0.5.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery.selectBox.min.js"></script>
@@ -22,18 +17,15 @@
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery-ui/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery-ui/jquery.ui.position.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/jquery-ui/jquery.ui.datepicker.js"></script>
-    {% endcompress %}
-    
+
     {% block extra_head_base %}
       {% block extra_head %}{% endblock %}
     {% endblock %}
 
-    {% compress js %}
     <!-- Timesheets/Expenses/Reports events handler scripts -->
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_timesheets.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_expenses.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}tms/js/AJAX_reports.js"></script>
-    {% endcompress %}
   </head>
   
   <body class="{% block body_class %}{% endblock %}">

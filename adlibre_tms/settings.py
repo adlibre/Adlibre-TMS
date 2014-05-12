@@ -75,7 +75,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # other finders..
-    'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_EXCLUDED_APPS = (
@@ -145,9 +144,6 @@ INSTALLED_APPS = (
     'uni_form',
     'pagination',
 
-    # Compresses CSS/JS files from media/static
-    "compressor",
-
     # local
     'accounts',
     'adlibre',
@@ -173,12 +169,6 @@ PAGINATION_DEFAULT_PAGINATION = 15
 
 # Cache settings
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
-
-# django-compressor specific settings
-# Tells to compress urls from MEDIA folder because our static lies there...
-#COMPRESS = True
-#COMPRESS_URL = MEDIA_URL
-#COMPRESS_ROOT = MEDIA_ROOT
 
 # This will import the local_settings in our virtual_env subdir next to manage.py.
 try:
