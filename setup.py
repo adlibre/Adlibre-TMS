@@ -90,7 +90,7 @@ setup(name='adlibre_tms',
     ],
     install_requires=[
             'BeautifulSoup==3.2.0',
-            'Django==1.3.1',
+            'Django==1.4',
             'django-any==0.2.0',
             'django-pagination==1.0.7',
             'django-uni-form==0.7.0',
