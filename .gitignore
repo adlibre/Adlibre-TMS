@@ -1,4 +1,8 @@
+*.egg-info
 *.pyc
+.Python
+bin/
 build
 dist
-*.egg-info
+include
+lib
