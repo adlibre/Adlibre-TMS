@@ -158,7 +158,7 @@ LOGIN_REDIRECT_URL = '/'
 
 SITE_NAME = 'Adlibre TMS'
 
-PRODUCT_VERSION='1.0' # Adlibre TMS Product Version
+PRODUCT_VERSION = '1.1'  # Adlibre TMS Product Version
 DEMO = True
 
 PAGINATION_DEFAULT_PAGINATION = 15
