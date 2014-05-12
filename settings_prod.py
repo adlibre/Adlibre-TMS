@@ -17,8 +17,8 @@ DATABASES = {
         }
 }
 
-MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'media'))
-STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'static'))
+MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'media'))
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'static'))
 
 ###
 

@@ -1,8 +1,10 @@
 *.egg-info
 *.pyc
+.idea
 .Python
 bin/
 build
 dist
 include
 lib
+local_settings.py
