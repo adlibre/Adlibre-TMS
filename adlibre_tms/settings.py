@@ -20,12 +20,10 @@ MANAGERS = ADMINS
 # tells django to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite'),
-    }
-}
+from dj_database_url import config as db_config
+
+DATABASES = {'default': db_config(default='sqlite://localhost//%s'
+                                          % os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite3'))}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
