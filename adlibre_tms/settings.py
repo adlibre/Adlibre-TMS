@@ -168,6 +168,9 @@ PAGINATION_DEFAULT_PAGINATION = 15
 # Cache settings
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
+
+os.environ.setdefault("EMAIL_HOST", "localhost")
+
 # This will import the local_settings in our virtual_env subdir next to manage.py.
 try:
     from local_settings import *
