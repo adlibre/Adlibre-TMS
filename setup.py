@@ -51,9 +51,18 @@ def findall(dir, pattern='*'):
     return all_files
 
 
-setup(name='adlibre_tms',
+setup(
+    name='adlibre_tms',
     version=VERSION,
+    author='Adlibre Pty Ltd',
+    author_email='tms@adlibre.com.au',
+    license='BSD',
+    description='Timesheet and Expense tracking system for the web. Build with Python & Django. Interfaces to Saasu.',
     long_description=open('README.md').read(),
+    classifiers=[
+        'Environment :: Web Environment',
+        'Framework :: Django',
+    ],
     url='https://github.com/adlibre/Adlibre-TMS',
     packages=find_packages('.'),
     scripts=[],
