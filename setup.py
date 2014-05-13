@@ -62,6 +62,9 @@ setup(
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
     ],
     url='https://github.com/adlibre/Adlibre-TMS',
     packages=find_packages('.'),
