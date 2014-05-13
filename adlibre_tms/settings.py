@@ -27,13 +27,6 @@ from dj_database_url import config as db_config
 DATABASES = {'default': db_config(default='sqlite://localhost//%s'
                                           % os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite3'))}
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'Australia/Sydney'
-
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
@@ -89,9 +82,6 @@ ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
 FIXTURE_DIRS = (
     os.path.join(PROJECT_PATH, 'fixtures'),
 )
-
-# Make this unique, and don't share it with anybody.
-#SECRET_KEY = 'changeme' # set in local settings
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -163,15 +153,15 @@ DEMO = True
 
 PAGINATION_DEFAULT_PAGINATION = 15
 
-# Saasu settings
-#SAASU_FILE_UID = 'XXXX' # Define in local_settings
-#SAASU_WSACCESS_KEY = 'XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX' # Define in local_settings
-
 # Cache settings
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
-
+# Settings from .env
+os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
 os.environ.setdefault("EMAIL_HOST", "localhost")
+os.environ.setdefault("SECRET_KEY", "")
+os.environ.setdefault("SAASU_FILE_UID", "")
+os.environ.setdefault("SAASU_WSACCESS_KEY", "")
 
 # This will import the local_settings in our virtual_env subdir next to manage.py.
 try:
