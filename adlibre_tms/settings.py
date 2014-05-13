@@ -3,7 +3,7 @@ import os
 import posixpath
 import sys
 
-import __version__ as VERSION
+from . import __version__ as VERSION
 
 
 PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
