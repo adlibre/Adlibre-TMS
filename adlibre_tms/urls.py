@@ -36,14 +36,9 @@ if settings.DEBUG:
 # Site Apps
 urlpatterns += patterns('',
     url(r'^$', welcome, name='home'),
-
     url(r'^accounts/', include('accounts.urls')),
     url(r'^reporting/', include('reporting.urls')),
     url(r'^tms/', include('tms.urls')),
 )
-
-#if settings.SERVE_MEDIA:
-#    from staticfiles.urls import staticfiles_urlpatterns
-#    urlpatterns += staticfiles_urlpatterns()
 
 
