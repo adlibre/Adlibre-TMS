@@ -3,7 +3,7 @@ Settings file for when we install using pip in non development scenario
 Contains overrides for our project layout in a standard deployment.
 """
 
-from adlibre_tms.settings import * # Import global settings
+from adlibre_tms.settings import *  # Import global settings
 
 ## Overrides for our project layout in a standard deployment
 
@@ -13,7 +13,7 @@ PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.abspath(os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite')),
+        'NAME': os.path.abspath(os.path.join(PROJECT_PATH, 'db', 'tms.sqlite3')),
         }
 }
 
