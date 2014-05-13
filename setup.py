@@ -7,6 +7,9 @@ from setuptools import setup, find_packages
 
 from pip.req import parse_requirements
 
+import adlibre_tms.__version__ as VERSION
+
+
 install_reqs = parse_requirements('requirements.txt')
 requirements = [str(ir.req) for ir in install_reqs]
 
@@ -49,7 +52,7 @@ def findall(dir, pattern='*'):
 
 
 setup(name='adlibre_tms',
-    version='1.1.0',
+    version=VERSION,
     long_description=open('README.md').read(),
     url='https://github.com/adlibre/Adlibre-TMS',
     packages=find_packages('.'),

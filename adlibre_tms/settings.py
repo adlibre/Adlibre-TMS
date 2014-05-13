@@ -3,6 +3,8 @@ import os
 import posixpath
 import sys
 
+import __version__ as VERSION
+
 
 PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(PROJECT_PATH, 'apps'))
@@ -156,7 +158,7 @@ LOGIN_REDIRECT_URL = '/'
 
 SITE_NAME = 'Adlibre TMS'
 
-PRODUCT_VERSION = '1.1'  # Adlibre TMS Product Version
+PRODUCT_VERSION = VERSION  # Adlibre TMS Product Version
 DEMO = True
 
 PAGINATION_DEFAULT_PAGINATION = 15
