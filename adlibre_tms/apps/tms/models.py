@@ -88,7 +88,7 @@ class Job(models.Model):
     project = models.ForeignKey(Project)
 
     is_active = models.BooleanField(default=True,
-        help_text=_("This  means that current job is available for recording timesheet entries against it. (i.e. is visible in dropdown list)."))
+        help_text=_("This means that current job is available for recording timesheet entries against it. (i.e. is visible in dropdown list)."))
 
     # For internal use
 
