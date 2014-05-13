@@ -10,7 +10,7 @@ PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(PROJECT_PATH, 'apps'))
 sys.path.insert(0, os.path.join(PROJECT_PATH, 'libraries'))
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -18,9 +18,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-# tells django to serve media through django.views.static.serve.
-SERVE_MEDIA = DEBUG
 
 from dj_database_url import config as db_config
 
@@ -157,13 +154,14 @@ PAGINATION_DEFAULT_PAGINATION = 15
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
 # Settings from .env
-os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
-os.environ.setdefault("EMAIL_HOST", "localhost")
-os.environ.setdefault("SECRET_KEY", "")
-os.environ.setdefault("SAASU_FILE_UID", "")
-os.environ.setdefault("SAASU_WSACCESS_KEY", "")
+TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
+EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
+SECRET_KEY = os.environ['SECRET_KEY']
+SAASU_FILE_UID = os.environ['SAASU_FILE_UID']
+SAASU_WSACCESS_KEY = os.environ['SAASU_WSACCESS_KEY']
 
 # This will import the local_settings in our virtual_env subdir next to manage.py.
+# But the preferred method is to use .env file and bureaucrat
 try:
     from local_settings import *
 except ImportError:
