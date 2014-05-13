@@ -13,12 +13,12 @@ PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.abspath(os.path.join(PROJECT_PATH, 'db', 'tms.sqlite3')),
+        'NAME': os.path.abspath(os.path.join(PROJECT_PATH, '..', 'db', 'tms.sqlite3')),
         }
 }
 
-MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'media'))
-STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'static'))
+MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'media'))
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, '..', 'www', 'static'))
 
 ###
 
