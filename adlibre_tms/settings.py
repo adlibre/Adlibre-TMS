@@ -13,9 +13,9 @@ sys.path.insert(0, os.path.join(PROJECT_PATH, 'libraries'))
 DEBUG = bool(os.environ.get('DEBUG', False))
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-    #('Example Admin', 'admin@example.com'),
-)
+ADMINS = ()
+for admin in os.environ.get('ADMINS'):
+    ADMINS = ADMINS + (admin.split('/'),)
 
 MANAGERS = ADMINS
 
