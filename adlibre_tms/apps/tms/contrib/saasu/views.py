@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.http import HttpResponse
 
-from saasu_client.settings import SAASU_ERORS
+from saasu_client.settings import SAASU_ERRORS
 from saasu_client.models import ContactList, FullInventoryItemList, TransactionCategoryList
 
 
@@ -13,7 +13,7 @@ from saasu_client.models import ContactList, FullInventoryItemList, TransactionC
 def saasu_account_lookup(request, app_label="SAASU", template_name='saasu/admin/saasu_account_lookup.html'):
     is_popup = False
     if settings.DEMO:
-        return HttpResponse(SAASU_ERORS['disabled'])
+        return HttpResponse(SAASU_ERRORS['disabled'])
     if request.method == "GET":
         if request.GET.has_key('pop') or request.GET.has_key('popup'):
             is_popup = True
@@ -28,7 +28,7 @@ def saasu_account_lookup(request, app_label="SAASU", template_name='saasu/admin/
 def saasu_contact_lookup(request, app_label="SAASU", template_name='saasu/admin/saasu_contact_lookup.html'):
     is_popup = False
     if settings.DEMO:
-        return HttpResponse(SAASU_ERORS['disabled'])
+        return HttpResponse(SAASU_ERRORS['disabled'])
     if request.method == "GET":
         if request.GET.has_key('pop') or request.GET.has_key('popup'):
             is_popup = True
@@ -43,7 +43,7 @@ def saasu_contact_lookup(request, app_label="SAASU", template_name='saasu/admin/
 def saasu_item_lookup(request, app_label="SAASU", template_name='saasu/admin/saasu_item_lookup.html'):
     is_popup = False
     if settings.DEMO:
-        return HttpResponse(SAASU_ERORS['disabled'])
+        return HttpResponse(SAASU_ERRORS['disabled'])
     if request.method == "GET":
         if request.GET.has_key('pop') or request.GET.has_key('popup'):
             is_popup = True
