@@ -41,7 +41,7 @@ def findall(dir, pattern='*'):
 
 
 setup(name='adlibre_tms',
-    version='0.1.1',
+    version='0.1.2',
     long_description=open('README.md').read(),
     url='https://github.com/adlibre/Adlibre-TMS',
     packages=find_packages('.'),
