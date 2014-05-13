@@ -14,7 +14,7 @@ DEBUG = bool(os.environ.get('DEBUG', False))
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = ()
-for admin in os.environ.get('ADMINS').split():
+for admin in os.environ.get('ADMINS', '').split():
     ADMINS = ADMINS + (tuple(admin.split('/')),)
 
 MANAGERS = ADMINS
