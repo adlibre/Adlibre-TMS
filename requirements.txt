@@ -1,4 +1,5 @@
 # Core
+bureaucrat
 BeautifulSoup==3.2.0
 Django==1.4
 django-any==0.2.0
@@ -9,6 +10,5 @@ template-utils==0.4p2
 xml-models==0.5.1
 # Deployment
 gunicorn==18.0
-git+https://github.com/adlibre/python-bureaucrat.git#egg=bureaucrat
 git+https://github.com/kennethreitz/dj-static.git#egg=dj-static
 dj-database-url==0.2.2
