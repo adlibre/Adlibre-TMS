@@ -3,10 +3,9 @@ from django.http import HttpResponseBadRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-#from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
 
 import datetime
-from time import mktime
 
 from tms.models import Timesheet, Employee, Expense
 from tms.forms import TimesheetForm, ExpenseForm
@@ -22,8 +21,8 @@ def timesheets(request, data_id = None, template_name='tms/timesheets.html',
                form_template_name='tms/timesheets_form.html',
                entry_template_name='tms/timesheets_single_entry.html',
                post_save_redirect='tms_timesheets'):
-    """
-    Displaying/Adding/Editing existing Timesheet entry in database.
+    """Displaying/Adding/Editing existing Timesheet entry in database.
+
     Used with AJAX calls now. Main gear view for Timesheets.
     
     - GET to this view retrieves Whole timesheets page (form and entries paginated table)
@@ -64,7 +63,7 @@ def timesheets(request, data_id = None, template_name='tms/timesheets.html',
             obj.employee = employee
             obj.save()
             # Add message to admin
-            request.user.message_set.create(message='Timesheet entry was added successfully')
+            messages.add_message(request, messages.INFO, 'Timesheet entry was added successfully')
             context = {
                        'object': obj,
                        'edit_ajax': edit_ajax,
@@ -100,8 +99,8 @@ def timesheets(request, data_id = None, template_name='tms/timesheets.html',
 
 @login_required
 def timesheet_del(request):
-    """
-    Deleting existing Timesheet entry in database.
+    """Deleting existing Timesheet entry in database.
+
     Used with AJAX calls now.
     
     - retrieves 'data_id' (Timesheet model PK) from request context
@@ -147,7 +146,7 @@ def expenses(request, data_id = None, template_name='tms/expenses.html',
             obj.employee = employee
             obj.save()
             # Add message
-            request.user.message_set.create(message='Expenses entry was added successfully')
+            messages.add_message(request, messages.INFO, 'Expenses entry was added successfully')
             context = {
                        'object': obj,
                        'edit_ajax': edit_ajax
