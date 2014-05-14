@@ -154,12 +154,11 @@ PAGINATION_DEFAULT_PAGINATION = 15
 # Cache settings
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
-# Settings from .env
+# Settings from .env (optional load)
 TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
 EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
-SECRET_KEY = os.environ['SECRET_KEY']
-SAASU_FILE_UID = os.environ['SAASU_FILE_UID']
-SAASU_WSACCESS_KEY = os.environ['SAASU_WSACCESS_KEY']
+SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
+SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
 
 # This will import the local_settings in our virtual_env subdir next to manage.py.
 # But the preferred method is to use .env file and bureaucrat
@@ -172,3 +171,11 @@ except ImportError:
 # NB this breaks the password change form. Issue #11
 if DEBUG:
     TEMPLATE_STRING_IF_INVALID = 'error in template here'
+
+# Loading SECRET_KEY from .env variable in case it is not already set somewhere else
+try:
+    if not SECRET_KEY:
+        SECRET_KEY = os.environ['SECRET_KEY']
+except NameError:
+    print "Warning: settings.SECRET_KEY is nto set!"
+    pass
