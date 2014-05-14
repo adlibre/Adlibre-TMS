@@ -176,8 +176,10 @@ if DEBUG:
 
 # Loading SECRET_KEY from .env variable in case it is not already set somewhere else
 try:
-    if not SECRET_KEY:
-        SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY
 except NameError:
-    print "Warning: settings.SECRET_KEY is nto set!"
-    pass
+    try:
+        SECRET_KEY = os.environ['SECRET_KEY']
+    except KeyError:
+        print "Warning: settings.SECRET_KEY is not set!"
+        pass
