@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
+import recurrence.fields
+
 from tms.managers import *
 
 from saasu_client.models import *
 
 __all__ = ['Employee', 'Project', 'Customer', 'Service', 'Job',
-           'Timesheet', 'ExpenseType', 'PaymentMethod', 'Currency', 'Expense']
+           'Timesheet', 'ExpenseType', 'PaymentMethod', 'Currency', 'Expense',
+           'BillingRecurrence', 'RetainerRecurrence', 'Retainer', 'TimesheetRetainerAllocation']
 
 
 SAASU_ERRORS_CONSTANT = {
@@ -97,7 +100,6 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['customer', 'service', 'project']
-
 
     def __unicode__(self):
         return '%s %s %s' % (self.customer, self.service, self.project)
@@ -385,3 +387,62 @@ class Expense(models.Model):
 
     total_amount = property(_get_total_amount)
 
+
+class BillingRecurrence(models.Model):
+    """ Automatic billing for a job in a given period.
+
+    This works for both regular ad hoc timesheets, and timesheets assigned to a retainer
+    """
+    job = models.ForeignKey(Job, unique=True)
+    recurrence = recurrence.fields.RecurrenceField()  # Number of days to repeat, or weekly repeat, or by calendar month, eg 1st of the month
+    # We might want to have options here for true/false override is_submitted status
+
+    class Meta:
+        ordering = ['job']
+
+    def __unicode__(self):
+        return '%s' % self.job
+
+
+class RetainerRecurrence(models.Model):
+    """ This is where the retainer is defined """
+    job = models.ForeignKey(Job)
+    amount = models.PositiveIntegerField("Retainer hours")
+    start = models.DateField(help_text='Date at which recurring retainers begin')
+    end = models.DateField(help_text='Date at which recurring retainers end')
+    recurrence = recurrence.fields.RecurrenceField()  # Number of days to repeat, or weekly repeat, or by calendar month, eg 1st of the month
+
+    class Meta:
+        ordering = ['job']
+
+    def __unicode__(self):
+        return '%s' % self.job
+
+
+class Retainer(models.Model):
+    """ These are automatically created by the system each period from the 'RetainerRecurrence' information """
+    job = models.ForeignKey(Job)
+    start = models.DateField(help_text="Start of retainer period")
+    end = models.DateField(help_text="End of retainer period")
+    amount = models.PositiveIntegerField(help_text='Amount of the retainer (hours)')  # this matches the 'amount' from the retainer when created.
+    amount_used = models.PositiveIntegerField(help_text='Hours used in the retainer period', editable=False, null=True, blank=True)   # calculated field
+
+    class Meta:
+        ordering = ['job']
+
+    def __unicode__(self):
+        return '%s (%s) ' % (self.job, str(self.amount))
+
+
+class TimesheetRetainerAllocation(models.Model):
+    """ This holds the link between the timesheet entry and the retainer to which it was applied """
+    timesheet = models.ForeignKey(Timesheet)
+    retainer = models.ForeignKey(Retainer)
+    is_billed = models.BooleanField(default=False,help_text='This means the retainer has been invoiced')
+
+    class Meta:
+        unique_together = (('timesheet', 'retainer'),)
+        ordering = ['timesheet', 'retainer']
+
+    def __unicode__(self):
+        return '%s %s' % (self.timesheet, self.retainer)
