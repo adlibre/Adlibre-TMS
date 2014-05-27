@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 from pip.req import parse_requirements
 
-import adlibre_tms.__version__ as VERSION
+from adlibre_tms import __version__ as VERSION
 
 
 install_reqs = parse_requirements('requirements.txt')
