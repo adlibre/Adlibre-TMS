@@ -106,7 +106,7 @@ setup(
         },
     data_files=[
         ('', ['.env.example', 'requirements.txt', 'Deployfile', 'Procfile']),
-        ('', ['settings_prod.py', 'local_settings.py.example', 'manage.py']),
+        ('adlibre_tms', ['settings_prod.py', 'local_settings.py.example', 'manage.py']),
         ('db', ['db/.gitignore']), # create empty dir
         ('docs', find_files('docs', '*')),
         ('www', ['www/.gitignore']), # create empty dir
