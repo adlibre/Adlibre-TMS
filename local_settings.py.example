@@ -17,17 +17,17 @@ ADMINS = (
 TIME_ZONE = None
 
 # Database Location project_root/db/
-# import os
-# PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.abspath(os.path.join(PROJECT_PATH, 'db', 'tms.sqlite3')),
-#         }
-# }
-#
-# MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'media'))
-# STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'static'))
+import os
+PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.abspath(os.path.join(PROJECT_PATH, 'db', 'tms.sqlite3')),
+         }
+}
+
+MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'media'))
+STATIC_ROOT = os.path.abspath(os.path.join(PROJECT_PATH, 'www', 'static'))
 
 # remove fcgi script name from url (required for lighttpd)
 FORCE_SCRIPT_NAME = ''
