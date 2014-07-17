@@ -3,7 +3,8 @@ BeautifulSoup==3.2.0
 Django==1.4
 django-any==0.2.0
 django-pagination==1.0.7
-django-recurrence==1.0.1
+# should be 1.0.3
+git+https://github.com/django-recurrence/django-recurrence.git#egg=django-recurrence
 django-uni-form==0.7.0
 python-dateutil==2.1
 template-utils==0.4p2

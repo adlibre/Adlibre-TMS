@@ -410,7 +410,9 @@ class RetainerRecurrence(models.Model):
     amount = models.PositiveIntegerField("Retainer hours")
     start = models.DateField(help_text='Date at which recurring retainers begin')
     end = models.DateField(help_text='Date at which recurring retainers end')
-    recurrence = recurrence.fields.RecurrenceField()  # Number of days to repeat, or weekly repeat, or by calendar month, eg 1st of the month
+    recurrence = recurrence.fields.RecurrenceField(
+        help_text='Number of days to repeat, or weekly repeat, or by calendar month, eg 1st of the month'
+    )
 
     class Meta:
         ordering = ['job']
@@ -424,8 +426,14 @@ class Retainer(models.Model):
     job = models.ForeignKey(Job)
     start = models.DateField(help_text="Start of retainer period")
     end = models.DateField(help_text="End of retainer period")
-    amount = models.PositiveIntegerField(help_text='Amount of the retainer (hours)')  # this matches the 'amount' from the retainer when created.
-    amount_used = models.PositiveIntegerField(help_text='Hours used in the retainer period', editable=False, null=True, blank=True)   # calculated field
+    # this matches the 'amount' from the retainer when created.
+    amount = models.PositiveIntegerField(help_text='Amount of the retainer (hours)')
+    amount_used = models.PositiveIntegerField(
+        help_text='Hours used in the retainer period',
+        editable=False,
+        null=True,
+        blank=True
+    )   # calculated field
 
     class Meta:
         ordering = ['job']
@@ -438,7 +446,7 @@ class TimesheetRetainerAllocation(models.Model):
     """ This holds the link between the timesheet entry and the retainer to which it was applied """
     timesheet = models.ForeignKey(Timesheet)
     retainer = models.ForeignKey(Retainer)
-    is_billed = models.BooleanField(default=False,help_text='This means the retainer has been invoiced')
+    is_billed = models.BooleanField(default=False, help_text='This means the retainer has been invoiced')
 
     class Meta:
         unique_together = (('timesheet', 'retainer'),)
