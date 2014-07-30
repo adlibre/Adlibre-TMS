@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'tms',
     'tms.contrib.saasu',
     'saasu_client',
+    'xero_client',
     'reporting',
 
     # Celery

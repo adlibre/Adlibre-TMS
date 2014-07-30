@@ -36,6 +36,7 @@ if settings.DEBUG:
 urlpatterns += patterns('',
     url(r'^$', welcome, name='home'),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^xero-client/', include('xero_client.urls')),
     url(r'^reporting/', include('reporting.urls')),
     url(r'^tms/', include('tms.urls')),
 )
