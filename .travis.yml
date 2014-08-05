@@ -7,4 +7,4 @@ python:
 install: "pip install --allow-external py-dom-xpath --allow-unverified py-dom-xpath ."
 
 # command to run tests
-script: python adlibre_dms/manage.py test
+script: python manage.py test
