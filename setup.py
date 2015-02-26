@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 from pip.req import parse_requirements
 
-import adlibre_tms.__version__ as VERSION
+from adlibre_tms import __version__ as VERSION
 
 
 install_reqs = parse_requirements('requirements.txt')
@@ -105,9 +105,9 @@ setup(
             ], # this should be done automatically
         },
     data_files=[
-        ('adlibre_tms', ['settings_prod.py', 'local_settings.py.example', 'manage.py']),
+        ('', ['.env.example', 'requirements.txt', 'Deployfile', 'Procfile']),
+        ('', ['local_settings.py.example', 'manage.py']),
         ('db', ['db/.gitignore']), # create empty dir
-        ('deployment', find_files('deployment', '*')),
         ('docs', find_files('docs', '*')),
         ('www', ['www/.gitignore']), # create empty dir
     ],
