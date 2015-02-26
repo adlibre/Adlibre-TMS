@@ -5,27 +5,19 @@ from reporting.base import Report
 
 _registry = {}
 
-
-class NoReportException(Exception):
-    pass
-
-
 def register(slug, klass):
     # Extend ``klass`` with a ``slug`` attribute.
     setattr(klass, 'slug', slug)
     _registry[slug] = klass
 
-
 def get_report(slug):
     try:
         return _registry[slug]
     except KeyError:
-        raise NoReportException("No such report '%s'" % slug)
-
+        raise Exception("No such report '%s'" % slug)
 
 def all_reports():
     return _registry.items()
-
 
 def autodiscover():
     from django.conf import settings
