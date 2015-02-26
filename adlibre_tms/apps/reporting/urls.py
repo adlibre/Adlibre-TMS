@@ -1,10 +1,7 @@
-# Django imports
-from django.conf.urls.defaults import patterns, url
-
-# Local imports
+from django.conf.urls import patterns, url
 from reporting.views import *
 
 urlpatterns = patterns('',
-                       url(r'^$', reports, name='reports'),
-                       url(r'^(?P<slug>\w+)/$', reports_detail, name='report_detail'),
-                       )
+    url(r'^$', reports, name='reports'),
+    url(r'^(?P<slug>\w+)/$', report_detail, name='report_detail'),
+)
