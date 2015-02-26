@@ -1,66 +1,66 @@
 # Adlibre TMS installation
 
-There are various ways to install TMS. This method below is for a production install:
-
-## This is how we deploy on CentOS / AMI / Fedora w/ Nginx
-
-    yum install nginx
-    chkconfig nginx on
-    adduser wwwpub  # Add a user to own TMS app
-    mkdir (your virtualenv base)
-    chown wwwpub: (your virtualenv base)
-
-### Install TMS
+## This is how we setup a development environment
 
     cd ( to your virtualenv base)
+    mkvirtualenv --no-site-packages tms
+    workon tms
+    cdvirtualenv
+    pip install -e git+git://github.com/adlibre/Adlibre-TMS.git#egg=tms
+    cp ./src/tms/local_settings.py.example ./src/tms/adlibre_tms/local_settings.py # Edit settings as necessary
+    ./src/tms/adlibre_tms/manage.py collectstatic
+    ./src/tms/adlibre_tms/manage.py syncdb
+
+Set your config options in _./src/tms/adlibre_tms/local_settings.py_.
+
+## This is how we deploy on CentOS 5.X w/ lighttpd
+
+    su - wwwpub
     cd /srv/www
-    curl --silent https://raw.githubusercontent.com/adlibre/python-bootstrap/master/bootstrap.sh | bash -s tms git+git://github.com/adlibre/Adlibre-TMS.git
+    mkvirtualenv --no-site-packages --python /usr/bin/python2.6 tms
+    workon tms
+    cdvirtualenv
+    pip install git+git://github.com/adlibre/Adlibre-TMS.git
+    mv ./adlibre_tms/local_settings.py.example ./adlibre_tms/local_settings.py # Edit as necessary
+    ./adlibre_tms/manage.py collectstatic --settings=settings_prod
+    ./adlibre_tms/manage.py syncdb --settings=settings_prod
 
-### Configure your settings
+Set your config options in _./adlibre_tms/local_settings.py_.
 
-    cd ( to your virtualenv base)
-    mv ./local_settings.py.example ./local_settings.py # Edit as necessary
-    mv ./.env.example .env # Edit as necessary
+### Then we use the lighttpd config in ./deployment to setup lighttpd and manage the flup/fcgi processes
 
-## Configure Nginx
+    cp  /srv/www/tms/deployment/lighttpd.conf /etc/lighttpd/conf.d/tms.conf
 
-Add the following to _/etc/nginx/conf.d/tms.conf_:
+Then edit _/etc/lighttpd/conf.d/tms.conf_ as necessary to suit your requirements.
 
-```
-#
-# Adlibre TMS
-#
+Add something like the following to the crontab for your web / fcgi user:
 
-server {
-    listen       80;
-    server_name  _;
+    @reboot /srv/www/tms/deployment/manage-fcgi.sh restart settings_prod tms
 
-    keepalive_timeout 10;
+#### RabbitMQ run commands for development:
 
-    # path for static files
-    root /srv/www/tms/www;
+RabbitMQ is a qee required for TMS Celery app to handle tasks.
 
-    location / {
-        # checks for static file, if not found proxy to app
-        try_files $uri @proxy_to_app;
-    }
+Install:
 
-    location @proxy_to_app {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_redirect off;
+    brew install rabbitmq
 
-        proxy_pass   http://localhost:8000;
-    }
+To have launchd start rabbitmq at login:
 
-}
-```
+    ln -sfv /usr/local/opt/rabbitmq/*.plist ~/Library/LaunchAgents
 
-### Initial Deployment
+Then to load rabbitmq now:
 
-    cd ( to your virtualenv base)
-    . bin/activate
-    bureaucrat deploy
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
 
-### Startup
-    /srv/www/tms/bin/bureaucrat start --logpath /srv/www/tms/log/ --venv /srv/www/tms --pidpath /tmp/
+Or, if you don't want/need launchctl, you can just run:
+
+    rabbitmq-server
+
+#### Celerybeat service (For periodic tasks)
+
+In the virtual env root (where manage.py resides) execute
+
+    celery -A adlibre_tms.apps.quee.celery beat --loglevel=DEBUG
+
+This will start the celery beat service and execute periodic tasks. 

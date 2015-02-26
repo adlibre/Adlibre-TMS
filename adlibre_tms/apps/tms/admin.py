@@ -148,3 +148,14 @@ admin.site.register(ExpenseType, ExpenseTypeAdmin)
 
 admin.site.register(PaymentMethod)
 admin.site.register(Currency)
+
+admin.site.register(BillingRecurrence)
+admin.site.register(RetainerRecurrence)
+
+class RetainerAdmin(admin.ModelAdmin):
+    list_display = ('job', 'start', 'end', 'amount', 'amount_used',)
+    list_filter = ('job', 'start', 'end',)
+
+admin.site.register(Retainer, RetainerAdmin)
+admin.site.register(TimesheetRetainerAllocation)
+

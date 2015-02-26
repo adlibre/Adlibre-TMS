@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     # external
     'uni_form',
     'pagination',
+    'recurrence',
 
     # local
     'accounts',
@@ -138,7 +139,12 @@ INSTALLED_APPS = (
     'tms',
     'tms.contrib.saasu',
     'saasu_client',
+    'xero_client',
     'reporting',
+
+    # Celery
+    'djcelery',
+    'quee',
 )
 
 LOGIN_URL = '/accounts/login/'
@@ -159,6 +165,14 @@ TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
 EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
 SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
 SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
+
+# XERO API data to be overridden
+XERO_CONSUMER_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+XERO_PATH_CERTIFICATE = os.path.abspath(
+    os.path.join(PROJECT_PATH, '..', 'keys', 'privatekey.pem')
+)
+
+CELERY_IMPORTS = ('adlibre_tms.apps.quee.tasks',)
 
 # This will import the local_settings in our virtual_env subdir next to manage.py.
 # But the preferred method is to use .env file and bureaucrat
