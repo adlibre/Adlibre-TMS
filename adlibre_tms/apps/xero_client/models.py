@@ -1,57 +1,98 @@
-import datetime
+from datetime import date, datetime, timedelta
 
 from django.db import models
+from django.core.exceptions import ValidationError
 from xero import Xero
 from xero.auth import PrivateCredentials
 
 from xero_client.settings import XERO_CONSUMER_KEY
 from xero_client.settings import XERO_PATH_CERTIFICATE
 
+from xero.exceptions import *
+
+from tms.models import Project
+from tms.models import Timesheet
+
 
 class XeroInvoice(models.Model):
-    to = models.CharField(max_length=200, help_text='Name of the company invoice is being issued to.')
-    date = models.DateField(auto_now_add=True)
-    due_date = models.DateField()
-    invoice_no = models.CharField(max_length=10)
-    reference = models.CharField(max_length=200, null=True, blank=True)
+    projects = Project.objects.filter(is_billable=True)
+    PROJECTS = ()
+    c = 0
+    for p in projects:
+        PROJECTS += ((p.project_name, p.project_name), )
+        c += 1
+    # TODO: make sure it works and simplify
+    print PROJECTS
+
+    xero_sync = models.BooleanField(default=True, help_text='Upload this invoice to Xero')
+    to = models.CharField(
+        max_length=200,
+        choices=PROJECTS,
+        help_text='Name of the company invoice is being issued to.'
+    )
+    invoice_date = models.DateField(default=date.today())
+    default_due_date = date.today() + timedelta(days=5)
+    due_date = models.DateField(default=default_due_date)
+    summary = models.CharField(max_length=200, help_text='Leave blank for auto name', null=True, blank=True)
+    items = models.ManyToManyField(Timesheet)
+
+    def clean(self, *args, **kwargs):
+        super(XeroInvoice, self).clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        # Uploading before actual model instance saving to DB
+        super(XeroInvoice, self).save(*args, **kwargs)
+
+    def upload_to_xero(self, cleaned_data):
+        summary = cleaned_data.get('summary')
+        to = cleaned_data.get('to')
+        invoice_date = cleaned_data.get('invoice_date')
+        due_date = cleaned_data.get('due_date')
+        project = Project.objects.filter(is_billable=True, project_name=to)[0]
+
+        if not summary:
+            summary = 'TMS generated: %s' % to
+
         manager = XeroAuthManager()
         xero = manager.xero
-        xero.invoices.put({
-            u'Status': u'DRAFT',
-            u'Total': u'264.00',
-            u'CurrencyRate': u'1.000000',
-            u'Reference': u'sdfghsfgh',
+        invoice_data = {
             u'Type': u'ACCREC',
-            u'CurrencyCode': u'AUD',
-            u'AmountPaid': u'0.00',
-            u'TotalTax': u'24.00',
+            u'Status': u'AUTHORISED',
             u'Contact': {
-                u'Name': u'Test One'
+                u'Name': to
             },
-            u'AmountDue': u'264.00',
-            u'Date': datetime.date(2014, 7, 24),
+            u'Date': invoice_date,
+            u'DueDate': due_date,
             u'LineAmountTypes': u'Exclusive',
-            u'LineItems': {
-                u'LineItem': {
+            u'Reference': summary,
+            u'CurrencyCode': 'AUD',  # TODO:
+            u'LineItems': [],
+        }
+
+        items = cleaned_data.get('items')
+        for item in items:
+            invoice_data[u'LineItems'].append(
+                {
+                    u'Description': '%s %s' % (item.date_start, item),
+                    u'Quantity': item.duration_minutes / 60,
+                    u'UnitAmount': item.job.price,
                     u'AccountCode': u'200',
-                    u'TaxAmount': u'24.00',
-                    u'Description': u'fgshfsdh',
-                    u'UnitAmount': u'24.00',
-                    u'TaxType': u'OUTPUT',
-                    u'ItemCode': u'sfghfshg',
-                    u'LineAmount': u'240.00',
-                    u'Quantity': u'10.0000'
                 }
-            },
-            u'SubTotal': u'240.00',
-            u'DueDate': datetime.date(2014, 7, 24)
-        })
+            )
+
+        try:
+            xero.invoices.put(invoice_data)
+        except (
+            XeroBadRequest,
+            XeroUnauthorized,
+            XeroForbidden,
+            XeroNotImplemented,
+            XeroNotAvailable
+        ), e:
+            # Intercepting Xero API errors and output during validation with full API error message
+            raise ValidationError('Xero invoice submit error: %s, %s' % (e, '\\'.join(e.errors)))
 
 
-        super(XeroInvoice, self).save(*args, **kwargs)
+
 
 
 
@@ -59,7 +100,6 @@ class XeroAuthManager(object):
     """Manager to work with basic xero API pyXero and TMS wide credentials"""
 
     def __init__(self):
-        print XERO_PATH_CERTIFICATE
         with open(XERO_PATH_CERTIFICATE) as keyfile:
             rsa_key = keyfile.read()
         credentials = PrivateCredentials(XERO_CONSUMER_KEY, rsa_key)

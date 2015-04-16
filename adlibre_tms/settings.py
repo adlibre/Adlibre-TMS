@@ -145,6 +145,8 @@ INSTALLED_APPS = (
     # Celery
     'djcelery',
     'quee',
+
+    'south',
 )
 
 LOGIN_URL = '/accounts/login/'
@@ -167,7 +169,7 @@ SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
 SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
 
 # XERO API data to be overridden
-XERO_CONSUMER_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+XERO_CONSUMER_KEY = getattr(os.environ, 'XERO_CONSUMER_KEY', "Q8GOK8LLGPSJ6UGFB9YNJKPKMUDXUF")
 XERO_PATH_CERTIFICATE = os.path.abspath(
     os.path.join(PROJECT_PATH, '..', 'keys', 'privatekey.pem')
 )

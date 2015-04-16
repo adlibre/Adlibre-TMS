@@ -45,7 +45,21 @@ class Project(models.Model):
         ordering = ['project_name']
 
     def __unicode__(self):
-        return self.project_code   
+        return self.project_code
+
+
+class Currency(models.Model):
+
+    currency_name = models.CharField(max_length=64, unique=True)
+    currency_code = models.CharField(max_length=32, unique=True)
+    currency_symbol = models.CharField(max_length=1)
+
+    class Meta:
+        ordering = ['currency_name']
+        verbose_name_plural = 'currencies'
+
+    def __unicode__(self):
+        return self.currency_code
 
 
 class Customer(models.Model):
@@ -53,7 +67,8 @@ class Customer(models.Model):
 
     customer_name = models.CharField(max_length=64, unique=True)
     customer_code = models.CharField(max_length=32, unique=True)
-    is_billable = models.BooleanField(default=True)    
+    is_billable = models.BooleanField(default=True)
+    currency = models.ForeignKey(Currency, null=True)
 
     # Link with SAASU contacts
     saasu_contact_uid = models.CharField(max_length=32, blank=True)
@@ -89,6 +104,11 @@ class Job(models.Model):
     customer = models.ForeignKey(Customer)
     service = models.ForeignKey(Service)
     project = models.ForeignKey(Project)
+    price = models.IntegerField(
+        blank=True,
+        null=True,
+        help_text='Price of the service according to the currency of the service'
+    )
 
     is_active = models.BooleanField(default=True,
         help_text=_("This means that current job is available for recording timesheet entries against it. (i.e. is visible in dropdown list)."))
@@ -286,20 +306,6 @@ class PaymentMethod(models.Model):
 
     def __unicode__(self):
         return self.payment_method_code
-
-
-class Currency(models.Model):
-
-    currency_name = models.CharField(max_length=64, unique=True)
-    currency_code = models.CharField(max_length=32, unique=True)
-    currency_symbol = models.CharField(max_length=1)
-
-    class Meta:
-        ordering = ['currency_name']
-        verbose_name_plural = 'currencies'
-
-    def __unicode__(self):
-        return self.currency_code
 
 
 class Expense(models.Model):
