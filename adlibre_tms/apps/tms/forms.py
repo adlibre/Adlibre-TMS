@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from tms.models import *
 from tms.contrib.saasu.widgets import *
+from xero_client.widgets import *
 from adlibre.contrib.widgets import SelectTimeWidget, SelectDateWidget
 
 now = datetime.date.today()
@@ -88,6 +89,7 @@ class ServiceAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ServiceAdminForm, self).__init__(*args, **kwargs)
         self.fields['saasu_item_uid'].widget = AdminSaasuItemInputWidget()
+        self.fields['xero_item_id'].widget = AdminXeroItemInputWidget()
 
 
 class ExpenseForm(forms.ModelForm):

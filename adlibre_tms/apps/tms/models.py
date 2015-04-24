@@ -70,8 +70,9 @@ class Customer(models.Model):
     is_billable = models.BooleanField(default=True)
     currency = models.ForeignKey(Currency, null=True)
 
-    # Link with SAASU contacts
+    # Link with SAASU and xero contacts
     saasu_contact_uid = models.CharField(max_length=32, blank=True)
+#    xero_contact_id = models.CharField(max_length=32, blank=True)
 
     class Meta:
         ordering = ['customer_name']
@@ -90,6 +91,7 @@ class Service(models.Model):
 
     # Link with SAASU items
     saasu_item_uid = models.CharField(max_length=32, blank=True)
+    xero_item_id = models.CharField(max_length=36, blank=True)
 
     class Meta:
         ordering = ['service_name']

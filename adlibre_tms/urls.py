@@ -11,6 +11,7 @@ admin.autodiscover()
 # Admin Apps
 urlpatterns = patterns('',
     (r'^admin/saasu/', include('tms.contrib.saasu.urls')),
+    (r'^admin/xero_client/', include('xero_client.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 )

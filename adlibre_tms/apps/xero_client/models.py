@@ -2,16 +2,12 @@ from datetime import date, datetime, timedelta
 
 from django.db import models
 from django.core.exceptions import ValidationError
-from xero import Xero
-from xero.auth import PrivateCredentials
-
-from xero_client.settings import XERO_CONSUMER_KEY
-from xero_client.settings import XERO_PATH_CERTIFICATE
 
 from xero.exceptions import *
 
 from tms.models import Project
 from tms.models import Timesheet
+from xero_client import XeroAuthManager
 
 
 class XeroInvoice(models.Model):
@@ -92,16 +88,14 @@ class XeroInvoice(models.Model):
             raise ValidationError('Xero invoice submit error: %s, %s' % (e, '\\'.join(e.errors)))
 
 
+class XeroItemList(models.Model):
+    items = None
+
+    def __init__(self, *args, **kwargs):
+        super(XeroItemList, self).__init__(*args, **kwargs)
+        manager = XeroAuthManager()
+        items = manager.xero.items.all()
+        self.items = items
 
 
 
-
-class XeroAuthManager(object):
-    """Manager to work with basic xero API pyXero and TMS wide credentials"""
-
-    def __init__(self):
-        with open(XERO_PATH_CERTIFICATE) as keyfile:
-            rsa_key = keyfile.read()
-        credentials = PrivateCredentials(XERO_CONSUMER_KEY, rsa_key)
-        self.credentials = credentials
-        self.xero = Xero(credentials)
