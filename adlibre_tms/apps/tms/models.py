@@ -35,19 +35,6 @@ class Employee(models.Model):
         return self.user.username
 
 
-class Project(models.Model):
-
-    project_name = models.CharField(max_length=64, unique=True)
-    project_code = models.CharField(max_length=32, unique=True)
-    is_billable = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ['project_name']
-
-    def __unicode__(self):
-        return self.project_code
-
-
 class Currency(models.Model):
 
     currency_name = models.CharField(max_length=64, unique=True)
@@ -62,13 +49,27 @@ class Currency(models.Model):
         return self.currency_code
 
 
+class Project(models.Model):
+
+    project_name = models.CharField(max_length=64, unique=True)
+    project_code = models.CharField(max_length=32, unique=True)
+    is_billable = models.BooleanField(default=True)
+    # TODO: why this fails?
+    #currency = models.ForeignKey(Currency, null=True, blank=True)
+
+    class Meta:
+        ordering = ['project_name']
+
+    def __unicode__(self):
+        return self.project_code
+
+
 class Customer(models.Model):
     """ Customer or client """
 
     customer_name = models.CharField(max_length=64, unique=True)
     customer_code = models.CharField(max_length=32, unique=True)
     is_billable = models.BooleanField(default=True)
-    currency = models.ForeignKey(Currency, null=True)
 
     # Link with SAASU and xero contacts
     saasu_contact_uid = models.CharField(max_length=32, blank=True)
@@ -106,17 +107,11 @@ class Job(models.Model):
     customer = models.ForeignKey(Customer)
     service = models.ForeignKey(Service)
     project = models.ForeignKey(Project)
-    price = models.IntegerField(
-        blank=True,
-        null=True,
-        help_text='Price of the service according to the currency of the service'
-    )
 
     is_active = models.BooleanField(default=True,
         help_text=_("This means that current job is available for recording timesheet entries against it. (i.e. is visible in dropdown list)."))
 
     # For internal use
-
     # for calculating how far back to allow inactive jobs to be used in old timesheet entries.
     timestamp  = models.DateTimeField(auto_now=True) 
 

@@ -9,6 +9,8 @@ from tms.models import Project
 from tms.models import Timesheet
 from xero_client import XeroAuthManager
 
+DEFAULT_CURRENCY = 'AUD'
+
 
 def get_projects_tuple():
     projects = Project.objects.filter(is_billable=True)
@@ -17,6 +19,7 @@ def get_projects_tuple():
     for p in projects:
         results += ((p.project_name, p.project_name), )
         c += 1
+    print results
     return results
 
 
@@ -39,6 +42,9 @@ class XeroInvoice(models.Model):
         invoice_date = cleaned_data.get('invoice_date')
         due_date = cleaned_data.get('due_date')
         project = Project.objects.filter(is_billable=True, project_name=to)[0]
+        # TODO: related to tms.models failures
+        #curency_code = project.currency.currency_code
+        curency_code = None
 
         if not summary:
             summary = 'TMS generated: %s' % to
@@ -55,7 +61,7 @@ class XeroInvoice(models.Model):
             u'DueDate': due_date,
             u'LineAmountTypes': u'Exclusive',
             u'Reference': summary,
-            u'CurrencyCode': 'AUD',  # TODO:
+            u'CurrencyCode': curency_code or DEFAULT_CURRENCY,
             u'LineItems': [],
         }
 
