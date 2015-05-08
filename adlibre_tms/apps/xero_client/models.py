@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -10,20 +10,21 @@ from tms.models import Timesheet
 from xero_client import XeroAuthManager
 
 
-class XeroInvoice(models.Model):
+def get_projects_tuple():
     projects = Project.objects.filter(is_billable=True)
-    PROJECTS = ()
+    results = ()
     c = 0
     for p in projects:
-        PROJECTS += ((p.project_name, p.project_name), )
+        results += ((p.project_name, p.project_name), )
         c += 1
-    # TODO: make sure it works and simplify
-    print PROJECTS
+    return results
 
+
+class XeroInvoice(models.Model):
     xero_sync = models.BooleanField(default=True, help_text='Upload this invoice to Xero')
     to = models.CharField(
         max_length=200,
-        choices=PROJECTS,
+        choices=get_projects_tuple(),
         help_text='Name of the company invoice is being issued to.'
     )
     invoice_date = models.DateField(default=date.today())
@@ -31,12 +32,6 @@ class XeroInvoice(models.Model):
     due_date = models.DateField(default=default_due_date)
     summary = models.CharField(max_length=200, help_text='Leave blank for auto name', null=True, blank=True)
     items = models.ManyToManyField(Timesheet)
-
-    def clean(self, *args, **kwargs):
-        super(XeroInvoice, self).clean(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        super(XeroInvoice, self).save(*args, **kwargs)
 
     def upload_to_xero(self, cleaned_data):
         summary = cleaned_data.get('summary')
@@ -65,15 +60,15 @@ class XeroInvoice(models.Model):
         }
 
         items = cleaned_data.get('items')
-        for item in items:
-            invoice_data[u'LineItems'].append(
-                {
-                    u'Description': '%s %s' % (item.date_start, item),
-                    u'Quantity': item.duration_minutes / 60,
-                    u'UnitAmount': item.job.price,
-                    u'AccountCode': u'200',
-                }
-            )
+        if items:  # can be none in case of sending invoice with no timesheets seleceted
+            for item in items:
+                invoice_data[u'LineItems'].append(
+                    {
+                        u'ItemCode': item.service_code.xero_item_id,
+                        u'Description': u'%s %s' % (item.start_time, item),
+                        u'Quantity': item.duration_minutes / 60,
+                    }
+                )
 
         try:
             xero.invoices.put(invoice_data)

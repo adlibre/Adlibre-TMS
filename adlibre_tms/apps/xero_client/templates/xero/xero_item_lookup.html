@@ -45,7 +45,6 @@
             <table cellspacing="0">
               <thead>
                 <tr>
-                  <th>{% trans "ItemID" %}</th>
                   <th>{% trans "Code" %}</th>
                   <th>{% trans "Description" %}</th>
                   <th>{% trans "SalesDetails" %}</th>
@@ -56,12 +55,11 @@
                   <tr class="{% cycle 'row1' 'row2' %}">
                     <th>
                       {% if is_popup %}
-                        <a href="{{ obj.ItemID }}/" onclick="opener.dismissXeroItemLookupPopup(window, '{{ obj.ItemID }}'); return false;">{{ obj.ItemID }}</a>
+                        <a href="{{ obj.Code }}/" onclick="opener.dismissXeroItemLookupPopup(window, '{{ obj.Code }}'); return false;">{{ obj.Code }}</a>
                       {% else %}
-                        <a href="#">{{ obj.ItemID }}</a>
+                        <a href="#">{{ obj.Code }}</a>
                       {% endif %}
                     </th>
-                    <td>{{ obj.Code }}</td>
                     <td>{{ obj.Description }}</td>
                     <td>{{ obj.SalesDetails|beautify_details }}</td>
                   </tr>

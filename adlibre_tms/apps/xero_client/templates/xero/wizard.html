@@ -1,0 +1,33 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="content-main">
+    <form {% if form.form.is_multipart %}enctype="multipart/form-data" {% endif %}method="post" action="" id="{{ opts.module_name }}_form">
+        <div>
+            {% csrf_token %}
+            {% if form.form.errors %}
+            <p class="errornote">
+                {% blocktrans count form.form.errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+            </p>
+            <ul class="errorlist">
+                {% for error in form.form.non_field_errors %}
+                <li>{{ error }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+
+            {% for fieldset in form %}
+              {% include "admin/includes/fieldset.html" %}
+            {% endfor %}
+            <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+            {{ previous_fields|safe }}
+
+            <div class="submit-row" {% if is_popup %}style="overflow: auto;"{% endif %}>
+                <input type="submit" value="{% ifequal step step_count %}Finish{% else %}Next &raquo;{% endifequal %}" class="default" name="_save" />
+            </div>
+
+            <script type="text/javascript">document.getElementById("{{ form.first_field.auto_id }}").focus();</script>
+        </div>
+    </form>
+</div>
+{% endblock %}

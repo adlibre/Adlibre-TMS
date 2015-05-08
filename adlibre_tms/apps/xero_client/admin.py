@@ -1,29 +1,32 @@
 from django.contrib import admin
-from django import forms
+from django.utils.functional import update_wrapper
+from django.conf.urls import url, patterns
 
 from xero_client.models import XeroInvoice
-
-
-class XeroInvoiceForm(forms.ModelForm):
-    class Meta:
-        model = XeroInvoice
-
-    def clean(self):
-        """
-        Uploads data to xero on validation
-
-        required to be so because we want to see the errors from XERO API in admin 9in case one occurs during upload process
-        """
-        if self.cleaned_data.get('xero_sync'):
-            self.instance.upload_to_xero(self.cleaned_data)
-        return self.cleaned_data
+from xero_client.forms import XeroInvoiceForm, create_invoice
 
 
 class XeroInvoiceAdmin(admin.ModelAdmin):
     #fields = ('to', 'date', 'due_date', 'reference',)
     list_display = ('to', 'invoice_date', 'summary', 'xero_sync',)
     form = XeroInvoiceForm
-    pass
+
+    def get_urls(self):
+        """Override the default "add" view with the invoice creation wizard."""
+
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                kwargs['admin'] = self
+                return self.admin_site.admin_view(view)(*args, **kwargs)
+            return update_wrapper(wrapper, view)
+
+        urlpatterns = patterns('',
+            url(r'^add/$',
+                wrap(create_invoice),
+                name='xero_invoice_add')
+        )
+        urlpatterns += super(XeroInvoiceAdmin, self).get_urls()
+        return urlpatterns
 
 
 admin.site.register(XeroInvoice, XeroInvoiceAdmin)
