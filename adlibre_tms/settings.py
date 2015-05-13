@@ -169,7 +169,7 @@ SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
 SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
 
 # XERO API data to be overridden
-XERO_CONSUMER_KEY = getattr(os.environ, 'XERO_CONSUMER_KEY', "Q8GOK8LLGPSJ6UGFB9YNJKPKMUDXUF")
+XERO_CONSUMER_KEY = getattr(os.environ, 'XERO_CONSUMER_KEY', "4I159YJKNWF3MKQ6Q4B9C2HGQAWMLF")
 XERO_PATH_CERTIFICATE = os.path.abspath(
     os.path.join(PROJECT_PATH, '..', 'keys', 'privatekey.pem')
 )

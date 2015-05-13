@@ -79,6 +79,7 @@ class CustomerAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CustomerAdminForm, self).__init__(*args, **kwargs)
         self.fields['saasu_contact_uid'].widget = AdminSaasuContactInputWidget()
+        self.fields['xero_contact_id'].widget = AdminXeroContactInputWidget()
 
 
 class ServiceAdminForm(forms.ModelForm):

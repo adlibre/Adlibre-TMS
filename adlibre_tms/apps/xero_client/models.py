@@ -99,4 +99,12 @@ class XeroItemList(models.Model):
         self.items = items
 
 
+class XeroContactList(models.Model):
+    items = None
+
+    def __init__(self, *args, **kwargs):
+        super(XeroContactList, self).__init__(*args, **kwargs)
+        manager = XeroAuthManager()
+        contacts = manager.xero.contacts.all()
+        self.contacts = contacts
 
