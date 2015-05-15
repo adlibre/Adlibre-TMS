@@ -76,6 +76,7 @@ class SaasuItemInput(forms.Widget):
     input_type = 'text'
 
     class Media:
+        #TODO: Malicious VIRUS
         js = (
             settings.ADMIN_MEDIA_PREFIX + "js/core.js",
             settings.ADMIN_MEDIA_PREFIX + "saasu/js/SaasuItemLookups.js",

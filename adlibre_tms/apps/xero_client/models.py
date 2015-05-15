@@ -37,17 +37,28 @@ class XeroInvoice(models.Model):
     items = models.ManyToManyField(Timesheet)
 
     def upload_to_xero(self, cleaned_data):
+        # Gathering required data for posting an invoice
         summary = cleaned_data.get('summary')
         to = cleaned_data.get('to')
         invoice_date = cleaned_data.get('invoice_date')
         due_date = cleaned_data.get('due_date')
-        project = Project.objects.filter(is_billable=True, project_name=to)[0]
-        # TODO: related to tms.models failures
-        #curency_code = project.currency.currency_code
-        curency_code = None
+        try:
+            project = Project.objects.filter(is_billable=True, project_name=to)[0]
+            job = project.job_set.all()[0]
+            xero_contact_id = job.customer.xero_contact_id
+            currency_code = job.customer.currency.currency_code
+        except Exception, e:
+            raise ValidationError('Something went wrong in your XERO configuration: %s' % e)
+
+        # Validating that data we have got
+        if not currency_code:
+            raise ValidationError('No Currency set for the customer you are invoicing to')
 
         if not summary:
             summary = 'TMS generated: %s' % to
+
+        if not xero_contact_id:
+            raise ValidationError('XERO contact is no assigned to the TMS contact')
 
         manager = XeroAuthManager()
         xero = manager.xero
@@ -55,13 +66,13 @@ class XeroInvoice(models.Model):
             u'Type': u'ACCREC',
             u'Status': u'AUTHORISED',
             u'Contact': {
-                u'Name': to
+                u'ContactID': xero_contact_id
             },
             u'Date': invoice_date,
             u'DueDate': due_date,
             u'LineAmountTypes': u'Exclusive',
             u'Reference': summary,
-            u'CurrencyCode': curency_code or DEFAULT_CURRENCY,
+            u'CurrencyCode': currency_code or DEFAULT_CURRENCY,
             u'LineItems': [],
         }
 
