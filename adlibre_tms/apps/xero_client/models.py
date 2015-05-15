@@ -9,8 +9,6 @@ from tms.models import Project
 from tms.models import Timesheet
 from xero_client import XeroAuthManager
 
-DEFAULT_CURRENCY = 'AUD'
-
 
 def get_projects_tuple():
     projects = Project.objects.filter(is_billable=True)
@@ -72,7 +70,7 @@ class XeroInvoice(models.Model):
             u'DueDate': due_date,
             u'LineAmountTypes': u'Exclusive',
             u'Reference': summary,
-            u'CurrencyCode': currency_code or DEFAULT_CURRENCY,
+            u'CurrencyCode': currency_code,
             u'LineItems': [],
         }
 

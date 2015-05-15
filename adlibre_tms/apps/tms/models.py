@@ -75,7 +75,12 @@ class Customer(models.Model):
     saasu_contact_uid = models.CharField(max_length=32, blank=True)
     xero_contact_id = models.CharField(max_length=36, blank=True)
 
-    currency = models.ForeignKey(Currency, null=True, blank=True)
+    currency = models.ForeignKey(
+        Currency,
+        null=True,
+        blank=True,
+        help_text=_("Required for XERO client to know the Client's currency.")
+    )
 
     class Meta:
         ordering = ['customer_name']
