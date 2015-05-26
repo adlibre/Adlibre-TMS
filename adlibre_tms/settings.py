@@ -155,7 +155,7 @@ LOGIN_REDIRECT_URL = '/'
 SITE_NAME = 'Adlibre TMS'
 
 PRODUCT_VERSION = VERSION  # Adlibre TMS Product Version
-DEMO = True
+DEMO = False
 
 PAGINATION_DEFAULT_PAGINATION = 15
 
@@ -165,8 +165,8 @@ CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 # Settings from .env (optional load)
 TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
 EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
-SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
-SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
+SAASU_FILE_UID = "59358"
+SAASU_WSACCESS_KEY = "0C1C6F8DF04744E3B5FE6309F2FD2865"
 
 # XERO API data to be overridden
 XERO_CONSUMER_KEY = getattr(os.environ, 'XERO_CONSUMER_KEY', "4I159YJKNWF3MKQ6Q4B9C2HGQAWMLF")

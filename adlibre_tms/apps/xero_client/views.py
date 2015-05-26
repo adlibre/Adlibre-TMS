@@ -61,7 +61,6 @@ class XeroAccountView(View):
         if request.GET.has_key('pop') or request.GET.has_key('popup'):
             is_popup = True
         xero = XeroAccountList()
-        print xero.accounts
 
         return render(request, self.template_name, {
             'object_list': xero.accounts,
