@@ -27,7 +27,7 @@ class SaasuAccountInput(forms.Widget):
             final_attrs['value'] = force_unicode(value)
         output.append('<input%s />' % flatatt(final_attrs))
         output.append('<a href="%s" class="saasu-account-lookup" id="account_lookup_id_%s" onclick="return showSaasuAccountLookupPopup(this);">' % (saasu_account_url, name))
-        output.append('<img src="%simg/admin/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
+        output.append('<img src="%simg/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
         return mark_safe(u''.join(output))
 
 
@@ -59,7 +59,7 @@ class SaasuContactInput(forms.Widget):
             final_attrs['value'] = force_unicode(value)
         output.append('<input%s />' % flatatt(final_attrs))
         output.append('<a href="%s" class="saasu-contact-lookup" id="contact_lookup_id_%s" onclick="return showSaasuContactLookupPopup(this);">' % (saasu_contact_url, name))
-        output.append('<img src="%simg/admin/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
+        output.append('<img src="%simg/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
         return mark_safe(u''.join(output))
 
 
@@ -92,7 +92,7 @@ class SaasuItemInput(forms.Widget):
             final_attrs['value'] = force_unicode(value)
         output.append('<input%s />' % flatatt(final_attrs))
         output.append('<a href="%s" class="saasu-item-lookup" id="item_lookup_id_%s" onclick="return showSaasuItemLookupPopup(this);">' % (saasu_item_url, name))
-        output.append('<img src="%simg/admin/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
+        output.append('<img src="%simg/selector-search.gif" width="16" height="16" alt="%s" /></a>' % (settings.ADMIN_MEDIA_PREFIX, _('Lookup')))
         return mark_safe(u''.join(output))
 
 
