@@ -54,8 +54,6 @@ class Project(models.Model):
     project_name = models.CharField(max_length=64, unique=True)
     project_code = models.CharField(max_length=32, unique=True)
     is_billable = models.BooleanField(default=True)
-    # TODO: why this fails?
-    #currency = models.ForeignKey(Currency, null=True, blank=True)
 
     class Meta:
         ordering = ['project_name']
@@ -292,6 +290,7 @@ class ExpenseType(models.Model):
 
     # Link with SAASU account
     saasu_account_uid = models.CharField(max_length=32, blank=True)
+    xero_account_id = models.CharField(max_length=32, blank=True)
 
     class Meta:
         ordering = ['expense_type_name']
@@ -316,7 +315,7 @@ class Expense(models.Model):
 
     employee = models.ForeignKey(Employee)
     customer = models.ForeignKey(Customer)
-    expense_type = models.ForeignKey(ExpenseType) # (these should be linked to saasu accounts)
+    expense_type = models.ForeignKey(ExpenseType) # (these should be linked to saasu or xero accounts)
     payment_method = models.ForeignKey(PaymentMethod)
     currency = models.ForeignKey(Currency)
 

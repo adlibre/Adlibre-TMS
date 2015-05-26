@@ -109,7 +109,7 @@ class XeroItemList(models.Model):
 
 
 class XeroContactList(models.Model):
-    items = None
+    contacts = None
 
     def __init__(self, *args, **kwargs):
         super(XeroContactList, self).__init__(*args, **kwargs)
@@ -117,3 +117,12 @@ class XeroContactList(models.Model):
         contacts = manager.xero.contacts.all()
         self.contacts = contacts
 
+
+class XeroAccountList(models.Model):
+    accounts = None
+
+    def __init__(self, *args, **kwargs):
+        super(XeroAccountList, self).__init__(*args, **kwargs)
+        manager = XeroAuthManager()
+        accounts = manager.xero.accounts.all()
+        self.accounts = accounts

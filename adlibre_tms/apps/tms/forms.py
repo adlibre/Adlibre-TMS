@@ -69,6 +69,7 @@ class ExpenseTypeAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ExpenseTypeAdminForm, self).__init__(*args, **kwargs)
         self.fields['saasu_account_uid'].widget = AdminSaasuAccountInputWidget()
+        self.fields['xero_account_id'].widget = AdminXeroAccountInputWidget()
 
 
 class CustomerAdminForm(forms.ModelForm):
