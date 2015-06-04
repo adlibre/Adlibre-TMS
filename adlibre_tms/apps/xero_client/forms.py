@@ -34,7 +34,10 @@ class XeroInvoiceForm(forms.ModelForm):
             if 'form0_cleaned' in self.initial:
                 project_code = self.initial['form0_cleaned']['to']
                 # access object through self.instance...
-                self.fields['items'].queryset = Timesheet.objects.filter(job__project__project_name=project_code)
+                # TODO: Is billed/submitted
+                self.fields['items'].queryset = Timesheet.objects.filter(
+                    job__project__project_name=project_code
+                )
 
     class Meta:
         model = XeroInvoice
@@ -168,6 +171,7 @@ class XeroExpenseForm(forms.ModelForm):
             if 'form0_cleaned' in self.initial:
                 customer_name = self.initial['form0_cleaned']['to']
                 # access object through self.instance...
+                # TODO: is billed/submitted filtering
                 self.fields['items'].queryset = Expense.objects.filter(
                     customer__customer_name=customer_name
                 )
