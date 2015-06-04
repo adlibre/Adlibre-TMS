@@ -346,7 +346,7 @@ class Expense(models.Model):
         pass
 
     def __unicode__(self):
-        return '%s %s %s %s' % (self.employee, self.customer, self.expense_type, self.expense_amount)
+        return '%s %s %s %s %s' % (self.employee, self.customer, self.expense_type, self.expense_amount, self.comment)
 
     class QuerySet(QuerySet):
         def get_total_amount(self):

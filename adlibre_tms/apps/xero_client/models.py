@@ -7,6 +7,8 @@ from xero.exceptions import *
 
 from tms.models import Project
 from tms.models import Timesheet
+from tms.models import Expense
+from tms.models import Customer
 from xero_client import XeroAuthManager
 
 
@@ -16,6 +18,16 @@ def get_projects_tuple():
     c = 0
     for p in projects:
         results += ((p.project_name, p.project_name), )
+        c += 1
+    return results
+
+
+def get_customers_tuple():
+    customers = Customer.objects.filter(is_billable=True)
+    results = ()
+    c = 0
+    for cust in customers:
+        results += ((cust.customer_name, cust.customer_name), )
         c += 1
     print results
     return results
@@ -126,3 +138,16 @@ class XeroAccountList(models.Model):
         manager = XeroAuthManager()
         accounts = manager.xero.accounts.all()
         self.accounts = accounts
+
+
+class XeroExpenseClaim(models.Model):
+    xero_sync = models.BooleanField(default=True, help_text='Upload this expense claim to Xero')
+    to = models.CharField(
+        max_length=200,
+        choices=get_customers_tuple(),
+        help_text='Name of the company expense claim is being issued to.'
+    )
+    items = models.ManyToManyField(Expense)
+
+    def upload_to_xero(self, cleaned_data):
+        pass
