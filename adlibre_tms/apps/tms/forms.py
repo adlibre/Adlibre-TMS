@@ -12,7 +12,7 @@ from adlibre.contrib.widgets import SelectTimeWidget, SelectDateWidget
 now = datetime.date.today()
 
 __all__ = ['TimesheetForm', 'ExpenseTypeAdminForm', 'CustomerAdminForm', 'ExpenseForm', 'ProjectDetailsForm', 'DaysConsultantForm',
-           'ExpenseSummaryClientForm', 'ExpenseSummaryConsultantForm']
+           'ExpenseSummaryClientForm', 'ExpenseSummaryConsultantForm', 'EmployeeAdminForm', ]
 
 
 class TimesheetForm(forms.ModelForm):
@@ -70,6 +70,16 @@ class ExpenseTypeAdminForm(forms.ModelForm):
         super(ExpenseTypeAdminForm, self).__init__(*args, **kwargs)
         self.fields['saasu_account_uid'].widget = AdminSaasuAccountInputWidget()
         self.fields['xero_account_id'].widget = AdminXeroAccountInputWidget()
+
+
+class EmployeeAdminForm(forms.ModelForm):
+
+    class Meta:
+        model = Employee
+
+    def __init__(self, *args, **kwargs):
+        super(EmployeeAdminForm, self).__init__(*args, **kwargs)
+        self.fields['xero_user_id'].widget = AdminXeroUserInputWidget()
 
 
 class CustomerAdminForm(forms.ModelForm):

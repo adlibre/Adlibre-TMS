@@ -27,6 +27,7 @@ SAASU_ERRORS_CONSTANT = {
 class Employee(models.Model):
 
     user = models.OneToOneField(User)
+    xero_user_id = models.CharField(max_length=36, blank=True)
 
     class Meta:
         ordering = ['user']

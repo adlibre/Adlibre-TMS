@@ -29,7 +29,6 @@ def get_customers_tuple():
     for cust in customers:
         results += ((cust.customer_name, cust.customer_name), )
         c += 1
-    print results
     return results
 
 
@@ -108,6 +107,9 @@ class XeroInvoice(models.Model):
         ), e:
             # Intercepting Xero API errors and output during validation with full API error message
             raise ValidationError('Xero invoice submit error: %s, %s' % (e, '\\'.join(e.errors)))
+        # Marking all the Timesheets as billed
+        items.is_billed = True
+        items.save()
 
 
 class XeroItemList(models.Model):
@@ -150,4 +152,23 @@ class XeroExpenseClaim(models.Model):
     items = models.ManyToManyField(Expense)
 
     def upload_to_xero(self, cleaned_data):
+        # TODO: make this work
+        print cleaned_data
+        manager = XeroAuthManager()
+        xero = manager.xero
+        expense_data = {
+
+        }
+        claim = xero.expenseclaims.get('')
+        print claim
         pass
+
+
+class XeroUserList(models.Model):
+    users = None
+
+    def __init__(self, *args, **kwargs):
+        super(XeroUserList, self).__init__(*args, **kwargs)
+        manager = XeroAuthManager()
+        users = manager.xero.users.all()
+        self.users = users

@@ -264,7 +264,6 @@ class XeroExpenseWizard(FormWizard):
 
         for form in form_list:
             data.update(form.cleaned_data)
-        # TODO: implement
         expense = XeroExpenseClaim.objects.create(
             to=data['to'],
             xero_sync=data['xero_sync'],

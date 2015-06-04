@@ -3,7 +3,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from models import XeroItemList, XeroContactList, XeroAccountList
+from models import XeroItemList, XeroContactList, XeroAccountList, XeroUserList
 
 
 class XeroItemView(View):
@@ -64,6 +64,27 @@ class XeroAccountView(View):
 
         return render(request, self.template_name, {
             'object_list': xero.accounts,
+            'app_label': self.app_label,
+            'is_popup': is_popup,
+        })
+
+
+class XeroUserView(View):
+    template_name = 'xero/xero_user_lookup.html'
+    app_label = 'xero_client'
+
+    def get(self, request):
+        is_popup = False
+
+        if settings.DEMO:
+            return HttpResponse('Disabled in DEMO mode')
+
+        if request.GET.has_key('pop') or request.GET.has_key('popup'):
+            is_popup = True
+        xero = XeroUserList()
+
+        return render(request, self.template_name, {
+            'object_list': xero.users,
             'app_label': self.app_label,
             'is_popup': is_popup,
         })

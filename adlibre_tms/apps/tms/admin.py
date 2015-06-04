@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from tms.models import *
-from tms.forms import ExpenseTypeAdminForm, CustomerAdminForm, ServiceAdminForm
+from tms.forms import ExpenseTypeAdminForm, CustomerAdminForm, ServiceAdminForm, EmployeeAdminForm
 
 
 class TimesheetAdmin(admin.ModelAdmin):
@@ -135,9 +135,13 @@ class ServiceAdmin(admin.ModelAdmin):
     form = ServiceAdminForm
 
 admin.site.register(Service, ServiceAdmin)
-
 admin.site.register(Project)
-admin.site.register(Employee)
+
+
+class EmployeeAdmin(admin.ModelAdmin):
+    form = EmployeeAdminForm
+
+admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Job)
 
 
