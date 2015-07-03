@@ -15,3 +15,4 @@ gunicorn==18.0
 dj-static
 dj-database-url==0.2.2
 pyxero==0.5.2
+mysqlclient
