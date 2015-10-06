@@ -1,4 +1,3 @@
-pip: pip install --allow-external py-dom-xpath --allow-unverified py-dom-xpath py-dom-xpath
 pip: pip install -r requirements.txt
 syncdb: manage.py syncdb --noinput
 migrate: manage.py migrate --noinput
