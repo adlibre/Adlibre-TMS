@@ -163,11 +163,11 @@ CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 # Settings from .env (optional load)
 TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
 EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
-SAASU_FILE_UID = getattr(os.environ, 'SAASU_FILE_UID', 'XXXX')
-SAASU_WSACCESS_KEY = getattr(os.environ, 'SAASU_WSACCESS_KEY', 'XXXXXXXXXXXXXXXXXXXXXXXXX')
+SAASU_FILE_UID = os.environ.setdefault('SAASU_FILE_UID', None)
+SAASU_WSACCESS_KEY = os.environ.setdefault('SAASU_WSACCESS_KEY', None)
 
 # XERO API data to be overridden
-XERO_CONSUMER_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+XERO_CONSUMER_KEY = os.environ.setdefault('XERO_CONSUMER_KEY', None)
 XERO_PATH_CERTIFICATE = os.path.abspath(
     os.path.join(PROJECT_PATH, '..', 'keys', 'privatekey.pem')
 )
@@ -188,10 +188,7 @@ if DEBUG:
 
 # Loading SECRET_KEY from .env variable in case it is not already set somewhere else
 try:
-    SECRET_KEY
-except NameError:
-    try:
-        SECRET_KEY = os.environ['SECRET_KEY']
-    except KeyError:
-        print "Warning: settings.SECRET_KEY is not set!"
-        pass
+    SECRET_KEY = os.environ['SECRET_KEY']
+except KeyError:
+    print("Warning: settings.SECRET_KEY is not set!")
+    pass
