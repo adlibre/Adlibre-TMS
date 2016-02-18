@@ -161,13 +161,13 @@ PAGINATION_DEFAULT_PAGINATION = 15
 CACHE_BACKEND = 'locmem:///?timeout=300&max_entries=6000'
 
 # Settings from .env (optional load)
-TIME_ZONE = os.environ.setdefault("TIME_ZONE", "Australia/Sydney")
-EMAIL_HOST = os.environ.setdefault("EMAIL_HOST", "localhost")
-SAASU_FILE_UID = os.environ.setdefault('SAASU_FILE_UID', None)
-SAASU_WSACCESS_KEY = os.environ.setdefault('SAASU_WSACCESS_KEY', None)
+TIME_ZONE = os.environ.get("TIME_ZONE", "Australia/Sydney")
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "localhost")
+SAASU_FILE_UID = os.environ.get('SAASU_FILE_UID', None)
+SAASU_WSACCESS_KEY = os.environ.get('SAASU_WSACCESS_KEY', None)
 
 # XERO API data to be overridden
-XERO_CONSUMER_KEY = os.environ.setdefault('XERO_CONSUMER_KEY', None)
+XERO_CONSUMER_KEY = os.environ.get('XERO_CONSUMER_KEY', None)
 XERO_PATH_CERTIFICATE = os.path.abspath(
     os.path.join(PROJECT_PATH, '..', 'keys', 'privatekey.pem')
 )
