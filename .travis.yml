@@ -5,6 +5,7 @@ python:
 
 env:
   - SAASU_WSACCESS_KEY=xxx
+  - SAASU_FILE_UID=xxx
 
 # command to install dependencies
 #install: "pip install --allow-external py-dom-xpath --allow-unverified py-dom-xpath ."
