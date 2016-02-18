@@ -4,7 +4,7 @@ python:
   - "2.7"
 
 env:
-  - SAASU_WSACCESS_KEY=xxx SAASU_FILE_UID=xxx XERO_CONSUMER_KEY=xxx
+  - SAASU_WSACCESS_KEY=xxx SAASU_FILE_UID=xxx XERO_CONSUMER_KEY=xxx SECRET_KEY=xxx
 
 # command to install dependencies
 #install: "pip install --allow-external py-dom-xpath --allow-unverified py-dom-xpath ."
