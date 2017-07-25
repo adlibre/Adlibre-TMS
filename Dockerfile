@@ -7,3 +7,5 @@ RUN source /srv/ve27/bin/activate && \
     cd /srv/git && \
     pip install --upgrade pip && \
     pip install -r requirements.txt
+
+ENV WORKERS=4
