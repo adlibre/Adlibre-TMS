@@ -1,6 +1,6 @@
 # Core
 BeautifulSoup==3.2.0
-Django==1.4.2
+Django==1.4.22
 django-any==0.2.0
 django-pagination==1.0.7
 django-celery==3.1.16
@@ -13,7 +13,7 @@ template-utils==0.4p2
 xml-models-redux
 # Deployment
 bureaucrat
-gunicorn==18.0
+gunicorn==19.5.0
 dj-static
 dj-database-url==0.2.2
 pyxero==0.5.2
